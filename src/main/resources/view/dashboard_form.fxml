@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="55.0" layoutY="37.0" prefHeight="80.0" prefWidth="640.0" text="Welcome back to DressAura" textAlignment="JUSTIFY" textFill="#913175ed">
+         <font>
+            <Font name="Calibri Bold" size="29.0" />
+         </font>
+      </Label>
+      <LineChart layoutX="524.0" layoutY="175.0" prefHeight="458.0" prefWidth="694.0" style="-fx-background-color: E9E8E8; -fx-background-radius: 10; -fx-border-color: E9E8E8; -fx-border-radius: 10; -fx-border-image-width: 0.5;">
+         <xAxis>
+            <CategoryAxis side="BOTTOM" style="-fx-background-color: white;" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis prefHeight="427.0" prefWidth="29.0" side="LEFT" style="-fx-background-color: white;" tickLabelFill="#10060d" />
+         </yAxis>
+      </LineChart>
+      <Label alignment="CENTER" layoutX="61.0" layoutY="351.0" prefHeight="51.0" prefWidth="151.0" style="-fx-background-color: CD5888; -fx-background-radius: 5;" text="No of Rentals" textFill="#fffefe">
+         <font>
+            <Font name="Calibri Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="61.0" layoutY="515.0" prefHeight="51.0" prefWidth="151.0" style="-fx-background-color: CD5888; -fx-background-radius: 5;" text="No of Orders" textFill="#fffefe">
+         <font>
+            <Font name="Calibri Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="232.0" layoutY="515.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: CD5888; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
+         <font>
+            <Font name="Calibri" size="29.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="232.0" layoutY="351.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: CD5888; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
+         <font>
+            <Font name="Calibri" size="29.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

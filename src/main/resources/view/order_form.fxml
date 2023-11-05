@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="681.0" prefWidth="1266.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.OrderFormController">
+   <children>
+      <Label alignment="CENTER" layoutX="23.0" layoutY="39.0" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: E9E8E8; -fx-background-radius: 5;" text="Num of Orders" textAlignment="JUSTIFY" textFill="#1e0505">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="189.0" layoutY="39.0" prefHeight="43.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" text="20">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="1192.0" layoutY="27.0">
+         <image>
+            <Image url="@../icon/add.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="add" layoutX="1179.0" layoutY="17.0" mnemonicParsing="false" onAction="#AddButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
+      <TableView layoutX="23.0" layoutY="103.0" prefHeight="494.0" prefWidth="1219.0">
+         <columns>
+            <TableColumn prefWidth="29.600006103515625" text="#" />
+            <TableColumn minWidth="0.0" prefWidth="112.79999160766602" text="Order ID" />
+            <TableColumn prefWidth="112.00001525878906" text="Customer ID" />
+            <TableColumn minWidth="0.0" prefWidth="249.60003662109375" text="Customer Name" />
+            <TableColumn prefWidth="176.0" text=" Date" />
+            <TableColumn minWidth="0.0" prefWidth="165.5999755859375" text="Return Date" />
+             <TableColumn minWidth="0.0" prefWidth="112.800048828125" text="Measurements" />
+             <TableColumn minWidth="0.0" prefWidth="258.40008544921875" text="Action" />
+         </columns>
+      </TableView>
+      <Button layoutX="1134.0" layoutY="634.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(50, 205, 50);" text="Back" textFill="#fffcfc">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

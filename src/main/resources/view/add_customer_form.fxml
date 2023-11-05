@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="585.0" prefWidth="684.0" style="-fx-background-color: white; -fx-border-radius: 10; -fx-background-radius: 5;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddCustomerFormController">
+   <children>
+      <Label layoutX="40.0" layoutY="40.0" prefHeight="42.0" prefWidth="211.0" text="Add New Customer" textFill="#0b0a0b">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Line endX="412.7999267578125" endY="0.399993896484375" layoutX="164.0" layoutY="82.0" opacity="0.22" startX="-124.00000762939453" startY="0.399993896484375" />
+      <Label layoutX="40.0" layoutY="136.0" prefHeight="23.0" prefWidth="87.0" text="Customer Id">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="135.0" layoutY="136.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="C001" />
+      <Label alignment="CENTER" layoutX="412.0" layoutY="136.0" prefHeight="23.0" prefWidth="71.0" text="Date ">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="483.0" layoutY="136.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="2023/01/03" />
+      <Label layoutX="38.0" layoutY="196.0" prefHeight="23.0" prefWidth="54.0" text="Name">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="40.0" layoutY="228.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="38.0" layoutY="293.0" prefHeight="23.0" prefWidth="54.0" text="Address">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="38.0" layoutY="331.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="38.0" layoutY="379.0" prefHeight="23.0" prefWidth="54.0" text="Email">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="38.0" layoutY="420.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="412.0" layoutY="196.0" prefHeight="23.0" prefWidth="108.0" text="Contact number">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField layoutX="412.0" layoutY="228.0" prefHeight="32.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Button layoutX="520.0" layoutY="514.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(19,151,233);" text="Add" textFill="#fffcfc">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancel" layoutX="398.0" layoutY="514.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(50, 205, 50);" text="Cancel" textFill="#fffcfc">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

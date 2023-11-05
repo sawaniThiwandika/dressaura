@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="main" prefHeight="798.0" prefWidth="1524.0" style="-fx-background-color: E9E8E8;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.MainFormController">
+   <children>
+      <AnchorPane fx:id="mainForm" layoutX="256.0" layoutY="102.0" prefHeight="681.0" prefWidth="1266.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <children>
+            <Label layoutX="45.0" layoutY="27.0" prefHeight="80.0" prefWidth="640.0" text="Welcome back to DressAura" textAlignment="JUSTIFY" textFill="#913175ed">
+               <font>
+                  <Font name="Calibri Bold" size="29.0" />
+               </font>
+            </Label>
+            <LineChart layoutX="514.0" layoutY="165.0" prefHeight="458.0" prefWidth="694.0" style="-fx-background-color: E9E8E8; -fx-background-radius: 10; -fx-border-color: E9E8E8; -fx-border-radius: 10; -fx-border-image-width: 0.5;">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" style="-fx-background-color: white;" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis prefHeight="427.0" prefWidth="29.0" side="LEFT" style="-fx-background-color: white;" tickLabelFill="#10060d" />
+              </yAxis>
+            </LineChart>
+            <Label alignment="CENTER" layoutX="51.0" layoutY="341.0" prefHeight="51.0" prefWidth="151.0" style="-fx-background-color: CD5888; -fx-background-radius: 5;" text="No of Rentals" textFill="#fffefe">
+               <font>
+                  <Font name="Calibri Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="51.0" layoutY="505.0" prefHeight="51.0" prefWidth="151.0" style="-fx-background-color: CD5888; -fx-background-radius: 5;" text="No of Orders" textFill="#fffefe">
+               <font>
+                  <Font name="Calibri Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="222.0" layoutY="505.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: CD5888; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
+               <font>
+                  <Font name="Calibri" size="29.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="222.0" layoutY="341.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: CD5888; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
+               <font>
+                  <Font name="Calibri" size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="257.0" layoutY="14.0" prefHeight="80.0" prefWidth="1266.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;">
+         <children>
+            <TextField layoutX="533.0" layoutY="25.0" prefHeight="30.0" prefWidth="382.0" />
+            <Label layoutX="59.0" layoutY="25.0" prefHeight="30.0" prefWidth="311.0" text="2023/01/02 WEDNESDAY" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="12.0" prefHeight="773.0" prefWidth="222.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+         <children>
+            <Button fx:id="dashboard" layoutX="-1.0" layoutY="162.0" mnemonicParsing="false" onAction="#dashboardButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="DashBoard">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="payment" layoutX="-1.0" layoutY="204.0" mnemonicParsing="false" onAction="#paymentButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Payment">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="rental" layoutX="-1.0" layoutY="246.0" mnemonicParsing="false" onAction="#rentalButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Rentals">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="order" layoutX="-1.0" layoutY="288.0" mnemonicParsing="false" onAction="#orderButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Orders">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="customer" layoutX="-1.0" layoutY="427.0" mnemonicParsing="false" onAction="#customerButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Customers">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="dress" layoutX="-1.0" layoutY="470.0" mnemonicParsing="false" onAction="#dressButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Dresses">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="employee" layoutX="-1.0" layoutY="552.0" mnemonicParsing="false" onAction="#employeeButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: whitw;" text="Employee">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="material" layoutX="-1.0" layoutY="595.0" mnemonicParsing="false" onAction="#materialButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Materials">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="equipment" layoutX="-1.0" layoutY="638.0" mnemonicParsing="false" onAction="#equipmentButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Equipments">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
