@@ -28,32 +28,32 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="425.0" layoutY="146.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="2023/01/03" />
+      <Label fx:id="labeldate" alignment="CENTER" layoutX="425.0" layoutY="146.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" />
       <Label layoutX="54.0" layoutY="194.0" prefHeight="23.0" prefWidth="54.0" text="Name">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="50.0" layoutY="224.0" prefHeight="32.0" prefWidth="354.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txtname" layoutX="50.0" layoutY="224.0" prefHeight="32.0" prefWidth="354.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="452.0" layoutY="194.0" prefHeight="23.0" prefWidth="67.0" text="Size">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <ComboBox layoutX="452.0" layoutY="226.0" prefHeight="27.0" prefWidth="54.0" style="-fx-background-color: E9E8E8; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <ComboBox fx:id="combosize" layoutX="452.0" layoutY="226.0" prefHeight="27.0" prefWidth="92.0" style="-fx-background-color: E9E8E8; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="47.0" layoutY="352.0" prefHeight="23.0" prefWidth="78.0" text="Rent price">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="116.0" layoutY="146.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="D001" />
-      <TextField layoutX="77.0" layoutY="384.0" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label fx:id="dressIdLabel" alignment="CENTER" layoutX="116.0" layoutY="146.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" />
+      <TextField fx:id="txtprice" layoutX="77.0" layoutY="384.0" prefHeight="32.0" prefWidth="78.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="53.0" layoutY="384.0" prefHeight="32.0" prefWidth="20.0" text="Rs">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Button alignment="BASELINE_LEFT" layoutX="349.0" layoutY="308.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: white; -fx-border-color: 7D7C7C;" text="Add Photo">
+      <Button fx:id="addphoto" alignment="BASELINE_LEFT" layoutX="349.0" layoutY="308.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: white; -fx-border-color: 7D7C7C;" text="Add Photo">
          <font>
             <Font size="13.0" />
          </font>
@@ -78,6 +78,6 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="51.0" layoutY="306.0" prefHeight="32.0" prefWidth="147.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txttype" layoutX="51.0" layoutY="306.0" prefHeight="32.0" prefWidth="147.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
    </children>
 </AnchorPane>

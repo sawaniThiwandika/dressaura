@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="585.0" prefWidth="684.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.UpdateCustomerFormController">
+   <children>
+      <Label layoutX="50.0" layoutY="50.0" prefHeight="42.0" prefWidth="211.0" text="Update Customer" textFill="#0b0a0b">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Line endX="412.7999267578125" endY="0.399993896484375" layoutX="174.0" layoutY="92.0" opacity="0.22" startX="-124.00000762939453" startY="0.399993896484375" />
+      <Label layoutX="48.0" layoutY="134.0" prefHeight="23.0" prefWidth="87.0" text="Customer Id">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtId" layoutX="50.0" layoutY="165.0" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="48.0" layoutY="293.0" prefHeight="23.0" prefWidth="54.0" text="Address">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAddress" layoutX="50.0" layoutY="331.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="50.0" layoutY="395.0" prefHeight="23.0" prefWidth="54.0" text="Email">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtEmail" layoutX="48.0" layoutY="430.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="422.0" layoutY="206.0" prefHeight="23.0" prefWidth="108.0" text="Contact number">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtContact" layoutX="422.0" layoutY="238.0" prefHeight="32.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Button fx:id="update" layoutX="530.0" layoutY="524.0" mnemonicParsing="false" onAction="#updateButtonOnAction" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(19,151,233);" text="Update" textFill="#fffcfc">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancel" layoutX="408.0" layoutY="524.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(50, 205, 50);" text="Cancel" textFill="#fffcfc">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtName" layoutX="50.0" layoutY="254.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="48.0" layoutY="217.0" prefHeight="23.0" prefWidth="87.0" text="Name">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="ok" layoutX="261.0" layoutY="168.0" mnemonicParsing="false" onAction="#okButtonOnAction" text="ok" />
+   </children>
+</AnchorPane>

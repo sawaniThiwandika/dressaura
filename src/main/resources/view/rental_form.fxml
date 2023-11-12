@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rental" prefHeight="681.0" prefWidth="1266.0" style="-fx-background-color: rgb(233, 232, 232);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.RentalFormController">
+<AnchorPane fx:id="rentalPane" prefHeight="681.0" prefWidth="1266.0" style="-fx-background-color: rgb(233, 232, 232);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.RentalFormController">
    <children>
       <Label alignment="CENTER" layoutX="26.0" layoutY="24.0" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: CD5888; -fx-background-radius: 5;" text="Num of Rentals" textAlignment="JUSTIFY" textFill="#fcfcfc">
          <font>
@@ -21,17 +21,17 @@
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="203.0" layoutY="24.0" prefHeight="43.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" text="20">
+      <Label fx:id="NoOfRentalsS" alignment="CENTER" layoutX="203.0" layoutY="24.0" prefHeight="43.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" text="20">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="947.0" layoutY="31.0" prefHeight="36.0" prefWidth="34.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" text="5" textFill="#e70f0f">
+      <Label fx:id="late" alignment="CENTER" layoutX="947.0" layoutY="31.0" prefHeight="36.0" prefWidth="34.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" text="5" textFill="#e70f0f">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="721.0" layoutY="31.0" prefHeight="36.0" prefWidth="34.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" text="3">
+      <Label fx:id="ongoing" alignment="CENTER" layoutX="721.0" layoutY="31.0" prefHeight="36.0" prefWidth="34.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" text="3">
          <font>
             <Font size="20.0" />
          </font>
@@ -46,7 +46,7 @@
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="483.0" layoutY="31.0" prefHeight="36.0" prefWidth="34.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" text="5" textFill="#0d0202">
+      <Label fx:id="upcoming" alignment="CENTER" layoutX="483.0" layoutY="31.0" prefHeight="36.0" prefWidth="34.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" text="5" textFill="#0d0202">
          <font>
             <Font size="20.0" />
          </font>
@@ -56,17 +56,20 @@
             <Image url="@../icon/add.png" />
          </image>
       </ImageView>
-      <TableView layoutX="14.0" layoutY="123.0" prefHeight="544.0" prefWidth="1242.0">
+      <TableView fx:id="rentViewSTable" layoutX="12.0" layoutY="110.0" prefHeight="557.0" prefWidth="1242.0">
          <columns>
-            <TableColumn prefWidth="29.600006103515625" text="#" />
-            <TableColumn minWidth="0.0" prefWidth="98.40000915527344" text="Rent ID" />
-            <TableColumn prefWidth="105.60003662109375" text="Customer ID" />
-            <TableColumn minWidth="0.0" prefWidth="256.00001525878906" text="Customer name" />
-            <TableColumn minWidth="0.0" prefWidth="191.19998168945312" text="Contact" />
-            <TableColumn prefWidth="117.5999755859375" text="Dress ID" />
-            <TableColumn minWidth="0.0" prefWidth="152.0" text="Reservation date" />
-            <TableColumn minWidth="0.0" prefWidth="151.99993896484375" text="Return date" />
-            <TableColumn minWidth="0.0" prefWidth="140.800048828125" text="Action" />
+            <TableColumn fx:id="colNum" prefWidth="29.600006103515625" text="#" />
+            <TableColumn fx:id="colRentId" minWidth="0.0" prefWidth="76.80001449584961" text="Rent ID" />
+            <TableColumn fx:id="rentCusId" prefWidth="74.39996337890625" text="Customer ID" />
+            <TableColumn fx:id="colCusName" minWidth="0.0" prefWidth="178.4000701904297" text="Customer name" />
+            <TableColumn fx:id="colCusContact" minWidth="0.0" prefWidth="129.5999755859375" text="Contact" />
+            <TableColumn fx:id="colDressId" prefWidth="90.39990234375" text="Dress ID" />
+            <TableColumn fx:id="colReserveDate" minWidth="0.0" prefWidth="142.39996337890625" text="Reservation date" />
+            <TableColumn fx:id="colReturnDate" minWidth="0.0" prefWidth="156.00006103515625" text="Return date" />
+            <TableColumn fx:id="colReservationAction" minWidth="0.0" prefWidth="192.79986572265625" text="Reservation Complete" />
+            <TableColumn fx:id="colReturnAction" minWidth="0.0" prefWidth="173.60009765625" text="Return Complete" />
+            <TableColumn fx:id="colDeleteAction" minWidth="0.0" prefWidth="152.0001220703125" text="Delete" />
+
          </columns>
       </TableView>
       <Button layoutX="1134.0" layoutY="27.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.03" prefHeight="43.0" prefWidth="52.0" />

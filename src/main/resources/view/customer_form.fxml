@@ -21,21 +21,23 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="1198.0" layoutY="40.0">
+      <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="1102.0" layoutY="39.0">
          <image>
             <Image url="@../icon/add.png" />
          </image>
       </ImageView>
-      <Button fx:id="add" layoutX="1185.0" layoutY="29.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
-      <TableView layoutX="13.0" layoutY="93.0" prefHeight="494.0" prefWidth="1239.0">
+      <Button fx:id="add" layoutX="1088.0" layoutY="29.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
+      <TableView fx:id="tableCustomer" layoutX="13.0" layoutY="93.0" prefHeight="494.0" prefWidth="1239.0">
         <columns>
-          <TableColumn prefWidth="29.600006103515625" text="#" />
-          <TableColumn minWidth="0.0" prefWidth="131.20001983642578" text="Customer Id" />
-           <TableColumn prefWidth="192.80001831054688" text="Name" />
-           <TableColumn minWidth="0.0" prefWidth="250.39993286132812" text="Address" />
-           <TableColumn prefWidth="224.79998779296875" text="Email Address" />
-           <TableColumn minWidth="0.0" prefWidth="155.199951171875" text="Contact" />
-           <TableColumn minWidth="0.0" prefWidth="251.99993896484375" text="Action" />
+          <TableColumn fx:id="number" prefWidth="29.600006103515625" text="#" />
+          <TableColumn fx:id="columnId" minWidth="0.0" prefWidth="131.20001983642578" text="Customer Id" />
+           <TableColumn fx:id="columnName" prefWidth="192.80001831054688" text="Name" />
+           <TableColumn fx:id="columnAddress" minWidth="0.0" prefWidth="180.79995727539062" text="Address" />
+           <TableColumn fx:id="columnEmail" prefWidth="218.39996337890625" text="Email Address" />
+           <TableColumn fx:id="columnContact" minWidth="0.0" prefWidth="152.0" text="Contact" />
+           <TableColumn fx:id="update" minWidth="0.0" prefWidth="176.800048828125" text="Update" />
+            <TableColumn fx:id="delete" minWidth="0.0" prefWidth="159.9998779296875" text="Delete" />
+            
         </columns>
       </TableView>
       <Button layoutX="1124.0" layoutY="624.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(50, 205, 50);" text="Back" textFill="#fffcfc">
@@ -43,5 +45,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1197.0" layoutY="39.0">
+         <image>
+            <Image url="@../icon/edit.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="upadte" layoutX="1181.0" layoutY="27.0" mnemonicParsing="false" onAction="#updateButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
    </children>
 </AnchorPane>

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -14,20 +15,20 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="745.0" prefWidth="852.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddOrderFormController">
+<AnchorPane prefHeight="741.0" prefWidth="850.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddOrderFormController">
    <children>
-      <Label layoutX="26.0" layoutY="23.0" prefHeight="42.0" prefWidth="211.0" text="Add New Order" textFill="#0b0a0b">
+      <Label layoutX="26.0" layoutY="14.0" prefHeight="42.0" prefWidth="211.0" text="Add New Order" textFill="#0b0a0b">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Line endX="486.0" endY="0.399993896484375" layoutX="168.0" layoutY="65.0" opacity="0.22" startX="-139.0" startY="0.399993896484375" />
+      <Line endX="486.0" endY="0.399993896484375" layoutX="169.0" layoutY="56.0" opacity="0.22" startX="-139.0" />
       <Label layoutX="39.0" layoutY="95.0" prefHeight="23.0" prefWidth="87.0" text="Order Id">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="132.0" layoutY="95.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="C001" />
+      <Label fx:id="labelOrderId" alignment="CENTER" layoutX="132.0" layoutY="95.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="C001" />
       <Label alignment="CENTER" layoutX="348.0" layoutY="95.0" prefHeight="23.0" prefWidth="71.0" text="Date ">
          <font>
             <Font name="Arial" size="14.0" />
@@ -44,13 +45,12 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="140.0" layoutY="135.0" prefHeight="27.0" prefWidth="106.0" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="labelCustomerId" layoutX="140.0" layoutY="135.0" prefHeight="27.0" prefWidth="106.0" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="35.0" layoutY="181.0" prefHeight="23.0" prefWidth="87.0" text="Return date">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="139.0" layoutY="179.0" prefHeight="27.0" prefWidth="157.0" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <ImageView fitHeight="23.0" fitWidth="22.0" layoutX="422.0" layoutY="243.0">
          <image>
             <Image url="@../icon/white%20add.png" />
@@ -66,71 +66,66 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="122.0" layoutY="620.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="Rs.1500.00" textFill="#151313">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
       <Label layoutX="283.0" layoutY="674.0" prefHeight="23.0" prefWidth="41.0" text="Paid">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <CheckBox layoutX="324.0" layoutY="674.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="14.0" textFill="#0d0d0d" />
+      <CheckBox fx:id="checkBoxTable" layoutX="324.0" layoutY="674.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="14.0" textFill="#0d0d0d" />
       <Label layoutX="36.0" layoutY="439.0" prefHeight="42.0" prefWidth="133.0" text="Measurements" textFill="#0b0a0b">
          <font>
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="470.0" layoutY="137.0" opacity="0.99" prefHeight="23.0" prefWidth="252.0" style="-fx-background-color: E9E8E8;" />
-      <TextField layoutX="253.0" layoutY="495.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label fx:id="labelCusName" alignment="CENTER" layoutX="470.0" layoutY="137.0" opacity="0.99" prefHeight="23.0" prefWidth="252.0" style="-fx-background-color: E9E8E8;" />
+      <TextField fx:id="txtBust" layoutX="253.0" layoutY="495.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="35.0" layoutY="497.0" prefHeight="23.0" prefWidth="42.0" text="Waist">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="106.0" layoutY="495.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txtWaist" layoutX="106.0" layoutY="495.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="38.0" layoutY="546.0" prefHeight="23.0" prefWidth="59.0" text="Hips">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="106.0" layoutY="544.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txtHips" layoutX="106.0" layoutY="544.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="209.0" layoutY="546.0" prefHeight="23.0" prefWidth="35.0" text="Neck">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="253.0" layoutY="542.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txtNeck" layoutX="253.0" layoutY="542.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="354.0" layoutY="497.0" prefHeight="23.0" prefWidth="54.0" text="Inseam">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="418.0" layoutY="495.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txtInseam" layoutX="418.0" layoutY="495.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="343.0" layoutY="546.0" prefHeight="23.0" prefWidth="59.0" text="Shoulder">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="418.0" layoutY="544.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
-      <Label layoutX="26.0" layoutY="279.0" prefHeight="23.0" prefWidth="98.0" text="Material Code">
+      <TextField fx:id="txtShoulder" layoutX="418.0" layoutY="544.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="33.0" layoutY="279.0" prefHeight="23.0" prefWidth="98.0" text="Material Code">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="522.0" layoutY="485.0" prefHeight="23.0" prefWidth="106.0" text="Description">
+      <Label layoutX="522.0" layoutY="460.0" prefHeight="23.0" prefWidth="106.0" text="Description">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextArea layoutX="521.0" layoutY="510.0" prefHeight="79.0" prefWidth="267.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: A9A9A9; -fx-border-radius: 5;" />
+      <TextArea fx:id="txtDescription" layoutX="521.0" layoutY="495.0" prefHeight="106.0" prefWidth="311.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: A9A9A9; -fx-border-radius: 5;" />
       <Label layoutX="36.0" layoutY="620.0" prefHeight="23.0" prefWidth="78.0" text="Tailor fees">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="103.0" layoutY="674.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="Rs.1500.00" textFill="#e31212">
+      <Label fx:id="Labeltotal" alignment="CENTER" layoutX="103.0" layoutY="674.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="Rs.1500.00" textFill="#e31212">
          <font>
             <Font size="15.0" />
          </font>
@@ -140,12 +135,12 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="373.0" layoutY="619.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="Rs.1500.00" textFill="#130d0d">
+      <Label fx:id="labelMaterialCost" alignment="CENTER" layoutX="373.0" layoutY="619.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="Rs.1500.00" textFill="#130d0d">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="732.0" layoutY="698.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(19,151,233);" text="Add" textFill="#fffcfc">
+      <Button fx:id="addBtn" layoutX="732.0" layoutY="698.0" mnemonicParsing="false" onAction="#AddButtonOnAction" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(19,151,233);" text="Add" textFill="#fffcfc">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -155,19 +150,19 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label layoutX="188.0" layoutY="279.0" prefHeight="23.0" prefWidth="54.0" text="Amount">
+      <Label layoutX="160.0" layoutY="279.0" prefHeight="23.0" prefWidth="54.0" text="Amount">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="243.0" layoutY="277.0" prefHeight="27.0" prefWidth="106.0" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
-      <ComboBox layoutX="122.0" layoutY="277.0" prefHeight="27.0" prefWidth="54.0" style="-fx-background-color: E9E8E8; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
-      <Button alignment="BASELINE_LEFT" layoutX="348.0" layoutY="179.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="118.0" style="-fx-background-color: white; -fx-border-color: 7D7C7C;" text="Add Design">
+      <TextField fx:id="txtAmount" layoutX="134.0" layoutY="318.0" prefHeight="27.0" prefWidth="106.0" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <ComboBox fx:id="comboMaterialCodes" layoutX="40.0" layoutY="318.0" prefHeight="27.0" prefWidth="54.0" style="-fx-background-color: E9E8E8; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Button fx:id="btnAddDesign" alignment="BASELINE_LEFT" layoutX="402.0" layoutY="179.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: white; -fx-border-color: 7D7C7C;" text="Add Design">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="434.0" layoutY="183.0">
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="486.0" layoutY="183.0">
          <image>
             <Image url="@../icon/icons8-add-16.png" />
          </image>
@@ -177,12 +172,15 @@
             <Font name="Calibri" size="18.0" />
          </font>
       </Label>
-      <TableView layoutX="410.0" layoutY="266.0" prefHeight="159.0" prefWidth="408.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(169, 169, 169); -fx-border-radius: 5;">
+      <TableView fx:id="materialTable" layoutX="392.0" layoutY="255.0" prefHeight="182.0" prefWidth="445.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(169, 169, 169); -fx-border-radius: 5;">
         <columns>
           <TableColumn prefWidth="75.0" text="Material ID" />
-          <TableColumn prefWidth="223.20004272460938" text="MaterialName" />
-           <TableColumn prefWidth="107.199951171875" text="Amount" />
+          <TableColumn prefWidth="243.20004272460938" text="MaterialName" />
+           <TableColumn prefWidth="125.5999755859375" text="Amount " />
         </columns>
       </TableView>
+      <TextField fx:id="tailorFees" layoutX="109.0" layoutY="618.0" prefHeight="27.0" prefWidth="157.0" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <DatePicker fx:id="txtDate" layoutX="138.0" layoutY="180.0" />
+      <CheckBox fx:id="chechBoxaddMeterial" layoutX="258.0" layoutY="318.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="17.0" textFill="#0d0d0d" />
    </children>
 </AnchorPane>

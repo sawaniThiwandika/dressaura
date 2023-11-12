@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="520.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.DressDetailsForm">
+<AnchorPane prefHeight="520.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.DressDetailsController">
    <children>
       <AnchorPane layoutX="138.0" layoutY="54.0" prefHeight="227.0" prefWidth="232.0" style="-fx-background-color: E9E8E8; -fx-background-radius: 10; -fx-border-radius: 10;" />
       <Label alignment="CENTER" layoutX="84.0" layoutY="300.0" prefHeight="30.0" prefWidth="319.0" text="Rainbow Frock">

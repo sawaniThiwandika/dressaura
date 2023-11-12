@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="55.0" layoutY="37.0" prefHeight="80.0" prefWidth="640.0" text="Welcome back to DressAura" textAlignment="JUSTIFY" textFill="#913175ed">
@@ -33,12 +32,12 @@
             <Font name="Calibri Bold" size="21.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="232.0" layoutY="515.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: CD5888; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
+      <Label fx:id="orderNum" alignment="CENTER" layoutX="232.0" layoutY="515.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: CD5888; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
          <font>
             <Font name="Calibri" size="29.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="232.0" layoutY="351.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: CD5888; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
+      <Label fx:id="rentNumS" alignment="CENTER" layoutX="232.0" layoutY="351.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: CD5888; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
          <font>
             <Font name="Calibri" size="29.0" />
          </font>

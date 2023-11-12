@@ -29,12 +29,12 @@ public class LoginFormController {
 
     @FXML
     private TextField txtUsername;
-
+    static UserDto loginDto=new UserDto();
     @FXML
     void txtPasswordOnAction(ActionEvent event) throws SQLException {
         System.out.println("username");
         String userName=txtUsername.getText();
-        var loginDto=new UserDto();
+
         loginDto.setUserName(userName);
         boolean isMatchedUsername=UserModel.checkUsername(loginDto);
       if(isMatchedUsername==false){
@@ -46,7 +46,9 @@ public class LoginFormController {
     public void loginButtonOnAction(ActionEvent actionEvent) throws IOException, SQLException {
         String userName=txtUsername.getText();
         String password=txtPassword.getText();
-        var loginDto=new UserDto(userName,password);
+        //var loginDto=new UserDto(userName,password);
+        loginDto.setPassword(password);
+        loginDto.setUserName(userName);
 
         boolean isMatched=UserModel.checkCreditinal(loginDto);
         if(isMatched==false){

@@ -72,9 +72,9 @@ public class MainFormController {
     }
     @FXML
     void employeeButtonOnAction(ActionEvent event) throws IOException {
-       // Parent form = FXMLLoader.load(getClass().getResource("/view/employee_form.fxml"));
-        //this.mainForm.getChildren().clear();
-        //this.mainForm.getChildren().add(form);
+        Parent form = FXMLLoader.load(getClass().getResource("/view/employee_form.fxml"));
+        this.mainForm.getChildren().clear();
+        this.mainForm.getChildren().add(form);
     }
 
     @FXML
@@ -85,13 +85,12 @@ public class MainFormController {
     }
     @FXML
     void equipmentButtonOnAction(ActionEvent event) throws IOException {
-        //Parent form = FXMLLoader.load(getClass().getResource("/view/equipment_form.fxml"));
-       // this.mainForm.getChildren().clear();
-        //this.mainForm.getChildren().add(form);
+        Parent form = FXMLLoader.load(getClass().getResource("/view/equipment_form.fxml"));
+       this.mainForm.getChildren().clear();
+        this.mainForm.getChildren().add(form);
     }
     @FXML
     void dashboardButtonOnAction(ActionEvent event) throws IOException {
-        //Parent root=FXMLLoader.load(Objects.requireNonNull(this.getClass().getResource("dashboard_form.fxml")));
         Parent form = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
         this.mainForm.getChildren().clear();
         this.mainForm.getChildren().add(form);
