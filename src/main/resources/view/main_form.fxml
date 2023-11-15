@@ -6,12 +6,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="main" prefHeight="798.0" prefWidth="1524.0" style="-fx-background-color: E9E8E8;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.MainFormController">
+<AnchorPane fx:id="main" prefHeight="798.0" prefWidth="1524.0" style="-fx-background-color: #232C37;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.MainFormController">
    <children>
-      <AnchorPane fx:id="mainForm" layoutX="256.0" layoutY="102.0" prefHeight="681.0" prefWidth="1266.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+      <AnchorPane fx:id="mainForm" layoutX="256.0" layoutY="102.0" prefHeight="682.0" prefWidth="1257.0" style="-fx-background-color: white; -fx-background-radius: 10;">
          <children>
             <Label layoutX="45.0" layoutY="27.0" prefHeight="80.0" prefWidth="640.0" text="Welcome back to DressAura" textAlignment="JUSTIFY" textFill="#913175ed">
                <font>
@@ -26,81 +28,107 @@
                 <NumberAxis prefHeight="427.0" prefWidth="29.0" side="LEFT" style="-fx-background-color: white;" tickLabelFill="#10060d" />
               </yAxis>
             </LineChart>
-            <Label alignment="CENTER" layoutX="51.0" layoutY="341.0" prefHeight="51.0" prefWidth="151.0" style="-fx-background-color: CD5888; -fx-background-radius: 5;" text="No of Rentals" textFill="#fffefe">
+            <Label alignment="CENTER" layoutX="51.0" layoutY="341.0" prefHeight="51.0" prefWidth="151.0" style="-fx-background-color: #913175; -fx-background-radius: 5;" text="No of Rentals" textFill="#fffefe">
                <font>
                   <Font name="Calibri Bold" size="21.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="51.0" layoutY="505.0" prefHeight="51.0" prefWidth="151.0" style="-fx-background-color: CD5888; -fx-background-radius: 5;" text="No of Orders" textFill="#fffefe">
+            <Label alignment="CENTER" layoutX="51.0" layoutY="505.0" prefHeight="51.0" prefWidth="151.0" style="-fx-background-color: #913175; -fx-background-radius: 5;" text="No of Orders" textFill="#fffefe">
                <font>
                   <Font name="Calibri Bold" size="21.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="222.0" layoutY="505.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: CD5888; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
+            <Label fx:id="order_count" alignment="CENTER" layoutX="222.0" layoutY="505.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: #913175; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
                <font>
                   <Font name="Calibri" size="29.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="222.0" layoutY="341.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: CD5888; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
+            <Label fx:id="rent_count" alignment="CENTER" layoutX="222.0" layoutY="341.0" prefHeight="51.0" prefWidth="65.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: #913175; -fx-border-radius: 5;" text="10" textFill="#1e1a1a">
                <font>
                   <Font name="Calibri" size="29.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="257.0" layoutY="14.0" prefHeight="80.0" prefWidth="1266.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;">
+      <AnchorPane layoutX="255.0" layoutY="14.0" prefHeight="80.0" prefWidth="1258.0" style="-fx-background-color: WHITE; -fx-background-radius: 10;">
          <children>
-            <TextField layoutX="533.0" layoutY="25.0" prefHeight="30.0" prefWidth="382.0" />
-            <Label layoutX="59.0" layoutY="25.0" prefHeight="30.0" prefWidth="311.0" text="2023/01/02 WEDNESDAY" />
+            <TextField layoutX="620.0" layoutY="21.0" opacity="0.73" prefHeight="30.0" prefWidth="326.0" style="-fx-background-color: E9E8E8; -fx-background-radius: 15; -fx-border-radius: 15;" />
+            <Label fx:id="labelDate" layoutX="59.0" layoutY="25.0" prefHeight="30.0" prefWidth="311.0" />
+            <ImageView fitHeight="23.0" fitWidth="21.0" layoutX="914.0" layoutY="25.0" rotate="-10.0">
+               <image>
+                  <Image url="@../assets/loupe.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="searchBtn" layoutX="888.0" layoutY="20.0" mnemonicParsing="false" opacity="0.0" prefHeight="30.0" prefWidth="52.0" text="Button" />
+            <Button fx:id="logOutBtn" alignment="BASELINE_LEFT" layoutX="1133.0" layoutY="14.0" mnemonicParsing="false" onAction="#logOutButtonOnAction" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: white;" text="Log Out" textFill="#ad151b">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="26.0" fitWidth="25.0" layoutX="1198.0" layoutY="22.0">
+               <image>
+                  <Image url="@../assets/power.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="12.0" prefHeight="773.0" prefWidth="222.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+      <AnchorPane layoutY="-4.0" prefHeight="788.0" prefWidth="206.0" style="-fx-background-color: #232C37; -fx-background-radius: 10;">
          <children>
-            <Button fx:id="dashboard" layoutX="-1.0" layoutY="162.0" mnemonicParsing="false" onAction="#dashboardButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="DashBoard">
+            <Button fx:id="dashboard" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="247.0" mnemonicParsing="false" onAction="#dashboardButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: #232C37;" text="  DashBoard" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="payment" layoutX="-1.0" layoutY="204.0" mnemonicParsing="false" onAction="#paymentButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Payment">
+            <Button fx:id="payment" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="304.0" mnemonicParsing="false" onAction="#paymentButtonOnAction" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #232C37;" text="  Payment" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="rental" layoutX="-1.0" layoutY="246.0" mnemonicParsing="false" onAction="#rentalButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Rentals">
+            <Button fx:id="rental" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="361.0" mnemonicParsing="false" onAction="#rentalButtonOnAction" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #232C37;" text="Rentals" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="order" layoutX="-1.0" layoutY="288.0" mnemonicParsing="false" onAction="#orderButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Orders">
+            <Button fx:id="order" alignment="CENTER" contentDisplay="CENTER" layoutX="-7.0" layoutY="418.0" mnemonicParsing="false" onAction="#orderButtonOnAction" prefHeight="42.0" prefWidth="247.0" style="-fx-background-color: #232C37;" text="  Orders" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="customer" layoutX="-1.0" layoutY="427.0" mnemonicParsing="false" onAction="#customerButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Customers">
+            <Button fx:id="customer" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="476.0" mnemonicParsing="false" onAction="#customerButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: #232C37;" text="       Customers" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="dress" layoutX="-1.0" layoutY="470.0" mnemonicParsing="false" onAction="#dressButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Dresses">
+            <Button fx:id="dress" alignment="CENTER" contentDisplay="CENTER" layoutY="530.0" mnemonicParsing="false" onAction="#dressButtonOnAction" prefHeight="42.0" prefWidth="247.0" style="-fx-background-color: #232C37;" text=" Dresses" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="employee" layoutX="-1.0" layoutY="552.0" mnemonicParsing="false" onAction="#employeeButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: whitw;" text="Employee">
+            <Button fx:id="employee" alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="583.0" mnemonicParsing="false" onAction="#employeeButtonOnAction" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #232C37;" text="   Employee" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="material" layoutX="-1.0" layoutY="595.0" mnemonicParsing="false" onAction="#materialButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Materials">
+            <Button fx:id="material" alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="638.0" mnemonicParsing="false" onAction="#materialButtonOnAction" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #232C37;" text="   Materials" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="equipment" layoutX="-1.0" layoutY="638.0" mnemonicParsing="false" onAction="#equipmentButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: white;" text="Equipments">
+            <Button fx:id="equipment" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="737.0" mnemonicParsing="false" onAction="#equipmentButtonOnAction" prefHeight="42.0" prefWidth="230.0" style="-fx-background-color: #232C37;" text="  Equipments" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
+            <Button fx:id="supplier" alignment="CENTER" contentDisplay="CENTER" layoutX="5.0" layoutY="688.0" mnemonicParsing="false" onAction="#supplierButtonOnAction" prefHeight="42.0" prefWidth="238.0" style="-fx-background-color: #232C37;" text="   Suppliers" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="207.0" fitWidth="200.0" layoutX="29.0" layoutY="14.0">
+               <image>
+                  <Image url="@../assets/logo2.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

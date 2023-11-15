@@ -76,10 +76,21 @@ public class AddRentalFormController {
     @FXML
     private DatePicker txtReturnDate;
     public void initialize() throws SQLException {
+
+
         generateNextRentId();
         setDate();
         loadCustomers();
         loadDresses();
+
+    }
+
+   public void setDetails(DressDto dto) {
+        labelRentPrice.setText(String.valueOf(dto.getRentPrice()));
+        lebalDressName.setText(dto.getName());
+        dressComboBox.setValue(dto.getDressId());
+
+
 
     }
 
@@ -138,13 +149,15 @@ public class AddRentalFormController {
             Double price = Double.parseDouble(labelRentPrice.getText());
             System.out.println(price);
             if (checkDateAvelible(dressId)) {
+                if (checkBoxPaid.isSelected()){
 
+                    System.out.println("sawani");
                 //checkDateAvelible();
 
 
                 String payId = generatePaymentId();
                 //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate rent_date =txtRentDate.getValue();
+                LocalDate rent_date = txtRentDate.getValue();
                 LocalDate return_date = txtReturnDate.getValue();
                 LocalDate paid_date = LocalDate.now();
 
@@ -163,10 +176,14 @@ public class AddRentalFormController {
                     }
                 } catch (SQLException e) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Successfully completed rent!").show();
+                }}
+                else {
+                    new Alert(Alert.AlertType.ERROR, "payment is essential").show();
                 }
 
+            }
 
-            } else {
+            else {
                 new Alert(Alert.AlertType.ERROR, "Not avelible period").show();
             }
 

@@ -66,6 +66,7 @@ public class RentModel {
     public boolean checkDateAvelibility(LocalDate rentDate, LocalDate returnDate, List<RentDto> allRentals, String dressId) {
         for (int i = 0; i < allRentals.size(); i++) {
             if(dressId.equals(allRentals.get(i).getDressId())){
+                boolean wrongDate=returnDate.isBefore(rentDate);
             boolean rent_date = rentDate.isAfter(allRentals.get(i).getDate()) && rentDate.isBefore(allRentals.get(i).getReturnDate());
             boolean rentE = rentDate.isEqual(allRentals.get(i).getDate()) || rentDate.isEqual(allRentals.get(i).getReturnDate());
             boolean return_date = returnDate.isAfter(allRentals.get(i).getDate()) && returnDate.isBefore(allRentals.get(i).getReturnDate());

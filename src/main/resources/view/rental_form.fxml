@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="rentalPane" prefHeight="681.0" prefWidth="1266.0" style="-fx-background-color: rgb(233, 232, 232);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.RentalFormController">
    <children>
-      <Label alignment="CENTER" layoutX="26.0" layoutY="24.0" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: CD5888; -fx-background-radius: 5;" text="Num of Rentals" textAlignment="JUSTIFY" textFill="#fcfcfc">
+      <Label alignment="CENTER" layoutX="26.0" layoutY="24.0" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: #913175; -fx-background-radius: 5;" text="Num of Rentals" textAlignment="JUSTIFY" textFill="#fcfcfc">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
@@ -72,6 +72,11 @@
 
          </columns>
       </TableView>
+      <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="1147.0" layoutY="34.0">
+         <image>
+            <Image url="@../assets/add.png" />
+         </image>
+      </ImageView>
       <Button layoutX="1134.0" layoutY="27.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.03" prefHeight="43.0" prefWidth="52.0" />
    </children>
 </AnchorPane>

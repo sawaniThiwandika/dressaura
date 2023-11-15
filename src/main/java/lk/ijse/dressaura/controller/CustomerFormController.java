@@ -118,6 +118,8 @@ public class CustomerFormController {
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         });
     }
@@ -129,11 +131,13 @@ public class CustomerFormController {
        return this.setDto;
     }
 
-    private void openUpdateCustomerForm(CustomerDto customerDto) throws IOException {
+    private void openUpdateCustomerForm(CustomerDto customerDto) throws IOException, SQLException {
 
         URL resource = this.getClass().getResource("/view/update_customer_form.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(resource);
         Parent load = fxmlLoader.load();
+        UpdateCustomerFormController controller = fxmlLoader.getController();
+        controller.initialize(customerDto);
         Stage stage = new Stage();
         stage.setTitle("Update customer");
         stage.setScene(new Scene(load));

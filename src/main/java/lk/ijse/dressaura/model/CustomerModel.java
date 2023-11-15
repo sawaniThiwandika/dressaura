@@ -49,12 +49,12 @@ public class CustomerModel {
     }
     private String splitCustomerId(String currentCustomerId) {
         if(currentCustomerId != null) {
-            String[] split = currentCustomerId.split("O0");
-            int id = Integer.parseInt(split[1]); //01
+            String[] split = currentCustomerId.split("C0");
+            int id = Integer.parseInt(split[1]);
             id++;
-            return "O00" + id;
+            return "C00" + id;
         } else {
-            return "O001";
+            return "C001";
         }
     }
 
@@ -152,5 +152,27 @@ public class CustomerModel {
         }
     }
 
+    public List<CustomerDto> getAllCustomer() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT * FROM customer";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+
+        ArrayList<CustomerDto> dtoList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            dtoList.add(
+                    new CustomerDto(
+                            resultSet.getString(2),
+                            resultSet.getString(5),
+                            resultSet.getString(3),
+                            resultSet.getString(4),
+                            resultSet.getString(1)
+                    )
+            );
+        }
+        return dtoList;
+    }
 }
 

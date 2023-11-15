@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="213.0" prefWidth="208.0" style="-fx-background-color: E9E8E8; -fx-background-radius: 10; -fx-border-radius: 10;" styleClass="ba" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.OneDressForController">
+<AnchorPane prefHeight="213.0" prefWidth="208.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10;" styleClass="ba" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.OneDressForController">
    <children>
       <AnchorPane fx:id="image" layoutX="61.0" layoutY="29.0" prefHeight="82.0" prefWidth="79.0" style="-fx-background-color: FACBEA; -fx-background-radius: 5;" />
       <Label fx:id="dressID" layoutX="16.0" layoutY="6.0" text="D0001">

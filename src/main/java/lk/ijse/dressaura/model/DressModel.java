@@ -79,12 +79,12 @@ public class DressModel {
     }
     private String splitDressId(String currentDressId) {
         if(currentDressId != null) {
-            String[] split = currentDressId.split("O0");
-            int id = Integer.parseInt(split[1]); //01
+            String[] split = currentDressId.split("D0");
+            int id = Integer.parseInt(split[1]);
             id++;
-            return "O00" + id;
+            return "D00" + id;
         } else {
-            return "O001";
+            return "D001";
         }
     }
 

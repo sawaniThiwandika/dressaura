@@ -21,17 +21,22 @@
             <Image url="@../icon/add.png" />
          </image>
       </ImageView>
-      <Button fx:id="addButton" layoutX="1194.0" layoutY="40.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
-      <TableView fx:id="supplierTable" layoutX="13.0" layoutY="105.0" prefHeight="494.0" prefWidth="1239.0">
+      <TableView fx:id="supplierTable" layoutX="13.0" layoutY="105.0" prefHeight="555.0" prefWidth="1239.0">
          <columns>
-            <TableColumn prefWidth="29.600006103515625" text="#" />
-            <TableColumn minWidth="0.0" prefWidth="95.99999618530273" text="Supplier Id" />
-            <TableColumn prefWidth="199.9999542236328" text="SupplierName" />
-            <TableColumn minWidth="0.0" prefWidth="236.800048828125" text="Email" />
-            <TableColumn prefWidth="113.5999755859375" text="Contact" />
-            <TableColumn minWidth="0.0" prefWidth="318.39990234375" text="Materials" />
-            <TableColumn minWidth="0.0" prefWidth="249.5999755859375" text="Action" />
+            <TableColumn fx:id="colNum" prefWidth="38.39999485015869" text="#" />
+            <TableColumn fx:id="colSupId" minWidth="0.0" prefWidth="111.20000839233398" text="Supplier Id" />
+            <TableColumn fx:id="colSupName" prefWidth="273.59999084472656" text="SupplierName" />
+            <TableColumn fx:id="colSupEmail" minWidth="0.0" prefWidth="335.199951171875" text="Email" />
+            <TableColumn fx:id="colSupContact" prefWidth="205.60003662109375" text="Contact" />
+            <TableColumn fx:id="colButtonUpdate" minWidth="0.0" prefWidth="163.99993896484375" text="Update" />
+            <TableColumn fx:id="colButtonDelete" minWidth="0.0" prefWidth="117.5999755859375" text="Delete" />
          </columns>
       </TableView>
+      <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="1208.0" layoutY="50.0">
+         <image>
+            <Image url="@../assets/add.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="addButton" layoutX="1194.0" layoutY="40.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
    </children>
 </AnchorPane>

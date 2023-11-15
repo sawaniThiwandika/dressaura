@@ -83,12 +83,12 @@ public class DressFormController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/one_dress_form.fxml"));
                 Parent smallPane = loader.load();
                 OneDressForController smallController = loader.getController();
+                smallController.setDressDetails(dtoList.get(i));
                 smallController.getName().setText(dtoList.get(i).getName());
                 smallController.getDressID().setText(dtoList.get(i).getDressId());
                 smallController.getDressSize().setText(dtoList.get(i).getSize());
-                //smallController.getDressAvelibity().setText(dtoList.get(i).getAvelability()==true?"Available":"Not Available");
                 smallController.getDressAvelibity().setText(aveliblity==true?"Available":"Not Available");
-                if(x/7==1){x=0;y=y+1;}
+                if(x/5==1){x=0;y=y+1;}
                 gridPane.add(smallPane, x, y);
                 x++;
 

@@ -26,7 +26,6 @@
             <Image url="@../icon/add.png" />
          </image>
       </ImageView>
-      <Button fx:id="add" layoutX="1189.0" layoutY="14.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
       <Label alignment="CENTER" layoutX="275.0" layoutY="28.0" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: white; -fx-background-radius: 5;" text="Low Inventoty" textAlignment="JUSTIFY" textFill="#e40826">
          <font>
             <Font name="Calibri Bold" size="17.0" />
@@ -59,10 +58,16 @@
             <Font size="20.0" />
          </font>
       </Label>
+      <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="1204.0" layoutY="38.0">
+         <image>
+            <Image url="@../assets/add.png" />
+         </image>
+      </ImageView>
       <Button layoutX="1140.0" layoutY="634.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(50, 205, 50);" text="Back" textFill="#fffcfc">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Button fx:id="add" layoutX="1190.0" layoutY="28.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
    </children>
 </AnchorPane>

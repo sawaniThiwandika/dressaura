@@ -5,21 +5,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="520.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.DressDetailsController">
    <children>
-      <AnchorPane layoutX="138.0" layoutY="54.0" prefHeight="227.0" prefWidth="232.0" style="-fx-background-color: E9E8E8; -fx-background-radius: 10; -fx-border-radius: 10;" />
-      <Label alignment="CENTER" layoutX="84.0" layoutY="300.0" prefHeight="30.0" prefWidth="319.0" text="Rainbow Frock">
+      <AnchorPane fx:id="image" layoutX="138.0" layoutY="54.0" prefHeight="227.0" prefWidth="232.0" style="-fx-background-color: E9E8E8; -fx-background-radius: 10; -fx-border-radius: 10;" />
+      <Label fx:id="labelName" alignment="CENTER" layoutX="84.0" layoutY="300.0" prefHeight="30.0" prefWidth="319.0" text="Rainbow Frock">
          <font>
             <Font name="Arial" size="17.0" />
          </font>
       </Label>
-      <Label layoutX="33.0" layoutY="357.0" prefHeight="30.0" prefWidth="42.0" text="Size">
+      <Label layoutX="38.0" layoutY="357.0" prefHeight="30.0" prefWidth="42.0" text="Size">
          <font>
             <Font name="Arial" size="17.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="75.0" layoutY="357.0" prefHeight="30.0" prefWidth="35.0" text="s" textFill="#913175">
+      <Label fx:id="labelSize" alignment="CENTER" layoutX="75.0" layoutY="357.0" prefHeight="30.0" prefWidth="35.0" text="s" textFill="#913175">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
@@ -29,7 +28,7 @@
             <Font name="Arial" size="17.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="84.0" layoutY="18.0" prefHeight="22.0" prefWidth="76.0" text="D001" textFill="#913175">
+      <Label fx:id="labelId" alignment="CENTER" layoutX="84.0" layoutY="18.0" prefHeight="22.0" prefWidth="76.0" text="D001" textFill="#913175">
          <font>
             <Font name="Arial" size="17.0" />
          </font>
@@ -39,7 +38,7 @@
             <Font name="Arial" size="17.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="116.0" layoutY="395.0" prefHeight="30.0" prefWidth="138.0" text="Rs 1500.00" textFill="#e1250c">
+      <Label fx:id="labelRentPrice" alignment="CENTER" layoutX="116.0" layoutY="395.0" prefHeight="30.0" prefWidth="138.0" text="Rs 1500.00" textFill="#e1250c">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
@@ -49,12 +48,12 @@
             <Font name="Arial" size="17.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="327.0" layoutY="361.0" prefHeight="22.0" prefWidth="151.0" text="2023/11/02" textFill="#913175">
+      <Label fx:id="labelDate" alignment="CENTER" layoutX="327.0" layoutY="361.0" prefHeight="22.0" prefWidth="151.0" text="2023/11/02" textFill="#913175">
          <font>
             <Font name="Arial" size="17.0" />
          </font>
       </Label>
-      <Button layoutX="224.0" layoutY="461.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: rgb(145, 49, 117);" text="Ok" textFill="#efecec">
+      <Button fx:id="okBtn" layoutX="224.0" layoutY="461.0" mnemonicParsing="false" onAction="#okBtnOnAction" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: rgb(145, 49, 117);" text="Ok" textFill="#efecec">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

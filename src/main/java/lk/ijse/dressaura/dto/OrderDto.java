@@ -14,16 +14,16 @@ import java.time.LocalDate;
 public class OrderDto {
 private String payId;
 private  String cusId;
-private  String returnDate;
+private LocalDate returnDate;
 private LocalDate date;
 private String orderId;
-private String measurementId;
 private String inseam;
 private String shoulder;
 private  String neck;
 private String hips;
 private String waist;
 private String bust;
+private String description;
 
 
 

@@ -5,11 +5,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.IOException;
-import java.util.Objects;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
+
+import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import lk.ijse.dressaura.dto.RentDto;
+import lk.ijse.dressaura.model.OrderModel;
+import lk.ijse.dressaura.model.RentModel;
 
 
 public class MainFormController {
@@ -34,8 +42,40 @@ public class MainFormController {
     private Button dashboard;
     @FXML
     private AnchorPane mainForm;
+    @FXML
+    private Label count_orders;
 
-        @FXML
+    @FXML
+    private Label labelDate;
+    @FXML
+    private Label count_rent;
+    @FXML
+    private Button logOutBtn;
+    public void initialize() throws SQLException {
+       labelDate.setText(String.valueOf(LocalDate.now()));
+      //  updateLabels();
+
+    }
+
+    private void updateLabels() throws SQLException {
+        RentModel model=new RentModel();
+        OrderModel modelO=new OrderModel();
+        List<RentDto> allRentals = model.getAllRentals();
+        count_rent.setText(String.valueOf(allRentals.size()));
+
+    }
+
+    @FXML
+    void logOutButtonOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/login_form.fxml"));
+        Scene scene = new Scene(anchorPane);
+        Stage stage = (Stage) mainForm.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("dashboard");
+        stage.centerOnScreen();
+    }
+
+    @FXML
         void paymentButtonOnAction(ActionEvent event) throws IOException {
 
            Parent form = FXMLLoader.load(getClass().getResource("/view/payment_form.fxml"));
@@ -96,5 +136,10 @@ public class MainFormController {
         this.mainForm.getChildren().add(form);
     }
 
+    public void supplierButtonOnAction(ActionEvent actionEvent) throws IOException {
+        Parent form = FXMLLoader.load(getClass().getResource("/view/supplier_form.fxml"));
+        this.mainForm.getChildren().clear();
+        this.mainForm.getChildren().add(form);
+    }
 }
 

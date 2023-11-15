@@ -26,7 +26,6 @@
             <Image url="@../icon/add.png" />
          </image>
       </ImageView>
-      <Button fx:id="add" layoutX="1179.0" layoutY="17.0" mnemonicParsing="false" onAction="#AddButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
       <TableView layoutX="23.0" layoutY="103.0" prefHeight="494.0" prefWidth="1219.0">
          <columns>
             <TableColumn prefWidth="29.600006103515625" text="#" />
@@ -44,5 +43,11 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="1192.0" layoutY="27.0">
+         <image>
+            <Image url="@../assets/add.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="add" layoutX="1179.0" layoutY="17.0" mnemonicParsing="false" onAction="#AddButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
    </children>
 </AnchorPane>

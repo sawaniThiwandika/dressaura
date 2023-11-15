@@ -3,6 +3,11 @@ package lk.ijse.dressaura.dto;
 public class CustomerDto {
     private String name;
 
+    private String email;
+    private String address;
+    private String contact;
+    private String cusId;
+
     public CustomerDto() {
 
     }
@@ -54,10 +59,5 @@ public class CustomerDto {
         this.contact = contact;
         this.cusId = cusId;
     }
-
-    private String email;
-    private String address;
-    private String contact;
-    private String cusId;
 
 }

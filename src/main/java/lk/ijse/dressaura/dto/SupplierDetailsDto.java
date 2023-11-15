@@ -12,7 +12,8 @@ import lombok.Setter;
 public class SupplierDetailsDto {
     private String supId;
     private String materialId;
-    private int amount;
+    private double amount;
     private double selling_price;
+
 
 }

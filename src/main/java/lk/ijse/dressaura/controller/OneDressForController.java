@@ -15,10 +15,10 @@ import java.net.URL;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.dressaura.dto.DressDto;
 
 
-
-    public class OneDressForController {
+public class OneDressForController {
 
         @FXML
         private Label avalibility;
@@ -38,12 +38,15 @@ import javafx.scene.layout.AnchorPane;
         private Label sizeLabel;
         @FXML
         private Button rent;
+        private DressDto dto;
 
     @FXML
     void MoreButtonOnAction(ActionEvent event) throws IOException {
         URL resource = this.getClass().getResource("/view/dress_details_form.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(resource);
         Parent load = fxmlLoader.load();
+        DressDetailsController controller = fxmlLoader.getController();
+        controller.setValues(getDressDetails());
         Stage stage = new Stage();
         stage.setTitle("Dress details");
         stage.setScene(new Scene(load));
@@ -52,12 +55,20 @@ import javafx.scene.layout.AnchorPane;
         stage.setResizable(false);
         stage.show();
     }
+    public void setDressDetails(DressDto dressDto){
+       dto=dressDto;
+    }
+    public DressDto getDressDetails(){
+       return dto;
+    }
     @FXML
     void rentButtonOnAction(ActionEvent event) throws IOException {
 
         URL resource = this.getClass().getResource("/view/add_rental_form.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(resource);
         Parent load = fxmlLoader.load();
+        AddRentalFormController controller = fxmlLoader.getController();
+        controller.setDetails(getDressDetails());
         Stage stage = new Stage();
         stage = new Stage();
         stage.setTitle("Dress details");

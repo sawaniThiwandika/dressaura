@@ -3,13 +3,10 @@ package lk.ijse.dressaura.controller;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -44,7 +41,13 @@ public class UpdateCustomerFormController {
     private Button update;
 
     private CustomerModel customerModel = new CustomerModel();
-    public void initialize() throws SQLException, IOException {
+    public void initialize(CustomerDto customerDto) throws SQLException, IOException {
+        txtEmail.setText(customerDto.getEmail());
+        txtName.setText(customerDto.getName());
+        txtContact.setText(customerDto.getContact());
+        txtAddress.setText(customerDto.getAddress());
+        txtId.setText(customerDto.getCusId());
+
 
     }
 

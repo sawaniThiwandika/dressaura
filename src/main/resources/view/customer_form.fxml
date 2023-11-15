@@ -26,7 +26,6 @@
             <Image url="@../icon/add.png" />
          </image>
       </ImageView>
-      <Button fx:id="add" layoutX="1088.0" layoutY="29.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
       <TableView fx:id="tableCustomer" layoutX="13.0" layoutY="93.0" prefHeight="494.0" prefWidth="1239.0">
         <columns>
           <TableColumn fx:id="number" prefWidth="29.600006103515625" text="#" />
@@ -50,6 +49,17 @@
             <Image url="@../icon/edit.png" />
          </image>
       </ImageView>
-      <Button fx:id="upadte" layoutX="1181.0" layoutY="27.0" mnemonicParsing="false" onAction="#updateButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
+      <ImageView fitHeight="26.0" fitWidth="25.0" layoutX="1194.0" layoutY="38.0">
+         <image>
+            <Image url="@../assets/add.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="add" layoutX="1181.0" layoutY="27.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="1117.0" layoutY="41.0">
+         <image>
+            <Image url="@../assets/edit.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="upadte" layoutX="1098.0" layoutY="29.0" mnemonicParsing="false" onAction="#updateButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
    </children>
 </AnchorPane>

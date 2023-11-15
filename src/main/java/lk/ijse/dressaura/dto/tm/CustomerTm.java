@@ -9,7 +9,7 @@ public class CustomerTm {
     private String contact;
     private String number;
 
-    public CustomerTm() {
+    public CustomerTm(int i, String supId, String name, String contact, String email, Button btnU, Button btnD) {
 
     }
 
