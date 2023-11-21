@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="624.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.ViewMeasurementFormController">
+   <children>
+      <Label layoutX="29.0" layoutY="27.0" prefHeight="23.0" prefWidth="87.0" text="Order Id" textFill="#d41414">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelOrderId" alignment="CENTER" layoutX="104.0" layoutY="27.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="C001" textFill="#c91313" />
+      <Label layoutX="108.0" layoutY="142.0" prefHeight="23.0" prefWidth="35.0" text="Bust">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="20.0" layoutY="75.0" prefHeight="42.0" prefWidth="133.0" text="Measurements" textFill="#0b0a0b">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtBust" layoutX="96.0" layoutY="166.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="20.0" layoutY="142.0" prefHeight="23.0" prefWidth="42.0" text="Waist">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtWaist" layoutX="18.0" layoutY="166.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="189.0" layoutY="142.0" prefHeight="23.0" prefWidth="59.0" text="Hips">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtHips" layoutX="177.0" layoutY="166.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="365.0" layoutY="142.0" prefHeight="23.0" prefWidth="35.0" text="Neck">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNeck" layoutX="353.0" layoutY="165.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="265.0" layoutY="142.0" prefHeight="23.0" prefWidth="54.0" text="Inseam">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtInseam" layoutX="263.0" layoutY="166.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="449.0" layoutY="142.0" prefHeight="23.0" prefWidth="59.0" text="Shoulder">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtShoulder" layoutX="449.0" layoutY="166.0" prefHeight="27.0" prefWidth="59.0" promptText="inch" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Label layoutX="24.0" layoutY="213.0" prefHeight="23.0" prefWidth="106.0" text="Description">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txtDescription" layoutX="24.0" layoutY="245.0" prefHeight="106.0" prefWidth="506.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: A9A9A9; -fx-border-radius: 5;" />
+      <Label layoutX="20.0" layoutY="364.0" prefHeight="42.0" prefWidth="133.0" text="Materials" textFill="#0b0a0b">
+         <font>
+            <Font name="Calibri" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="materialTable" layoutX="24.0" layoutY="406.0" prefHeight="148.0" prefWidth="427.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(169, 169, 169); -fx-border-radius: 5;">
+         <columns>
+            <TableColumn fx:id="colMaterialId" prefWidth="75.20001220703125" text="Material ID" />
+            <TableColumn fx:id="colMaterialName" prefWidth="240.8000030517578" text="MaterialName" />
+            <TableColumn fx:id="colAmount" prefWidth="108.79998779296875" text="Amount" />
+         </columns>
+      </TableView>
+      <Button fx:id="updateBtn" layoutX="459.0" layoutY="577.0" mnemonicParsing="false" onAction="#updateButtonOnAction" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(19,151,233);" text="Update" textFill="#fffcfc">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancel" layoutX="333.0" layoutY="577.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(50, 205, 50);" text="cancel" textFill="#fffcfc">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="507.0" prefWidth="567.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddDressFormController">
+<AnchorPane prefHeight="507.0" prefWidth="567.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddDressFormController">
    <children>
       <Label layoutX="50.0" layoutY="50.0" prefHeight="42.0" prefWidth="211.0" text="Add New Dress" textFill="#0b0a0b">
          <font>
@@ -78,6 +78,6 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txttype" layoutX="51.0" layoutY="306.0" prefHeight="32.0" prefWidth="147.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <ComboBox fx:id="comboType" layoutX="54.0" layoutY="299.0" onAction="#comboTypeOnAction" prefWidth="150.0" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
    </children>
 </AnchorPane>

@@ -17,13 +17,15 @@ private  String cusId;
 private LocalDate returnDate;
 private LocalDate date;
 private String orderId;
-private String inseam;
-private String shoulder;
-private  String neck;
-private String hips;
-private String waist;
-private String bust;
+private double inseam;
+private double shoulder;
+private  double neck;
+private double hips;
+private double waist;
+private double bust;
 private String description;
+private Boolean isCompleted;
+private Boolean isHandOver;
 
 
 

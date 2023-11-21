@@ -11,7 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class OrderDetailsDto {
 
-
     private String orderId;
     private double amount;
     private String materialId;

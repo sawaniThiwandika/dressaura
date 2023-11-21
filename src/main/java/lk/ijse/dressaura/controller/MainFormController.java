@@ -51,6 +51,9 @@ public class MainFormController {
     private Label count_rent;
     @FXML
     private Button logOutBtn;
+
+    @FXML
+    private Button supplier;
     public void initialize() throws SQLException {
        labelDate.setText(String.valueOf(LocalDate.now()));
       //  updateLabels();
@@ -78,68 +81,77 @@ public class MainFormController {
     @FXML
         void paymentButtonOnAction(ActionEvent event) throws IOException {
 
-           Parent form = FXMLLoader.load(getClass().getResource("/view/payment_form.fxml"));
-
-            this.mainForm.getChildren().clear();
-            this.mainForm.getChildren().add(form);
+        setForms("/view/payment_form.fxml");
         }
         @FXML
     void rentalButtonOnAction(ActionEvent event) throws IOException {
-            Parent form = FXMLLoader.load(getClass().getResource("/view/rental_form.fxml"));
-
-            this.mainForm.getChildren().clear();
-            this.mainForm.getChildren().add(form);
+            setForms("/view/rental_form.fxml");
     }
     @FXML
     void orderButtonOnAction(ActionEvent event) throws IOException {
-        Parent form = FXMLLoader.load(getClass().getResource("/view/order_form.fxml"));
-
-        this.mainForm.getChildren().clear();
-        this.mainForm.getChildren().add(form);
+         setForms("/view/order_form.fxml");
     }
     @FXML
     void customerButtonOnAction(ActionEvent event) throws IOException {
-        Parent form = FXMLLoader.load(getClass().getResource("/view/customer_form.fxml"));
-
-        this.mainForm.getChildren().clear();
-        this.mainForm.getChildren().add(form);
+        setForms("/view/customer_form.fxml");
     }
     @FXML
     void dressButtonOnAction(ActionEvent event) throws IOException {
-        Parent form = FXMLLoader.load(getClass().getResource("/view/dress_form.fxml"));
-        this.mainForm.getChildren().clear();
-        this.mainForm.getChildren().add(form);
+        setForms("/view/dress_form.fxml");
     }
     @FXML
     void employeeButtonOnAction(ActionEvent event) throws IOException {
-        Parent form = FXMLLoader.load(getClass().getResource("/view/employee_form.fxml"));
-        this.mainForm.getChildren().clear();
-        this.mainForm.getChildren().add(form);
+        setForms("/view/employee_form.fxml");
     }
 
     @FXML
     void materialButtonOnAction(ActionEvent event) throws IOException {
-        Parent form = FXMLLoader.load(getClass().getResource("/view/material_form.fxml"));
-        this.mainForm.getChildren().clear();
-        this.mainForm.getChildren().add(form);
+        setForms("/view/material_form.fxml");
     }
     @FXML
     void equipmentButtonOnAction(ActionEvent event) throws IOException {
-        Parent form = FXMLLoader.load(getClass().getResource("/view/equipment_form.fxml"));
-       this.mainForm.getChildren().clear();
-        this.mainForm.getChildren().add(form);
+        setForms("/view/equipment_form.fxml");
+
     }
     @FXML
     void dashboardButtonOnAction(ActionEvent event) throws IOException {
-        Parent form = FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"));
-        this.mainForm.getChildren().clear();
-        this.mainForm.getChildren().add(form);
+        setForms("/view/dashboard_form.fxml");
+
     }
 
     public void supplierButtonOnAction(ActionEvent actionEvent) throws IOException {
-        Parent form = FXMLLoader.load(getClass().getResource("/view/supplier_form.fxml"));
-        this.mainForm.getChildren().clear();
-        this.mainForm.getChildren().add(form);
+        setForms("/view/supplier_form.fxml");
     }
+
+    public void setForms(String forms) throws IOException {
+        String[] form = {"/view/dashboard_form.fxml",
+                "/view/payment_form.fxml",
+                "/view/rental_form.fxml",
+                "/view/order_form.fxml",
+                "/view/customer_form.fxml",
+                "/view/dress_form.fxml",
+                "/view/employee_form.fxml",
+                "/view/material_form.fxml",
+                "/view/supplier_form.fxml",
+                "/view/equipment_form.fxml"
+
+        };
+
+        Button[] btn = {
+                dashboard,payment,rental,order,customer,dress,employee,material,supplier,equipment};
+        AnchorPane load = FXMLLoader.load(getClass().getResource(forms));
+        mainForm.getChildren().clear();
+        mainForm.getChildren().add(load);
+
+        for (int i = 0; i < form.length; i++) {
+            btn[i].setStyle("-fx-background-color:  #232C37");
+            if (forms.equals(form[i])) {
+                btn[i].setStyle("-fx-background-color: #FFFFFF; -fx-text-fill: #000000");
+            }
+        }
+
+    }
+
+
 }
 

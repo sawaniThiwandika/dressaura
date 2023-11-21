@@ -1,10 +1,11 @@
 package lk.ijse.dressaura.model;
 
+import javafx.scene.control.Button;
 import lk.ijse.dressaura.db.DbConnection;
 import lk.ijse.dressaura.dto.PaymentDto;
 import lk.ijse.dressaura.dto.tm.PaymentTm;
 
-import java.awt.*;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -23,13 +24,13 @@ public class PaymentModel {
     }
 
     private String splitPaymentId(String currentPaymentId) {
-        if(currentPaymentId!=null){
-            String [] split= currentPaymentId.split("P0");
-            int id=Integer.parseInt(split[1]);
+        if(currentPaymentId != null) {
+            String[] split = currentPaymentId.split("P0");
+
+            int id = Integer.parseInt(split[1]);
             id++;
-            return "P00"+id;
-        }
-        else {
+            return "P00" + id;
+        } else {
             return "P001";
         }
 
@@ -49,6 +50,9 @@ public class PaymentModel {
 
 
     public ArrayList<PaymentTm> getIncomePaymentDetails() throws SQLException {
+
+
+
         Connection connection = DbConnection.getInstance().getConnection();
         ArrayList<PaymentTm> paymentList=new ArrayList<>();
         String sql=" select c.cus_id,c.name,r.rent_id,p.pay_date,p.amount,p.pay_id\n" +

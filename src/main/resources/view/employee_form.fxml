@@ -21,16 +21,17 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TableView layoutX="23.0" layoutY="103.0" prefHeight="509.0" prefWidth="1231.0">
+      <TableView fx:id="employeeTable" layoutX="23.0" layoutY="103.0" prefHeight="509.0" prefWidth="1231.0">
          <columns>
-            <TableColumn prefWidth="29.600006103515625" text="#" />
-            <TableColumn minWidth="0.0" prefWidth="99.99999618530273" text="Employee Id" />
-            <TableColumn prefWidth="190.39996337890625" text="Name" />
-             <TableColumn minWidth="0.0" prefWidth="146.4000244140625" text="Job Role" />
-            <TableColumn minWidth="0.0" prefWidth="192.79998779296875" text="Address" />
-            <TableColumn prefWidth="230.4000244140625" text="Email Address" />
-            <TableColumn minWidth="0.0" prefWidth="203.99993896484375" text="Contact" />
-            <TableColumn minWidth="0.0" prefWidth="137.5999755859375" text="Action" />
+            <TableColumn fx:id="colNum" prefWidth="29.600006103515625" text="#" />
+            <TableColumn fx:id="colEmpId" minWidth="0.0" prefWidth="99.99999618530273" text="Employee Id" />
+            <TableColumn fx:id="colName" prefWidth="165.60000610351562" text="Name" />
+             <TableColumn fx:id="colJobRole" minWidth="0.0" prefWidth="119.20001220703125" text="Job Role" />
+            <TableColumn fx:id="colAddress" minWidth="0.0" prefWidth="210.39996337890625" text="Address" />
+            <TableColumn fx:id="colEmail" prefWidth="229.60003662109375" text="Email Address" />
+            <TableColumn fx:id="colContact" minWidth="0.0" prefWidth="190.39990234375" text="Contact" />
+            <TableColumn fx:id="colUpdate" minWidth="0.0" prefWidth="101.5999755859375" text="Update" />
+            <TableColumn fx:id="colDelete" minWidth="0.0" prefWidth="84.0" text="Delate" />
          </columns>
       </TableView>
       <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="1213.0" layoutY="34.0">

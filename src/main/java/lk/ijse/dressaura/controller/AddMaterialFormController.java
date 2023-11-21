@@ -15,6 +15,7 @@ import lk.ijse.dressaura.model.PaymentModel;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class AddMaterialFormController {
 
@@ -60,6 +61,25 @@ public class AddMaterialFormController {
         genarateMaterial();
         setDate();
         setcomboBoxValues();
+        //setValues(dto);
+    }
+    public void initialize(MaterialDto dto) throws SQLException {
+        genarateMaterial();
+        setDate();
+        setcomboBoxValues();
+        setValues(dto);
+    }
+    public  void setValues(MaterialDto dto) throws SQLException {
+        labelMaterialId.setText(dto.getMaterialId());
+        txtMaterial.setText(dto.getName());
+        txtSellPrice.setText(String.valueOf(dto.getUnitPrice()));
+        if(dto.getMaterialId().isEmpty()){
+          genarateMaterial();
+          setcomboBoxValues();
+
+        }
+
+
     }
 
     private void setcomboBoxValues() {
@@ -85,7 +105,7 @@ public class AddMaterialFormController {
 
     private void genarateMaterial() throws SQLException {
         MaterialModel materialModel=new MaterialModel();
-        String m_id =MaterialModel.generateNextId();
+        String m_id =materialModel.generateNextId();
         labelMaterialId.setText(m_id);
 
 
@@ -102,11 +122,11 @@ public class AddMaterialFormController {
     }
     @FXML
     void addButtonOnAction(ActionEvent event) throws SQLException {
+        boolean isValid=validateMaterial();
 
-        if(!checkbtn.isSelected() ||comboSupplierId.getValue().isEmpty()||labelCost.getText().isEmpty()){
-            new Alert(Alert.AlertType.ERROR,"Please fill all above fields").show();
-        }
-        else{ LocalDate date = LocalDate.parse(labelDate.getText());
+        if(isValid){
+           // new Alert(Alert.AlertType.ERROR,"Please fill all above fields").show();
+            LocalDate date = LocalDate.parse(labelDate.getText());
             String m_id = labelMaterialId.getText();
             String value = (String) comboSupplierId.getValue();
             String supName = labelSupplierName.getText();
@@ -130,6 +150,59 @@ public class AddMaterialFormController {
         }
 
     }
+
+    private boolean validateMaterial() {
+
+        if(comboSupplierId.getValue()==null){
+            new Alert(Alert.AlertType.ERROR,"supplier details empty").show();
+            return false;
+        }
+        if(txtMaterial.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Material name empty").show();
+            return false;
+        }
+
+        boolean matchName = Pattern.matches("^[A-Za-z]+(?:[ '-][A-Za-z]+)*$",txtMaterial.getText());
+        if(!matchName){
+            new Alert(Alert.AlertType.ERROR,"Invalid material name").show();
+            return  false;
+        }
+        if(txtSellPrice.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Selling price empty").show();
+            return false;
+        }
+        boolean matchSPrice = Pattern.matches("^\\d+(\\.\\d{1,2})?$",txtSellPrice.getText());
+        if(!matchSPrice){
+            new Alert(Alert.AlertType.ERROR,"Invalid selling price").show();
+            return  false;
+        }
+        if(txtPrice.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"price empty").show();
+            return false;
+        }
+        boolean matchPrice = Pattern.matches("^\\d+(\\.\\d{1,2})?$",txtPrice.getText());
+        if(!matchPrice){
+            new Alert(Alert.AlertType.ERROR,"Invalid  price").show();
+            return  false;
+        }
+        if(txtAmount.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"amount empty").show();
+            return false;
+        }
+        boolean matchAmount = Pattern.matches("^\\d+(\\.\\d{1,2})?$",txtAmount.getText());
+        if(!matchAmount){
+            new Alert(Alert.AlertType.ERROR,"Invalid amount").show();
+            return  false;
+        }
+        if(!checkbtn.isSelected()){
+            new Alert(Alert.AlertType.ERROR,"Empty fields... please check in").show();
+            return  false;
+        }
+
+        return true;
+
+    }
+
     @FXML
     void checkboxOnAction(ActionEvent event) {
         Double price = Double.valueOf(txtPrice.getText());
@@ -137,6 +210,7 @@ public class AddMaterialFormController {
 
         Double total=price*amount;
         labelCost.setText(String.valueOf(total));
+
 
     }
 

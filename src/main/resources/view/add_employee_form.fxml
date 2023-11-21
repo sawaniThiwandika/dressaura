@@ -20,38 +20,38 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="145.0" layoutY="146.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="E001" />
+      <Label fx:id="labelEmpId" alignment="CENTER" layoutX="145.0" layoutY="146.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="E001" />
       <Label alignment="CENTER" layoutX="422.0" layoutY="146.0" prefHeight="23.0" prefWidth="71.0" text="Date ">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="493.0" layoutY="146.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="2023/01/03" />
+      <Label fx:id="labelDate" alignment="CENTER" layoutX="493.0" layoutY="146.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="2023/01/03" />
       <Label layoutX="48.0" layoutY="206.0" prefHeight="23.0" prefWidth="54.0" text="Name">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="50.0" layoutY="238.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txtName" layoutX="50.0" layoutY="238.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="48.0" layoutY="303.0" prefHeight="23.0" prefWidth="54.0" text="Address">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="48.0" layoutY="341.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txtAddress" layoutX="48.0" layoutY="341.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="48.0" layoutY="389.0" prefHeight="23.0" prefWidth="54.0" text="Email">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="48.0" layoutY="430.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txtEmail" layoutX="48.0" layoutY="430.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="422.0" layoutY="303.0" prefHeight="23.0" prefWidth="108.0" text="Contact number">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="422.0" layoutY="341.0" prefHeight="32.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
-      <Button layoutX="530.0" layoutY="524.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(19,151,233);" text="Add" textFill="#fffcfc">
+      <TextField fx:id="txtContact" layoutX="422.0" layoutY="341.0" prefHeight="32.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Button fx:id="addBtn" layoutX="530.0" layoutY="524.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(19,151,233);" text="Add" textFill="#fffcfc">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -66,6 +66,6 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="422.0" layoutY="238.0" prefHeight="32.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txtJobRole" layoutX="422.0" layoutY="238.0" prefHeight="32.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
    </children>
 </AnchorPane>

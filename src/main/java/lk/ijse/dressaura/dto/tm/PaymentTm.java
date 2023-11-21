@@ -1,11 +1,12 @@
 package lk.ijse.dressaura.dto.tm;
 
+import javafx.scene.control.Button;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.awt.*;
+
 @Getter
 @Setter
 @AllArgsConstructor

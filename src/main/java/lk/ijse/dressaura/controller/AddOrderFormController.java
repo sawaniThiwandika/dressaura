@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
@@ -141,42 +142,62 @@ public class AddOrderFormController {
     }
     @FXML
     void addMaterialButtonOnAction(ActionEvent event) throws SQLException {
-        String id = comboMaterialCodes.getValue();
-        String name = labelmaterialName.getText();
-        double qty = Double.parseDouble(txtAmount.getText());
-        double unitPrice = Double.parseDouble(labelUnitPrice.getText());
-        double tot = unitPrice * qty;
-        Button btn = new Button("Remove");
+        boolean isValid = validateMaterial();
+        if(isValid) {
+            String id = comboMaterialCodes.getValue();
+            String name = labelmaterialName.getText();
+            double qty = Double.parseDouble(txtAmount.getText());
+            double unitPrice = Double.parseDouble(labelUnitPrice.getText());
+            double tot = unitPrice * qty;
+            Button btn = new Button("Remove");
 
-        setRemoveBtnAction(btn);
-        btn.setCursor(Cursor.HAND);
+            setRemoveBtnAction(btn);
+            btn.setCursor(Cursor.HAND);
 
 
-        if (!obList.isEmpty()) {
-            for (int i = 0; i < materialTable.getItems().size(); i++) {
-                if (colMaterialId.getCellData(i).equals(id)) {
-                    double col_qty= (double) colAmount.getCellData(i);
+            if (!obList.isEmpty()) {
+                for (int i = 0; i < materialTable.getItems().size(); i++) {
+                    if (colMaterialId.getCellData(i).equals(id)) {
+                        double col_qty = (double) colAmount.getCellData(i);
 
-                    qty += col_qty;
-                    tot = unitPrice * qty;
+                        qty += col_qty;
+                        tot = unitPrice * qty;
 
-                    obList.get(i).setAmount(qty);
-                    obList.get(i).setTotal(tot);
+                        obList.get(i).setAmount(qty);
+                        obList.get(i).setTotal(tot);
 
-                    calculateTotal();
-                    materialTable.refresh();
-                    return;
+                        calculateTotal();
+                        materialTable.refresh();
+                        return;
+                    }
                 }
+
             }
+            var materialDress = new MaterialDressTm(id, name, unitPrice, qty, tot, btn);
 
+            obList.add(materialDress);
+
+            materialTable.setItems(obList);
+            calculateTotal();
+            txtAmount.clear();
         }
-        var materialDress = new MaterialDressTm(id,name, unitPrice,qty, tot,btn);
+    }
 
-        obList.add(materialDress);
-
-        materialTable.setItems(obList);
-        calculateTotal();
-        txtAmount.clear();
+    private boolean validateMaterial() {
+        if (comboMaterialCodes.getValue() == null){
+            new Alert(Alert.AlertType.ERROR,"Empty material code ").show();
+            return false;
+        }
+        if(txtAmount.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Empty amount").show();
+            return  false;
+        }
+        boolean matchAmount= Pattern.matches("^\\d+(\\.\\d{1,2})?$",txtAmount.getText());
+        if(!matchAmount){
+            new Alert(Alert.AlertType.ERROR,"Invalid amount").show();
+            return  false;
+        }
+       return true;
     }
 
     private void setRemoveBtnAction(Button btn) {
@@ -324,36 +345,122 @@ public class AddOrderFormController {
     }
     @FXML
     void AddButtonOnAction(ActionEvent event) throws SQLException {
-        String orderId = labelOrderId.getText();
-        LocalDate date = LocalDate.parse(labelDate.getText());
-        String customerId = comboCustomerId.getValue();
-        double total= Double.parseDouble(Labeltotal.getText());
-        PaymentModel modelP=new PaymentModel();
-        String pay_id= modelP.generateNextId();
-        System.out.println(pay_id);
-        List<MaterialDressTm> materialList = new ArrayList<>();
-        for (int i = 0; i < materialTable.getItems().size(); i++) {
-            MaterialDressTm materialDressTm = obList.get(i);
-            materialList.add(materialDressTm);
+        boolean isValid = validateOrder();
+        if(isValid) {
+            Double inseam = Double.valueOf(txtInseam.getText());
+            Double bust = Double.valueOf(txtBust.getText());
+            Double hips = Double.valueOf(txtHips.getText());
+            Double neck = Double.valueOf(txtNeck.getText());
+            Double shoulder = Double.valueOf(txtShoulder.getText());
+            Double waist = Double.valueOf(txtWaist.getText());
+
+            String orderId = labelOrderId.getText();
+            LocalDate date = LocalDate.parse(labelDate.getText());
+            String customerId = comboCustomerId.getValue();
+            double total = Double.parseDouble(Labeltotal.getText());
+            PaymentModel modelP = new PaymentModel();
+            String pay_id = modelP.generateNextId();
+            System.out.println(pay_id);
+            List<MaterialDressTm> materialList = new ArrayList<>();
+            for (int i = 0; i < materialTable.getItems().size(); i++) {
+                MaterialDressTm materialDressTm = obList.get(i);
+                materialList.add(materialDressTm);
+            }
+
+            System.out.println("Place order form controller: " + materialList);
+
+            PaymentDto payment = new PaymentDto(pay_id, date, total);
+            OrderDto order = new OrderDto(pay_id, customerId, txtDate.getValue(), LocalDate.parse(labelDate.getText()),
+                    labelOrderId.getText(), inseam, shoulder, neck, hips, waist, bust, txtDescription.getText(),
+                    false, false);
+
+
+            try {
+                boolean isSaved = OrderModel.placeOrder(materialList, payment, order);
+                if (isSaved) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Order Success!").show();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
 
-        System.out.println("Place order form controller: " + materialList);
+    }
+    @FXML
+    void checkBoxOnAction(ActionEvent event) {
+        ButtonType yes=new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType no=new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        Optional<ButtonType> type=new Alert(Alert.AlertType.INFORMATION, "Is payment Success?", yes, no).showAndWait();
+        if (type.orElse(no) == no) {
+            checkBoxTable.setSelected(false);
+        }
+        else{
+            checkBoxTable.setSelected(true);
+        }
 
-        PaymentDto payment=new PaymentDto(pay_id,date,total);
-        OrderDto order=new OrderDto(pay_id,customerId,txtDate.getValue(),LocalDate.parse(labelDate.getText()),labelOrderId.getText(),
-                txtInseam.getText(),txtShoulder.getText(),txtNeck.getText(),txtHips.getText(),txtWaist.getText(),txtBust.getText(),txtDescription.getText());
-
-
-
-       try {
-           boolean isSaved = OrderModel.placeOrder(materialList, payment, order);
-           if(isSaved){
-               new Alert(Alert.AlertType.CONFIRMATION, "Order Success!").show();
-           }
-        } catch (SQLException e) {
-           throw new RuntimeException(e);
-       }
 
     }
+    public  boolean validateOrder(){
+        if(comboCustomerId.getValue() == null){
+           new Alert(Alert.AlertType.ERROR, "Customer details empty").show();
+           return false;
+        }
+        if(txtDate.getValue() == null){
+            new Alert(Alert.AlertType.ERROR, "Date empty").show();
+            return false;
+        }
+        boolean isValid=true;
+        if((!txtWaist.getText().isEmpty())&&(!validateNumber("Waist", txtWaist.getText()))){
+
+           return false;
+        }
+
+        if((!txtHips.getText().isEmpty())&&( !validateNumber("Hips", txtHips.getText()))){
+            return false;
+        }
+        if((!txtNeck.getText().isEmpty())&&(!validateNumber("Neck", txtNeck.getText()))){
+            return false;
+        }
+        if((!txtShoulder.getText().isEmpty())&&(!validateNumber("Shoulder", txtShoulder.getText()))){
+            return false;
+        }
+        if((!txtBust.getText().isEmpty())&&(!validateNumber("Bust", txtBust.getText()))){
+            return false;
+        }
+        if((!txtInseam.getText().isEmpty())&&(!validateNumber("Inseam", txtInseam.getText()))){
+            return false;
+        }
+        System.out.println(Labeltotal.getText().isEmpty());
+        if (tailorFees.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Tailor fees field is empty" ).show();
+            return  false;
+        }
+        if(!validateNumber("Tailor fees", tailorFees.getText())){
+            return false;
+        }
+
+        if(Labeltotal.getText().isEmpty()){
+            new Alert(Alert.AlertType.ERROR,"Total is empty...Click on Total button!!!" ).show();
+            return false;
+        }
+
+        if (!checkBoxTable.isSelected()){
+            new Alert(Alert.AlertType.ERROR,"payment is essential" ).show();
+            return false;
+
+        }
+    return isValid;
+
+    }
+
+    private boolean validateNumber(String text,String value) {
+        boolean matchAddress = Pattern.matches("^\\d+(\\.\\d{1,2})?$",value);
+        if(!matchAddress){
+            new Alert(Alert.AlertType.ERROR,"Invalid value for "+text ).show();
+            return  false;
+        }
+        return true;
+    }
+
 
 }

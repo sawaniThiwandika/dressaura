@@ -77,7 +77,14 @@ public class CustomerModel {
         return customerList;
     }
 
-    public void deleteCustomer(int focusedIndex) throws SQLException {
+    public boolean deleteCustomer(String cusId) throws SQLException {
+        Connection connection=DbConnection.getInstance().getConnection();
+        String sql= "DELETE FROM customer WHERE cus_id=?";
+        PreparedStatement pstm=connection.prepareStatement(sql);
+        pstm.setString(1, cusId);
+        return  pstm.executeUpdate()>0;
+
+
 
     }
 

@@ -26,23 +26,20 @@
             <Image url="@../icon/add.png" />
          </image>
       </ImageView>
-      <TableView layoutX="23.0" layoutY="103.0" prefHeight="494.0" prefWidth="1219.0">
+      <TableView fx:id="tableOrder" layoutX="23.0" layoutY="103.0" prefHeight="494.0" prefWidth="1218.0">
          <columns>
-            <TableColumn prefWidth="29.600006103515625" text="#" />
-            <TableColumn minWidth="0.0" prefWidth="112.79999160766602" text="Order ID" />
-            <TableColumn prefWidth="112.00001525878906" text="Customer ID" />
-            <TableColumn minWidth="0.0" prefWidth="249.60003662109375" text="Customer Name" />
-            <TableColumn prefWidth="176.0" text=" Date" />
-            <TableColumn minWidth="0.0" prefWidth="165.5999755859375" text="Return Date" />
-             <TableColumn minWidth="0.0" prefWidth="112.800048828125" text="Measurements" />
-             <TableColumn minWidth="0.0" prefWidth="258.40008544921875" text="Action" />
+            <TableColumn fx:id="colNum" prefWidth="29.600006103515625" text="#" />
+            <TableColumn fx:id="colOrderId" minWidth="0.0" prefWidth="85.60000228881836" text="Order ID" />
+            <TableColumn fx:id="colCusId" prefWidth="98.4000244140625" text="Customer ID" />
+            <TableColumn fx:id="colCusName" minWidth="0.0" prefWidth="147.20001220703125" text="Customer Name" />
+            <TableColumn fx:id="colDate" prefWidth="107.20004272460938" text=" Date" />
+            <TableColumn fx:id="colReturnDate" minWidth="0.0" prefWidth="144.00006103515625" text="Return Date" />
+             <TableColumn fx:id="colViewDetail" minWidth="0.0" prefWidth="148.0" text="View Details" />
+            <TableColumn fx:id="colFinished" minWidth="0.0" prefWidth="124.00006103515625" text="finished" />
+            <TableColumn fx:id="colHandOver" minWidth="0.0" prefWidth="198.4000244140625" text="handOver" />
+             <TableColumn fx:id="colDelete" minWidth="0.0" prefWidth="128.0" text="Delete" />
          </columns>
       </TableView>
-      <Button layoutX="1134.0" layoutY="634.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(50, 205, 50);" text="Back" textFill="#fffcfc">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
       <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="1192.0" layoutY="27.0">
          <image>
             <Image url="@../assets/add.png" />

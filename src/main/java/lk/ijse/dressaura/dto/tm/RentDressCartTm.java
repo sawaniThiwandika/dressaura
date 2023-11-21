@@ -6,21 +6,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
 @AllArgsConstructor
-public class MaterialTm {
-    private int number;
-    private String id;
+public class RentDressCartTm {
+    private String rentId;
+    private String dressId;
     private String name;
-    private double unitPrice;
-    private double qtyOnHand;
-    private String availability;
-    private Button restock;
-    private Button delete;
-
-
-
+    private LocalDate rentDate;
+    private LocalDate returnDate;
+    private double price;
+    Button remove;
+    Button update;
 
 }

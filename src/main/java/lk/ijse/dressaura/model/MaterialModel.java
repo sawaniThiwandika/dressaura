@@ -1,10 +1,7 @@
 package lk.ijse.dressaura.model;
 
 import lk.ijse.dressaura.db.DbConnection;
-import lk.ijse.dressaura.dto.MaterialDto;
-import lk.ijse.dressaura.dto.PaymentDto;
-import lk.ijse.dressaura.dto.SupplierDetailsDto;
-import lk.ijse.dressaura.dto.SupplierDto;
+import lk.ijse.dressaura.dto.*;
 import lk.ijse.dressaura.dto.tm.MaterialDressTm;
 
 import java.sql.Connection;
@@ -75,6 +72,40 @@ return supplierDtos;
     public boolean saveMaterial(MaterialDto dtoM, PaymentDto dtoP, SupplierDetailsDto dtoSD) throws SQLException {
         PaymentModel payModel=new PaymentModel();
         SupplierDetailsModel supDetailsModel=new SupplierDetailsModel();
+
+        boolean check = checkPreviousMaterialId(dtoM.getMaterialId());
+        if(check){
+            boolean isadd = updateMateralStock(dtoM, dtoP, dtoSD);
+            return isadd;
+        }
+        else {
+            Connection connection = null;
+
+            try {
+                connection = DbConnection.getInstance().getConnection();
+                connection.setAutoCommit(false);
+
+                boolean ispaymentSaved = payModel.savePayment(dtoP);
+                if (ispaymentSaved) {
+                    boolean isAddedMaterial = addMatirial(dtoM);
+                    if (isAddedMaterial) {
+                        boolean isSupplyDetailSaved = supDetailsModel.saveSupplyDetails(dtoSD, dtoP);
+                        if (isSupplyDetailSaved) {
+                            connection.commit();
+                        }
+                    }
+                }
+                connection.rollback();
+            } finally {
+                connection.setAutoCommit(true);
+            }
+            return true;
+        }
+    }
+
+    private boolean updateMateralStock(MaterialDto dtoM, PaymentDto dtoP, SupplierDetailsDto dtoSD) throws SQLException {
+        PaymentModel payModel=new PaymentModel();
+        SupplierDetailsModel supDetailsModel=new SupplierDetailsModel();
         Connection connection = null;
 
         try {
@@ -83,10 +114,10 @@ return supplierDtos;
 
             boolean ispaymentSaved = payModel.savePayment(dtoP);
             if (ispaymentSaved) {
-                boolean isAddedMaterial = addMatirial(dtoM);
+                boolean isAddedMaterial = updatePreviousMatirial(dtoM,dtoSD);
                 if (isAddedMaterial) {
-                    boolean isSupplyDetailSaved = supDetailsModel.saveSupplyDetails(dtoSD,dtoP);
-                    if (isSupplyDetailSaved ){
+                    boolean isSupplyDetailSaved = supDetailsModel.saveSupplyDetails(dtoSD, dtoP);
+                    if (isSupplyDetailSaved) {
                         connection.commit();
                     }
                 }
@@ -96,7 +127,34 @@ return supplierDtos;
             connection.setAutoCommit(true);
         }
         return true;
+    }
 
+    private boolean updatePreviousMatirial(MaterialDto dtoM, SupplierDetailsDto dtoSD) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "UPDATE material SET qty_on_hand = qty_on_hand + ? WHERE material_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setDouble(1,dtoSD.getAmount());
+        pstm.setString(2, dtoM.getMaterialId());
+
+        return pstm.executeUpdate() > 0;
+
+    }
+
+    private boolean checkPreviousMaterialId(String materialId) throws SQLException {
+        Connection connection=DbConnection.getInstance().getConnection();
+        String sql="select material_id FROM material GROUP BY  material_id";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            if(resultSet.getString(1).equals(materialId)){
+                return true;
+
+            }
+        }
+        return false;
     }
 
     private boolean addMatirial(MaterialDto dtoM) throws SQLException {
@@ -179,5 +237,41 @@ return supplierDtos;
         pstm.setString(2, materialId);
 
         return pstm.executeUpdate() > 0;
+    }
+
+    public String getName(String materialId) throws SQLException {
+        String name=null;
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql = "select name from material where material_id=?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1,materialId);
+        ResultSet resultSet = pstm.executeQuery();
+       while (resultSet.next()){
+          name = resultSet.getString("name");
+       }
+
+     return  name;
+    }
+
+    public List<MaterialDto> getMaterialTableValues() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "SELECT *FROM material ";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+        ArrayList<MaterialDto> materialList=new ArrayList<>();
+
+        while(resultSet.next()) {materialList.add(new MaterialDto(
+
+                resultSet.getString(1),
+                resultSet.getDouble(3),
+                resultSet.getDouble(4),
+                resultSet.getString(2)
+
+        ));
+        }
+        return materialList;
+
     }
 }

@@ -70,7 +70,7 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <CheckBox fx:id="checkBoxTable" layoutX="324.0" layoutY="674.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="14.0" textFill="#0d0d0d" />
+      <CheckBox fx:id="checkBoxTable" layoutX="324.0" layoutY="674.0" mnemonicParsing="false" onAction="#checkBoxOnAction" prefHeight="23.0" prefWidth="14.0" textFill="#0d0d0d" />
       <Label layoutX="27.0" layoutY="439.0" prefHeight="42.0" prefWidth="133.0" text="Measurements" textFill="#0b0a0b">
          <font>
             <Font name="Calibri" size="18.0" />

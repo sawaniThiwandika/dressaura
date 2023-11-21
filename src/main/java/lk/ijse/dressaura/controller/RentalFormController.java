@@ -12,9 +12,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lk.ijse.dressaura.dto.RentDetailsDto;
 import lk.ijse.dressaura.dto.RentDto;
 import lk.ijse.dressaura.dto.tm.RentTm;
 import lk.ijse.dressaura.model.CustomerModel;
+import lk.ijse.dressaura.model.RentDetailsModel;
 import lk.ijse.dressaura.model.RentModel;
 
 import java.io.IOException;
@@ -80,12 +82,14 @@ public class RentalFormController {
     private Label upcoming;
     RentDto rentDto=new RentDto();
     RentModel rentModel=new RentModel();
+    RentDetailsModel rentDetailsModel=new RentDetailsModel();
     private ObservableList<RentTm> obList = FXCollections.observableArrayList();
     @FXML
     void addButtonOnAction(ActionEvent event) throws IOException {
         URL resource = this.getClass().getResource("/view/add_rental_form.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(resource);
         Parent load = fxmlLoader.load();
+        fxmlLoader.getController();
         Stage stage = new Stage();
         stage.setTitle("Add rental");
         stage.setScene(new Scene(load));
@@ -123,32 +127,40 @@ public class RentalFormController {
     }
 
     private void loadAllIncompletedRentals() throws SQLException {
-        int i=1;
 
+        List<RentDetailsDto> rentDetailsList=rentDetailsModel.getAllRentals();
         List<RentDto> rentList=rentModel.getAllRentals();
         CustomerModel cusModel=new CustomerModel();
 
 
-        for (RentDto rent:rentList) {
-            if(!rent.isReturn()){
+
+        for(int i=0;i<rentDetailsList.size();i++){
+            RentDto dto = rentModel.searchDetails(rentDetailsList.get(i).getRent_id());
+            if(!rentDetailsList.get(i).isReturn()){
             Button btnD=new Button("Delete");
             Button btnReturn=new Button("isReturn");
             CheckBox checkBox = new CheckBox();
-            obList.add(new RentTm(rent.getRentId(),rent.getCusId(),cusModel.searchCustomer(rent.getCusId()).getName(),rent.getDressId(),cusModel.searchCustomer(rent.getCusId()).getContact(),String.valueOf(i),rent.getDate(),rent.getReturnDate(),btnD,btnReturn,checkBox));
-            i++;
-            deleteRentButtonOnAction(btnD,rentList);
-            returnRentButtonOnAction(btnReturn,rentList);
-            checkBoxOnAction(checkBox,rentList);
+
+            System.out.println(dto.getCusId());
+            System.out.println(dto.getPaymentType());
+
+            obList.add(new RentTm(rentDetailsList.get(i).getRent_id(),dto.getCusId(),cusModel.searchCustomer(dto.getCusId()).getName(),rentDetailsList.get(i).getDress_id(),
+                    cusModel.searchCustomer(dto.getCusId()).getContact(),String.valueOf(i+1),rentDetailsList.get(i).getReservation_date(),rentDetailsList.get(i).getReturn_date(),
+                    btnD,btnReturn,checkBox));
+
+            deleteRentButtonOnAction(btnD,rentDetailsList);
+            returnRentButtonOnAction(btnReturn,rentDetailsList);
+            checkBoxOnAction(checkBox,rentDetailsList);
             btnD.setCursor(Cursor.HAND);
             btnReturn.setCursor(Cursor.HAND);
-           checkBox.setSelected(rent.isReserve());
+           checkBox.setSelected(rentDetailsList.get(i).isReserve());
         }}
       rentViewSTable.setItems(obList);
 
 
     }
 
-    private void checkBoxOnAction(CheckBox checkBox, List<RentDto> rentList) {
+    private void checkBoxOnAction(CheckBox checkBox, List<RentDetailsDto> rentDetailsList) {
         checkBox.setOnAction((e) -> {
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -156,14 +168,18 @@ public class RentalFormController {
             Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure reservation Complete?", yes, no).showAndWait();
             if (type.orElse(no) == yes) {
                 int focusedIndex =rentViewSTable.getSelectionModel().getSelectedIndex();
+                System.out.println("forcued INdex"+ focusedIndex);
 
                 checkBox.setSelected(true);
                 rentViewSTable.refresh();
-
+                System.out.println("rent id"+ (String) colDressId.getCellData(focusedIndex));
+                System.out.println("rent id"+ (String) colRentId.getCellData(focusedIndex));
                 try {
-                    boolean isUpdated = rentModel.completeReservation(rentList.get(focusedIndex + 1).getRentId());
+                    boolean isUpdated = rentDetailsModel.completeReservation(String.valueOf(colRentId.getCellData(focusedIndex)),
+                            String.valueOf(colDressId.getCellData(focusedIndex)));
                     if(isUpdated){
                         new Alert(Alert.AlertType.CONFIRMATION,"Successfully updated").show();
+
                     }
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
@@ -180,7 +196,7 @@ public class RentalFormController {
 
     }
 
-    private void returnRentButtonOnAction(Button btnReturn, List<RentDto> rentList) {
+    private void returnRentButtonOnAction(Button btnReturn, List<RentDetailsDto> rentDetailsList) {
         btnReturn.setOnAction((e) -> {
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -189,11 +205,11 @@ public class RentalFormController {
 
             if (type.orElse(no) == yes) {
                 int focusedIndex =rentViewSTable.getSelectionModel().getSelectedIndex();
-
-                obList.remove(focusedIndex+1);
+                RentTm rentTm = rentViewSTable.getSelectionModel().getSelectedItem();
+                obList.remove(focusedIndex);
                 rentViewSTable.refresh();
                 try {
-                    boolean isUpdated = rentModel.completeRent(rentList.get(focusedIndex + 1).getRentId());
+                    boolean isUpdated = rentDetailsModel.completeRent(rentTm.getRentId(), rentTm.getDressId());
                     if(isUpdated){
                         new Alert(Alert.AlertType.CONFIRMATION,"Successfully updated").show();
                     }
@@ -205,7 +221,7 @@ public class RentalFormController {
 
     }
 
-    private void deleteRentButtonOnAction(Button btnD,List<RentDto> rentList) {
+    private void deleteRentButtonOnAction(Button btnD, List<RentDetailsDto> rentList) {
 
         btnD.setOnAction((e) -> {
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
@@ -215,19 +231,21 @@ public class RentalFormController {
 
             if (type.orElse(no) == yes) {
                 int focusedIndex =rentViewSTable.getSelectionModel().getSelectedIndex();
-
-                obList.remove(focusedIndex+1);
+                RentTm rentTm = rentViewSTable.getSelectionModel().getSelectedItem();
+                obList.remove(focusedIndex);
                 rentViewSTable.refresh();
+                System.out.println("aaaaa"+(String)colRentId.getCellData(focusedIndex)+"  "+(String)colDressId.getCellData(focusedIndex));
 
                 try {
-                   if( rentModel.deleteRent(rentList.get(focusedIndex+1).getRentId())){
-                       new Alert(Alert.AlertType.CONFIRMATION,"Successfully deleted").show();
-                   }
-                   new Alert(Alert.AlertType.ERROR,"Can not delete").show();
-
+                    if( rentDetailsModel.deleteRent(rentTm.getRentId(),rentTm.getDressId())){
+                        new Alert(Alert.AlertType.CONFIRMATION,"Successfully deleted").show();
+                        rentViewSTable.refresh();
+                    }
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
+                new Alert(Alert.AlertType.ERROR,"Can not delete").show();
+
             }
         });
 

@@ -53,7 +53,17 @@
             <Font name="Arial" size="17.0" />
          </font>
       </Label>
-      <Button fx:id="okBtn" layoutX="224.0" layoutY="461.0" mnemonicParsing="false" onAction="#okBtnOnAction" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: rgb(145, 49, 117);" text="Ok" textFill="#efecec">
+      <Button fx:id="okBtn" layoutX="78.0" layoutY="464.0" mnemonicParsing="false" onAction="#okBtnOnAction" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: rgb(145, 49, 117);" text="Ok" textFill="#efecec">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="updateBtn" layoutX="216.0" layoutY="464.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: rgb(145, 49, 117);" text="update" textFill="#efecec">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="deleteBtn" layoutX="332.0" layoutY="464.0" mnemonicParsing="false" onAction="#deleteBtnOnAction" prefHeight="26.0" prefWidth="76.0" style="-fx-background-color: rgb(145, 49, 117);" text="Delete" textFill="#efecec">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

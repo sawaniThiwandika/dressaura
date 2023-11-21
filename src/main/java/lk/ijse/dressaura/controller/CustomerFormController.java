@@ -158,7 +158,16 @@ public class CustomerFormController {
 
             if (type.orElse(no) == yes) {
                 int focusedIndex = tableCustomer.getSelectionModel().getSelectedIndex();
-                obList.remove(focusedIndex+1);
+                CustomerTm customerTm = tableCustomer.getSelectionModel().getSelectedItem();
+                try {
+                    boolean isDeleted = cusModel.deleteCustomer(customerTm.getCusId());
+                    if(isDeleted){
+                        new Alert(Alert.AlertType.CONFIRMATION,"SUCCESSFULLLY deleted").show();
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                obList.remove(focusedIndex);
                 System.out.println(focusedIndex);
                 tableCustomer.refresh();
 

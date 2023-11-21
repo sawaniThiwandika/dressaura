@@ -1,101 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="newrental" prefHeight="503.0" prefWidth="684.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddRentalFormController">
+<AnchorPane fx:id="newrental" prefHeight="729.0" prefWidth="752.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddRentalFormController">
    <children>
-      <Label layoutX="35.0" layoutY="50.0" prefHeight="42.0" prefWidth="211.0" text="Add New Rental" textFill="#0b0a0b">
+      <Label layoutX="28.0" layoutY="14.0" prefHeight="42.0" prefWidth="211.0" text="Add New Rental" textFill="#0b0a0b">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Line endX="486.0" endY="0.399993896484375" layoutX="174.0" layoutY="92.0" opacity="0.22" startX="-139.0" startY="0.399993896484375" />
-      <Label layoutX="35.0" layoutY="134.0" prefHeight="23.0" prefWidth="87.0" text="Rent Id">
+      <Line endX="486.0" endY="0.399993896484375" layoutX="168.0" layoutY="56.0" opacity="0.22" startX="-139.0" startY="0.399993896484375" />
+      <Label layoutX="34.0" layoutY="91.0" prefHeight="23.0" prefWidth="78.0" text="Rent Id">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelRentId" alignment="CENTER" layoutX="111.0" layoutY="134.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="C001" />
-      <Label alignment="CENTER" layoutX="275.0" layoutY="134.0" prefHeight="23.0" prefWidth="71.0" text="Date ">
+      <Label fx:id="labelRentId" alignment="CENTER" layoutX="125.0" layoutY="91.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="C001" />
+      <Label alignment="BASELINE_LEFT" layoutX="292.0" layoutY="87.0" prefHeight="23.0" prefWidth="71.0" text="Date ">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelDate" alignment="CENTER" layoutX="358.0" layoutY="134.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="2023/01/03" />
-      <Label layoutX="35.0" layoutY="197.0" prefHeight="23.0" prefWidth="87.0" text="Customer Id">
+      <Label fx:id="labelDate" alignment="CENTER" layoutX="420.0" layoutY="87.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="2023/01/03" />
+      <Label layoutX="27.0" layoutY="135.0" prefHeight="23.0" prefWidth="87.0" text="Customer Id">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="270.0" layoutY="197.0" prefHeight="23.0" prefWidth="123.0" text="Customer name">
+      <Label alignment="CENTER" layoutX="280.0" layoutY="131.0" prefHeight="23.0" prefWidth="123.0" text="Customer name">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="34.0" layoutY="333.0" prefHeight="23.0" prefWidth="87.0" text="Rent date">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="314.0" layoutY="333.0" prefHeight="23.0" prefWidth="87.0" text="Return date">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
-      <Button alignment="BASELINE_LEFT" layoutX="14.0" layoutY="251.0" mnemonicParsing="false" onAction="#selectDressButtonOnAction" prefHeight="27.0" prefWidth="98.0" style="-fx-background-color: rgb(205, 88, 136); -fx-background-radius: 10;" text="Select Dress" textFill="#fffcfc">
+      <Button alignment="BASELINE_LEFT" layoutX="26.0" layoutY="245.0" mnemonicParsing="false" onAction="#selectDressButtonOnAction" prefHeight="27.0" prefWidth="87.0" style="-fx-background-color: rgb(205, 88, 136); -fx-background-radius: 10;" text="Select Dress" textFill="#fffcfc">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label layoutX="136.0" layoutY="253.0" prefHeight="23.0" prefWidth="59.0" text="Dress Id">
+      <Label layoutX="292.0" layoutY="247.0" prefHeight="23.0" prefWidth="78.0" text="Dress Name">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="319.0" layoutY="253.0" prefHeight="23.0" prefWidth="78.0" text="Dress Name">
+      <Label fx:id="lebalDressName" alignment="CENTER" layoutX="385.0" layoutY="247.0" opacity="0.99" prefHeight="23.0" prefWidth="235.0" style="-fx-background-color: E9E8E8;" />
+      <Label layoutX="292.0" layoutY="290.0" prefHeight="23.0" prefWidth="78.0" text="Rent price">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lebalDressName" alignment="CENTER" layoutX="412.0" layoutY="253.0" opacity="0.99" prefHeight="23.0" prefWidth="235.0" style="-fx-background-color: E9E8E8;" />
-      <Label layoutX="45.0" layoutY="400.0" prefHeight="23.0" prefWidth="78.0" text="Rent price">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="labelRentPrice" alignment="CENTER" layoutX="122.0" layoutY="400.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" textFill="#e31212">
+      <Label fx:id="labelRentPrice" alignment="CENTER" layoutX="386.0" layoutY="290.0" opacity="0.99" prefHeight="23.0" prefWidth="175.0" style="-fx-background-color: E9E8E8;" textFill="#e31212">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="354.0" layoutY="400.0" prefHeight="23.0" prefWidth="41.0" text="Paid">
+      <CheckBox fx:id="checkBoxPaid" layoutX="665.0" layoutY="622.0" mnemonicParsing="false" onAction="#checkBoxPaidOnAction" prefHeight="23.0" prefWidth="54.0" text="paid" textFill="#0d0d0d" />
+      <Button fx:id="add" alignment="CENTER" layoutX="666.0" layoutY="686.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: D80032; -fx-background-radius: 10;" text="Add" textFill="WHITE">
          <font>
-            <Font name="Arial" size="14.0" />
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancel" alignment="CENTER" layoutX="587.0" layoutY="686.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Cancel" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ComboBox fx:id="customerComboBox" layoutX="123.0" layoutY="134.0" onAction="#comboCustomerOnAction" prefHeight="26.0" prefWidth="106.0" />
+      <ComboBox fx:id="dressComboBox" layoutX="153.0" layoutY="246.0" onAction="#comboDressOnAction" prefHeight="26.0" prefWidth="106.0" promptText="Dress Id" />
+      <Label fx:id="lebalName" alignment="CENTER" layoutX="420.0" layoutY="131.0" opacity="0.99" prefHeight="23.0" prefWidth="235.0" style="-fx-background-color: E9E8E8;" />
+      <CheckBox fx:id="checkDates" layoutX="435.0" layoutY="358.0" mnemonicParsing="false" onAction="#checkDateOnAction" prefHeight="23.0" prefWidth="78.0" text="check in" textFill="#0d0d0d" />
+      <DatePicker fx:id="txtRentDate" layoutX="19.0" layoutY="357.0" promptText="Rent Date " />
+      <DatePicker fx:id="txtReturnDate" layoutX="211.0" layoutY="357.0" promptText="Return Date" />
+      <Label alignment="CENTER" layoutY="198.0" prefHeight="18.0" prefWidth="141.0" text="Dress details">
+         <font>
+            <Font name="Arial Bold Italic" size="13.0" />
          </font>
       </Label>
-      <CheckBox fx:id="checkBoxPaid" layoutX="398.0" layoutY="400.0" mnemonicParsing="false" onAction="#checkBoxPaidOnAction" prefHeight="23.0" prefWidth="14.0" textFill="#0d0d0d" />
-      <Button fx:id="add" alignment="CENTER" layoutX="582.0" layoutY="452.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: D80032; -fx-background-radius: 10;" text="Add" textFill="WHITE">
+      <TableView fx:id="cartTable" layoutX="27.0" layoutY="416.0" prefHeight="148.0" prefWidth="708.0">
+        <columns>
+          <TableColumn fx:id="colDressId" prefWidth="66.39999389648438" text="Dress ID" />
+          <TableColumn fx:id="colDressName" prefWidth="144.00003051757812" text="Name" />
+            <TableColumn fx:id="colReturnDate" prefWidth="107.20001220703125" text="Return date" />
+            <TableColumn fx:id="colReservationDate" prefWidth="131.199951171875" text="Reservation Date" />
+            <TableColumn fx:id="colPrice" prefWidth="103.20001220703125" text="Price" />
+            <TableColumn fx:id="colUpdate" minWidth="0.0" prefWidth="71.99993896484375" text="Update" />
+            <TableColumn fx:id="colRemove" minWidth="0.0" prefWidth="81.5999755859375" text="Remove" />
+        </columns>
+      </TableView>
+      <Label layoutX="29.0" layoutY="618.0" prefHeight="26.0" prefWidth="54.0" text="Total" textFill="#c70c0c">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelTotal" alignment="CENTER" layoutX="91.0" layoutY="622.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" textFill="#b71717" />
+      <ComboBox fx:id="cmbPaymentType" layoutX="239.0" layoutY="620.0" onAction="#cmbPaymentTypeOnAction" prefHeight="26.0" prefWidth="123.0" promptText="payment type" />
+      <Label layoutX="410.0" layoutY="618.0" prefHeight="30.0" prefWidth="98.0" text="Payment" textFill="#c70c0c">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelPayment" alignment="CENTER" layoutX="508.0" layoutY="622.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" textFill="#ef0808" />
+      <Label alignment="CENTER" layoutX="10.0" layoutY="584.0" prefHeight="18.0" prefWidth="141.0" text="Payment details">
+         <font>
+            <Font name="Arial Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="addToCartBtn" alignment="BASELINE_LEFT" layoutX="526.0" layoutY="356.0" onAction="#addToCartButtonOnAction" prefHeight="30.0" prefWidth="116.0" style="-fx-background-color: #3498db;" text="Add to Cart" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
-      </Button>
-      <Button fx:id="cancel" alignment="CENTER" layoutX="503.0" layoutY="452.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Cancel" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
-      <ComboBox fx:id="customerComboBox" layoutX="136.0" layoutY="195.0" onAction="#comboCustomerOnAction" prefHeight="26.0" prefWidth="106.0" />
-      <ComboBox fx:id="dressComboBox" layoutX="193.0" layoutY="252.0" onAction="#comboDressOnAction" prefHeight="26.0" prefWidth="106.0" />
-      <Label fx:id="lebalName" alignment="CENTER" layoutX="393.0" layoutY="197.0" opacity="0.99" prefHeight="23.0" prefWidth="235.0" style="-fx-background-color: E9E8E8;" />
-      <CheckBox fx:id="checkDates" layoutX="592.0" layoutY="333.0" mnemonicParsing="false" onAction="#checkDateOnAction" prefHeight="23.0" prefWidth="14.0" textFill="#0d0d0d" />
-      <DatePicker fx:id="txtRentDate" layoutX="107.0" layoutY="332.0" />
-      <DatePicker fx:id="txtReturnDate" layoutX="393.0" layoutY="332.0" />
+      </JFXButton>
+      <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="607.0" layoutY="358.0">
+         <image>
+            <Image url="@../assets/add-cart.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="viewRental" layoutX="42.0" layoutY="300.0" mnemonicParsing="false" onAction="#viewRentalButtonOnAction" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: white;" text="View Rentals" />
    </children>
 </AnchorPane>

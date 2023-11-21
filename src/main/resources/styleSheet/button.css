@@ -1,0 +1,42 @@
+.button
+{
+    -fx-background-color: linear-gradient(to right, #03C988, #69fac6);
+    -fx-background-radius: 30 0 0 30;
+}
+.button:hover
+{
+    -fx-background-color: linear-gradient(to right, #03a973, #48fdbc);
+    -fx-background-radius: 30 0 0 30;
+}
+.button:pressed
+{
+    -fx-background-color: linear-gradient(to right, #03a973, #48fdbc);
+    -fx-background-radius: 30 0 0 30;
+}
+
+.selected-btn {
+    -fx-background-color: linear-gradient(to right, #09593e, #6ad2b0);
+    -fx-background-radius: 30 0 0 30;
+}
+
+.button-cancel{
+    -fx-background-color: linear-gradient(to right, #b8b9b9, #656c69);
+    -fx-background-radius: 30 0 0 30;
+}
+
+.button-create {
+    -fx-background-color: linear-gradient(to right, #03C988, #69fac6);
+    -fx-background-radius: 0 30 30 0;
+}
+.enter:hover
+{
+    -fx-background-color: linear-gradient(to right, #03a973, #48fdbc);
+    -fx-background-radius: 0 0 0 0;
+}
+
+.enter2 button
+{
+    -fx-background-color: linear-gradient(to right, #03C988, #69fac6);
+    -fx-background-radius: 0 0 0 0;
+    -fx-border-color: black;
+}
