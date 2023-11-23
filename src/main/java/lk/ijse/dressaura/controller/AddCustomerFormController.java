@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.jfoenix.controls.JFXButton;
 public class AddCustomerFormController {
     @FXML
     private Button add;
@@ -38,6 +39,7 @@ public class AddCustomerFormController {
 
     @FXML
     private TextField txtName;
+
     private CustomerModel cusModel = new CustomerModel();
 
     public void initialize() throws SQLException {
@@ -135,15 +137,6 @@ public class AddCustomerFormController {
 
 
      return true;
-
-
-
-
-
-
-
-
-
 
     }
 

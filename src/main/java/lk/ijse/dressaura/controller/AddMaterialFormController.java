@@ -5,10 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import lk.ijse.dressaura.dto.MaterialDto;
-import lk.ijse.dressaura.dto.PaymentDto;
-import lk.ijse.dressaura.dto.SupplierDetailsDto;
-import lk.ijse.dressaura.dto.SupplierDto;
+import lk.ijse.dressaura.dto.*;
 import lk.ijse.dressaura.model.MaterialModel;
 import lk.ijse.dressaura.model.PaymentModel;
 

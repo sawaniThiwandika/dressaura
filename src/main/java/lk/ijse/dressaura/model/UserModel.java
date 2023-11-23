@@ -89,4 +89,15 @@ public class UserModel {
         if(recoveryCode.equals(body)){return true;}
         else {return false;}
     }
+
+    public boolean saveUser(UserDto newUser) throws SQLException {
+        Connection connection= DbConnection.getInstance().getConnection();
+        String sql="INSERT INTO user VALUES (?,?,?)";
+        PreparedStatement pstm=connection.prepareStatement(sql);
+        pstm.setString(1,newUser.getUserName());
+        pstm.setString(2,newUser.getPassword());
+        pstm.setString(3,newUser.getEmail());
+       return  pstm.executeUpdate()>0;
+    }
+
 }

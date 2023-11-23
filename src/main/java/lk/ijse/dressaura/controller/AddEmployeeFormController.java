@@ -142,6 +142,7 @@ public class AddEmployeeFormController {
         }
         boolean matchContact= Pattern.matches("^0[1-9]\\d{8}$",contact);
         if(!matchContact){
+
             new Alert(Alert.AlertType.ERROR,"Invalid contact number").show();
             return  false;
         }
@@ -158,4 +159,13 @@ public class AddEmployeeFormController {
     }
 
 
+    public void initialize(EmployeeDto dto) {
+        txtJobRole.setText(dto.getJobRole());
+        txtContact.setText(dto.getContact());
+        txtName.setText(dto.getName());
+        txtAddress.setText(dto.getAddress());
+        txtEmail.setText(dto.getEmail());
+        labelEmpId.setText(dto.getEmpId());
+
+    }
 }

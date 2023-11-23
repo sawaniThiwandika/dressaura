@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="newrental" prefHeight="729.0" prefWidth="752.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddRentalFormController">
+<AnchorPane fx:id="newrental" prefHeight="741.0" prefWidth="752.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddRentalFormController">
    <children>
       <Label layoutX="28.0" layoutY="14.0" prefHeight="42.0" prefWidth="211.0" text="Add New Rental" textFill="#0b0a0b">
          <font>
@@ -65,13 +65,13 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <CheckBox fx:id="checkBoxPaid" layoutX="665.0" layoutY="622.0" mnemonicParsing="false" onAction="#checkBoxPaidOnAction" prefHeight="23.0" prefWidth="54.0" text="paid" textFill="#0d0d0d" />
-      <Button fx:id="add" alignment="CENTER" layoutX="666.0" layoutY="686.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: D80032; -fx-background-radius: 10;" text="Add" textFill="WHITE">
+      <CheckBox fx:id="checkBoxPaid" layoutX="655.0" layoutY="609.0" mnemonicParsing="false" onAction="#checkBoxPaidOnAction" prefHeight="23.0" prefWidth="54.0" text="paid" textFill="#0d0d0d" />
+      <Button fx:id="add" alignment="CENTER" layoutX="366.0" layoutY="679.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="27.0" prefWidth="106.0" style="-fx-background-color: rgb(19,151,233); -fx-background-radius: 10;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="cancel" alignment="CENTER" layoutX="587.0" layoutY="686.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Cancel" textFill="WHITE">
+      <Button fx:id="cancel" alignment="CENTER" layoutX="222.0" layoutY="679.0" mnemonicParsing="false" onAction="#cancelButtonOnAction" prefHeight="27.0" prefWidth="116.0" style="-fx-background-color: rgb(50, 205, 50); -fx-background-radius: 10;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -98,20 +98,20 @@
             <TableColumn fx:id="colRemove" minWidth="0.0" prefWidth="81.5999755859375" text="Remove" />
         </columns>
       </TableView>
-      <Label layoutX="29.0" layoutY="618.0" prefHeight="26.0" prefWidth="54.0" text="Total" textFill="#c70c0c">
+      <Label layoutX="29.0" layoutY="606.0" prefHeight="26.0" prefWidth="54.0" text="Total" textFill="#c70c0c">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelTotal" alignment="CENTER" layoutX="91.0" layoutY="622.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" textFill="#b71717" />
-      <ComboBox fx:id="cmbPaymentType" layoutX="239.0" layoutY="620.0" onAction="#cmbPaymentTypeOnAction" prefHeight="26.0" prefWidth="123.0" promptText="payment type" />
-      <Label layoutX="410.0" layoutY="618.0" prefHeight="30.0" prefWidth="98.0" text="Payment" textFill="#c70c0c">
+      <Label fx:id="labelTotal" alignment="CENTER" layoutX="91.0" layoutY="610.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" textFill="#b71717" />
+      <ComboBox fx:id="cmbPaymentType" layoutX="230.0" layoutY="608.0" onAction="#cmbPaymentTypeOnAction" prefHeight="26.0" prefWidth="123.0" promptText="payment type" />
+      <Label layoutX="403.0" layoutY="606.0" prefHeight="30.0" prefWidth="98.0" text="Payment" textFill="#c70c0c">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelPayment" alignment="CENTER" layoutX="508.0" layoutY="622.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" textFill="#ef0808" />
-      <Label alignment="CENTER" layoutX="10.0" layoutY="584.0" prefHeight="18.0" prefWidth="141.0" text="Payment details">
+      <Label fx:id="labelPayment" alignment="CENTER" layoutX="503.0" layoutY="609.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" textFill="#ef0808" />
+      <Label alignment="CENTER" layoutX="12.0" layoutY="574.0" prefHeight="18.0" prefWidth="141.0" text="Payment details">
          <font>
             <Font name="Arial Bold Italic" size="13.0" />
          </font>
@@ -127,5 +127,10 @@
          </image>
       </ImageView>
       <Button fx:id="viewRental" layoutX="42.0" layoutY="300.0" mnemonicParsing="false" onAction="#viewRentalButtonOnAction" prefHeight="26.0" prefWidth="211.0" style="-fx-background-color: white;" text="View Rentals" />
+      <JFXButton fx:id="invoice" layoutX="558.0" layoutY="680.0" onAction="#invoiceButtonOnAction" prefHeight="26.0" prefWidth="123.0" text="Genarate Invoice ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

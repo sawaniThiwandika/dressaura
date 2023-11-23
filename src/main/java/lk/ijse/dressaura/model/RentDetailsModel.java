@@ -2,9 +2,11 @@ package lk.ijse.dressaura.model;
 
 import lk.ijse.dressaura.db.DbConnection;
 import lk.ijse.dressaura.dto.DressDto;
+import lk.ijse.dressaura.dto.PaymentDto;
 import lk.ijse.dressaura.dto.RentDetailsDto;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,13 +54,39 @@ public class RentDetailsModel {
     public boolean completeReservation(String rentId, String dressId) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         String sql="UPDATE rent_details SET isReserve=? WHERE rent_id=? and dress_id=?";
+        RentModel rentModel=new RentModel();
+
+        boolean isComplete = checkPaymentComplete(rentId);
+        if(isComplete){
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setBoolean(1,true);
         pstm.setString(2,rentId);
         pstm.setString(3,dressId);
         boolean b = pstm.executeUpdate() > 0;
-        System.out.println( b);
+        System.out.println("complete reservation"+ b);
         return b;
+        }
+        else {
+            DressModel dressModel=new DressModel();
+            PaymentModel paymentModel=new PaymentModel();
+            String payId = paymentModel.generateNextId();
+            PaymentDto dto=new PaymentDto(payId, LocalDate.now(),paymentModel.getPaymentDetails(rentModel.searchDetails(rentId).getPayId()));
+            boolean isPaid = paymentModel.savePayment(dto);
+            if (isPaid) {
+                boolean paymentComplete = rentModel.completePayment(rentId);
+                if (paymentComplete) {
+                    String sql1 = "UPDATE rent_details SET isReserve=? WHERE rent_id=? and dress_id=?";
+                    PreparedStatement pstm1 = connection.prepareStatement(sql1);
+                    pstm1.setBoolean(1, true);
+                    pstm1.setString(2, rentId);
+                    pstm1.setString(2,dressId);
+                    boolean b = pstm1.executeUpdate() > 0;
+                    System.out.println("complete reservation" + b);
+                    return b;
+                }
+            }
+        }
+        return true;
 
     }
 
@@ -130,5 +158,19 @@ public class RentDetailsModel {
                     ));
         }
         return rentalDetails;
+    }
+
+    public boolean checkPaymentComplete(String rentId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql="SELECT payment_complete FROM rent WHERE rent_id=? ";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1,rentId);
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            return resultSet.getBoolean("payment_complete");
+        }
+
+
+        return false;
     }
 }

@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -25,11 +26,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import lk.ijse.dressaura.db.DbConnection;
 import lk.ijse.dressaura.dto.*;
 import lk.ijse.dressaura.dto.tm.RentDressCartTm;
 import lk.ijse.dressaura.model.*;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 public class AddRentalFormController {
     @FXML
     private Label labelTotal;
@@ -114,6 +121,8 @@ public class AddRentalFormController {
     private TableColumn<?, ?> colUpdate;
     @FXML
     private Button viewRental;
+    @FXML
+    private JFXButton invoice;
     ObservableList<RentDressCartTm> rentList=FXCollections.observableArrayList();
     ArrayList<String>rentIds=new ArrayList<>();
 
@@ -309,26 +318,32 @@ public class AddRentalFormController {
     @FXML
     void addButtonOnAction(ActionEvent event) throws SQLException, ParseException {
         try {
-           // String rentId = labelRentId.getText();
+
             String type=cmbPaymentType.getValue();
             String cusId = customerComboBox.getValue();
-           // String dressId = dressComboBox.getValue();
             boolean isPaid = checkBoxPaid.isSelected();
             boolean isAvelible = checkDates.isSelected();
+            boolean paidComplete=false;
+            if(type.equals("Advanced")){
+                paidComplete=false;
+            }
+            else {
+                paidComplete=true;
+            }
 
 
             Double price = Double.parseDouble(labelPayment.getText());
             System.out.println(price);
-                if (checkBoxPaid.isSelected()){
+            if (checkBoxPaid.isSelected()){
                 String payId = generatePaymentId();
                 LocalDate paid_date = LocalDate.now();
 
-                //int noOfDays = calculateDays(rent_date, rent_date);
+
                 System.out.println(payId);
                 //RentDto rent = new RentDto(rentId, rent_date, return_date, noOfDays, dressId, cusId, payId, false, false);
                 PaymentDto payment = new PaymentDto(payId, paid_date, price);
                    // List <RentDto> rents=new ArrayList<>();
-                    rents=new RentDto(labelRentId.getText(),customerComboBox.getValue(),payId,LocalDate.now(),cmbPaymentType.getValue());
+                    rents=new RentDto(labelRentId.getText(),customerComboBox.getValue(),payId,LocalDate.now(),paidComplete);
                     List <RentDetailsDto> rentDetails=new ArrayList<>();
                     for (int i = 0; i < cartTable.getItems().size(); i++) {
                         rentDetails.add(new RentDetailsDto(rentList.get(i).getDressId(),labelRentId.getText(),rentList.get(i).getRentDate(),rentList.get(i).getReturnDate(),false,false));
@@ -344,7 +359,8 @@ public class AddRentalFormController {
                     }
                 } catch (SQLException e) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Successfully completed rent!").show();
-                }}
+                }
+            }
                 else {
                     new Alert(Alert.AlertType.ERROR, "payment is essential").show();
                 }
@@ -407,11 +423,13 @@ public class AddRentalFormController {
 
 
 
+
     }
     @FXML
     void checkDateOnAction(ActionEvent event) throws SQLException, ParseException {
 
-boolean isvalid= labelRentPrice.getText().isEmpty()||txtReturnDate.getValue()==null||txtRentDate.getValue()==null||lebalName.getText().isEmpty();
+boolean isvalid= labelRentPrice.getText().isEmpty()||txtReturnDate.getValue()==null||txtRentDate.getValue()==null||
+        lebalName.getText().isEmpty();
         if (!isvalid) {
             String dressId = dressComboBox.getValue();
            boolean doubleOrder=checkDoubleRent(dressId);
@@ -496,5 +514,20 @@ boolean isvalid= labelRentPrice.getText().isEmpty()||txtReturnDate.getValue()==n
         else{
             checkBoxPaid.setSelected(true);
         }
+    }
+
+    @FXML
+    void invoiceButtonOnAction(ActionEvent event) throws JRException, SQLException {
+        InputStream resourceAsStream = getClass().getResourceAsStream("/report/rentInvoice.jrxml");
+        JasperDesign load = JRXmlLoader.load(resourceAsStream);
+        JasperReport compileReport = JasperCompileManager.compileReport(load);
+        JasperPrint jasperPrint =
+                JasperFillManager.fillReport(
+                        compileReport, //compiled report
+                        null,
+                        DbConnection.getInstance().getConnection() //database connection
+                );
+        JasperViewer.viewReport(jasperPrint, false);
+
     }
 }

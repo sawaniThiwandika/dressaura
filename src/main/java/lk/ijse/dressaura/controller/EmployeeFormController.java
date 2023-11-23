@@ -96,9 +96,38 @@ public class EmployeeFormController {
     }
 
     private void updateButtonOnAction(Button btnU, EmployeeDto empDto) {
+        btnU.setOnAction(event -> {
+            try {
 
+                openUpdateMaterialForm(empDto);
+
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
     }
+
+    private void openUpdateMaterialForm(EmployeeDto dto) throws IOException, SQLException {
+        URL resource = this.getClass().getResource("/view/add_employee_form.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(resource);
+        Parent load = fxmlLoader.load();
+        AddEmployeeFormController controller = fxmlLoader.getController();
+        controller.initialize(dto);
+        Stage stage = new Stage();
+        stage.setTitle("Update customer");
+        stage.setScene(new Scene(load));
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(true);
+        stage.show();
+
+    }
+
+
 
     private void deleteEmployeeButtonOnAction(Button btnD) {
 

@@ -12,9 +12,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeModel {
-
+boolean isDuplicate=false;
     public boolean addEmployee(EmployeeDto dto) throws SQLException {
+        List<EmployeeDto> employeeTableValues = getEmployeeTableValues();
+        for (int i=0;i<employeeTableValues.size();i++){
+            if(dto.getEmpId().equals(employeeTableValues.get(i).getEmpId())){
+                //updateEmployee();
+            isDuplicate= true;
+            }
 
+            else {
+                isDuplicate=false;
+            }
+
+
+        }
+
+
+
+
+if(!isDuplicate){
         Connection connection = null;
         try {
             connection = DbConnection.getInstance().getConnection();
@@ -42,6 +59,39 @@ public class EmployeeModel {
         }
         return true;
     }
+
+else {
+    Connection connection = null;
+    try {
+        connection = DbConnection.getInstance().getConnection();
+        connection.setAutoCommit(false);
+        String sql = "UPDATE employee SET  name = ?, address = ? ,contact=? ,email=? ,jobRole=?WHERE emp_id = ?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+
+        pstm.setString(6, dto.getEmpId());
+        pstm.setString(1, dto.getName());
+        pstm.setString(2, dto.getAddress());
+        pstm.setString(3, dto.getContact());
+        pstm.setString(4, dto.getEmail());
+        pstm.setString(5, dto.getJobRole());
+
+        boolean isSaved = pstm.executeUpdate() > 0;
+        if (isSaved) {
+            connection.commit();
+        }
+        connection.rollback();
+
+
+    } finally {
+        connection.setAutoCommit(true);
+    }
+    return true;
+
+
+
+
+}
+    }
     public String generateNextEmployeeId() throws SQLException {
 
         Connection connection = DbConnection.getInstance().getConnection();
@@ -55,15 +105,16 @@ public class EmployeeModel {
         }
         return splitEmployeeId(null);
     }
-    private String splitEmployeeId(String currentEmployeeId) {
-        if(currentEmployeeId != null) {
-            String[] split = currentEmployeeId.split("E0");
-            int id = Integer.parseInt(split[1]); //01
-            id++;
-            return "E00" + id;
-        } else {
-            return "E001";
-        }
+    private String splitEmployeeId(String currentEmployeeId){
+            if (currentEmployeeId != null) {
+                String[] split = currentEmployeeId.split("E0");
+                int id = Integer.parseInt(split[1]); //01
+                id++;
+                return "E00" + id;
+            } else {
+                return "E001";
+            }
+
     }
 
     public List<EmployeeDto> getEmployeeTableValues() throws SQLException {

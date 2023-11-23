@@ -1,5 +1,6 @@
 package lk.ijse.dressaura.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventType;
@@ -14,12 +15,18 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lk.ijse.dressaura.db.DbConnection;
 import lk.ijse.dressaura.dto.CustomerDto;
 import lk.ijse.dressaura.dto.tm.CustomerTm;
 import lk.ijse.dressaura.model.CustomerModel;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -50,7 +57,8 @@ public class CustomerFormController {
     private TableColumn<?, ?> update;
     @FXML
     private TableColumn<?, ?> number;
-
+    @FXML
+    private JFXButton report;
     @FXML
     private TableView<CustomerTm> tableCustomer;
     private ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
@@ -189,4 +197,22 @@ public class CustomerFormController {
         stage.setResizable(true);
         stage.show();
     }
+
+    public void reportBtnOnAction(ActionEvent actionEvent) throws JRException, SQLException {
+
+        InputStream resourceAsStream =
+                getClass().getResourceAsStream("/report/customer_list_DressAura.jrxml");
+                JasperDesign load = JRXmlLoader.load(resourceAsStream);
+                JasperReport compileReport = JasperCompileManager.compileReport(load);
+                JasperPrint jasperPrint =
+                JasperFillManager.fillReport(
+                        compileReport, //compiled report
+                        null,
+                        DbConnection.getInstance().getConnection() //database connection
+                );
+                JasperViewer.viewReport(jasperPrint, false);
+
+    }
+
+
 }

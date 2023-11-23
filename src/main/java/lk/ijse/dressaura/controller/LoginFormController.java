@@ -18,8 +18,12 @@ import java.sql.SQLException;
 
 
 import javafx.scene.control.TextField;
-
+import com.jfoenix.controls.JFXButton;
 public class LoginFormController {
+
+    @FXML
+    private JFXButton registerBtn;
+
     @FXML
     private AnchorPane loginpage;
     @FXML
@@ -67,6 +71,7 @@ public class LoginFormController {
             }
 
 
+
     public void forgetPasswordOnAction(ActionEvent actionEvent) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/forgot_Password_form.fxml"));
         Scene scene = new Scene(anchorPane);
@@ -74,5 +79,17 @@ public class LoginFormController {
         stage.setScene(scene);
         stage.setTitle("forgot password page");
         stage.centerOnScreen();
+    }
+
+
+    @FXML
+    void registerButtonOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/add_user_form.fxml"));
+        Scene scene = new Scene(anchorPane);
+        Stage stage = (Stage) loginpage.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("add user");
+        stage.centerOnScreen();
+
     }
 }

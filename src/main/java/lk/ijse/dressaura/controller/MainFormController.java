@@ -9,16 +9,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
 import javafx.scene.control.Label;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lk.ijse.dressaura.dto.RentDto;
 import lk.ijse.dressaura.model.OrderModel;
 import lk.ijse.dressaura.model.RentModel;
-
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
 public class MainFormController {
 
@@ -54,6 +58,58 @@ public class MainFormController {
 
     @FXML
     private Button supplier;
+    @FXML
+    private JFXButton addCustomerBtn;
+
+    @FXML
+    private JFXButton addOrderBtn;
+
+    @FXML
+    private JFXButton addRentBtn;
+    @FXML
+    void addCustomerBtnOnAction(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/add_customer_form.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(resource);
+        Parent load = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Add customer");
+        stage.setScene(new Scene(load));
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.show();
+
+    }
+
+    @FXML
+    void addOrderBtnOnAction(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/add_order_form.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(resource);
+        Parent load = fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setTitle("Add order");
+        stage.setScene(new Scene(load));
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    @FXML
+    void addRentBtnOnAction(ActionEvent event) throws IOException {
+        URL resource = this.getClass().getResource("/view/add_rental_form.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(resource);
+        Parent load = fxmlLoader.load();
+        fxmlLoader.getController();
+        Stage stage = new Stage();
+        stage.setTitle("Add rental");
+        stage.setScene(new Scene(load));
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
+        stage.show();
+
+    }
     public void initialize() throws SQLException {
        labelDate.setText(String.valueOf(LocalDate.now()));
       //  updateLabels();
@@ -115,7 +171,7 @@ public class MainFormController {
     }
     @FXML
     void dashboardButtonOnAction(ActionEvent event) throws IOException {
-        setForms("/view/dashboard_form.fxml");
+        setForms("/view/new_dashboard_form.fxml");
 
     }
 
@@ -124,7 +180,7 @@ public class MainFormController {
     }
 
     public void setForms(String forms) throws IOException {
-        String[] form = {"/view/dashboard_form.fxml",
+        String[] form = {"/view/new_dashboard_form.fxml",
                 "/view/payment_form.fxml",
                 "/view/rental_form.fxml",
                 "/view/order_form.fxml",

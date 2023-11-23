@@ -15,7 +15,7 @@ public class RentDto {
     private String cusId;
     private String payId;
     private LocalDate date;
-    private String  paymentType;
+    private boolean paymentType;
 
 
 }

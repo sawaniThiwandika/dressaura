@@ -135,18 +135,12 @@ public class PaymentFormController {
 
     private void loadAllIncomePayments() throws SQLException {
         PaymentModel paymodel=new PaymentModel();
-       List<PaymentTm>paymentDetails =paymodel.getIncomePaymentDetails();
+        List<PaymentTm>paymentDetails =paymodel.getIncomePaymentDetails();
         ObservableList<PaymentTm> obList = FXCollections.observableArrayList();
-       for(PaymentTm paymentTm:paymentDetails){
+        for(PaymentTm paymentTm:paymentDetails){
            obList.add(paymentTm);
-       }
-       cusPaymentTable.setItems(obList);
-
-
-
-
-
-
+        }
+        cusPaymentTable.setItems(obList);
 
     }
 

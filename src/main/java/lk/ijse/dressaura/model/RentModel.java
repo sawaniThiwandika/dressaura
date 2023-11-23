@@ -50,7 +50,7 @@ public class RentModel {
                     resultSet.getString("cus_id"),
                     resultSet.getString("pay_id"),
                     resultSet.getDate("date").toLocalDate(),
-                    ( resultSet.getBoolean("payment_complete")==false)?"advanced":"full"
+                    resultSet.getBoolean("payment_complete")
 
             )
             );
@@ -72,7 +72,7 @@ public class RentModel {
                     resultSet.getString("cus_id"),
                     resultSet.getString("pay_id"),
                     resultSet.getDate("date").toLocalDate(),
-                    (!resultSet.getBoolean("payment_complete")) ? "advanced" : "full"
+                    resultSet.getBoolean("payment_complete")
             );
             return dto;
         }
@@ -123,10 +123,10 @@ public class RentModel {
             pstm.setString(2, rents.getCusId());
             pstm.setString(3, rents.getPayId());
             pstm.setDate(4, Date.valueOf(rents.getDate()));
-            pstm.setBoolean(5, ((rents.getPaymentType().equals("advanced")) ? false : true));
+            pstm.setBoolean(5, rents.isPaymentType());
             System.out.println(rents.getRentId() + rents.getCusId());
             System.out.println(rents.getDate());
-            System.out.println(rents.getPaymentType());
+          //  System.out.println(rents.getPaymentType());
             System.out.println(rents.getPayId());
             boolean isSaved = pstm.executeUpdate() > 0;
             return isSaved;
@@ -160,12 +160,12 @@ public class RentModel {
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1,rentId);
         return pstm.executeUpdate()>0;}
-return false;
+        return false;
     }
 
     public void deleteAllLateReservations() throws SQLException {
         RentDetailsModel rentDetailsModel=new RentDetailsModel();
-       List<RentDetailsDto> allRentals =rentDetailsModel.getAllRentals();
+        List<RentDetailsDto> allRentals =rentDetailsModel.getAllRentals();
         //List<RentDetailsDto> lateReservations=new ArrayList<>();
         for(RentDetailsDto rent:
         allRentals){
@@ -176,6 +176,7 @@ return false;
         }
 
 
+
     }
 
 
@@ -183,6 +184,16 @@ return false;
     public String genatateNewRentIdForMoreRents(String text) {
       return   spiltRentalId(text);
 
+    }
+
+    public boolean completePayment(String rentId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql="UPDATE rent SET payment_complete=? WHERE rent_id=?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setBoolean(1,true);
+        pstm.setString(2,rentId);
+
+        return pstm.executeUpdate()>0;
     }
 }
 

@@ -76,6 +76,31 @@ public class PaymentModel {
                    btn));
 
        }
+        String sql1=" select c.cus_id,c.name,o.order_id,p.pay_date,p.amount,p.pay_id\n" +
+                "    from payment p\n" +
+                "    join orders o\n" +
+                "    on o.pay_id=p.pay_id\n" +
+                "    join customer c\n" +
+                "    on c.cus_id=o.cus_id order by pay_id desc";
+        PreparedStatement pstm1=connection.prepareStatement(sql1);
+        ResultSet resultSet1 = pstm1.executeQuery();
+
+        while (resultSet1.next()){
+            Button btn=new Button("update");
+            i++;
+            paymentList.add(new PaymentTm(i,
+                    resultSet1.getString("pay_id"),
+                    resultSet1.getString("cus_id"),
+                    resultSet1.getString("name"),
+                    String.valueOf(resultSet1.getDate("pay_date")),
+                    "order",resultSet1.getDouble("amount"),
+                    btn));
+
+        }
+
+
+
+
       return paymentList;
     }
 
@@ -105,5 +130,19 @@ public class PaymentModel {
         }
         return paymentList;
 
+    }
+
+    public Double getPaymentDetails(String payId) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        String sql="SELECT amount FROM payment WHERE pay_id=?";
+        PreparedStatement pstm=connection.prepareStatement(sql);
+        pstm.setString(1,payId);
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+           return resultSet.getDouble("amount");
+
+        }
+
+     return 0.0;
     }
 }
