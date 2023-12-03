@@ -112,7 +112,8 @@ public class CustomerFormController {
         for (CustomerDto cusDto:customerList) {
             Button btnU=new Button("Update");
             Button btnD=new Button("Delete");
-            obList.add(new CustomerTm(i,cusDto.getCusId(), cusDto.getName(),cusDto.getAddress(),cusDto.getEmail(),cusDto.getContact(),btnU ,btnD));
+            obList.add(new CustomerTm(i,cusDto.getCusId(), cusDto.getName(),cusDto.getAddress(),cusDto.getEmail(),
+                    cusDto.getContact(),btnU ,btnD));
             i++;
             deleteCustomerButtonOnAction(btnD);
             updateButtonOnAction(btnU,cusDto);
