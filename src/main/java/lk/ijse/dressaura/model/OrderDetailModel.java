@@ -13,6 +13,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDetailModel {
+    public static List<OrderDetailsDto> getAllDetails() throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+        List<OrderDetailsDto> detailsList=new ArrayList<>();
+        String sql = "SELECT * FROM order_details";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+           detailsList.add(new OrderDetailsDto(
+                   resultSet.getString("order_id"),
+                   resultSet.getDouble("material_amount"),
+                   resultSet.getString("material_id")));
+        }
+        return detailsList;
+    }
+
     public boolean saveOrderDetails(String orderId, List<MaterialDressTm> materialList) throws SQLException {
         for(MaterialDressTm tm : materialList) {
             if(!saveOrderDetails(tm,orderId)) {

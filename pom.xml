@@ -62,6 +62,12 @@
             <artifactId>barcode4j</artifactId>
             <version>2.1</version> <!-- Use the appropriate version -->
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge.barbecue</groupId>
+            <artifactId>barbecue</artifactId>
+            <version>1.5-beta1</version> <!-- Replace with the latest version -->
+        </dependency>
+
     </dependencies>
 
 

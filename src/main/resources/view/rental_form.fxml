@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rentalPane" prefHeight="681.0" prefWidth="1266.0" style="-fx-background-color: rgb(233, 232, 232);" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.RentalFormController">
+<AnchorPane fx:id="rentalPane" prefHeight="681.0" prefWidth="1249.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.RentalFormController">
    <children>
       <Label alignment="CENTER" layoutX="26.0" layoutY="24.0" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: #913175; -fx-background-radius: 5;" text="Num of Rentals" textAlignment="JUSTIFY" textFill="#fcfcfc">
          <font>
@@ -56,7 +56,7 @@
             <Image url="@../icon/add.png" />
          </image>
       </ImageView>
-      <TableView fx:id="rentViewSTable" layoutX="12.0" layoutY="110.0" prefHeight="557.0" prefWidth="1242.0">
+      <TableView fx:id="rentViewSTable" layoutX="12.0" layoutY="110.0" prefHeight="558.0" prefWidth="1221.0">
          <columns>
             <TableColumn fx:id="colNum" prefWidth="29.600006103515625" text="#" />
             <TableColumn fx:id="colRentId" minWidth="0.0" prefWidth="76.80001449584961" text="Rent ID" />

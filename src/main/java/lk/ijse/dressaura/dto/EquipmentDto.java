@@ -16,6 +16,6 @@ public class EquipmentDto {
     private String name;
     private double price;
     private LocalDate date;
-    private String description;
+    private  String description;
 
 }

@@ -30,11 +30,11 @@ public class DressModel {
                 pstm.setString(2, dto.getName());
                 pstm.setString(4, dto.getSize());
                 pstm.setString(3, dto.getType());
-                pstm.setDate(9, Date.valueOf(dto.getDate()));
-                pstm.setString(8, dto.getUserName());
+                pstm.setDate(8, Date.valueOf(dto.getDate()));
+                pstm.setString(7, dto.getUserName());
                 pstm.setBoolean(6, dto.getAvelability());
                 pstm.setDouble(5, dto.getRentPrice());
-                pstm.setBlob(7, (Blob) null);
+                pstm.setString(9, dto.getPhotoPath());
                 boolean isSaved = pstm.executeUpdate() > 0;
 
                 if (isSaved) {
@@ -53,11 +53,11 @@ public class DressModel {
     private boolean updateDress(DressDto dto) throws SQLException {
         Connection connection=DbConnection.getInstance().getConnection();
         String sql = "UPDATE dress SET   name = ? ,type=? ,size=? ,rent_price=?,avalibility=?,user_name=?," +
-                "date=? WHERE dress_id = ?";
+                "date=?,image=? WHERE dress_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
 
-        pstm.setString(8, dto.getDressId());
+        pstm.setString(9, dto.getDressId());
         pstm.setString(1, dto.getName());
         pstm.setString(3, dto.getSize());
         pstm.setString(2, dto.getType());
@@ -65,6 +65,7 @@ public class DressModel {
         pstm.setString(6, dto.getUserName());
         pstm.setBoolean(5, dto.getAvelability());
         pstm.setDouble(4, dto.getRentPrice());
+        pstm.setString(8, dto.getPhotoPath());
 
         return pstm.executeUpdate() > 0;
 
@@ -94,14 +95,17 @@ public class DressModel {
 
         if(resultSet.next()){
             DressDto dress=new DressDto(
-                    resultSet.getString(8),
+                    resultSet.getString(7),
                     resultSet.getString(2),
                     resultSet.getString(1),
                     resultSet.getString(4),
                     resultSet.getDouble(5),
                     resultSet.getBoolean(6),
-                    resultSet.getBlob(7),
-                    resultSet.getString(8));
+                    resultSet.getString(9),
+                    resultSet.getString(3),
+                    resultSet.getDate(8).toLocalDate()
+
+            );
             return dress;
         }
         else{
@@ -121,12 +125,18 @@ public class DressModel {
         return splitDressId(null);
     }
     private String splitDressId(String currentDressId) {
-        if(currentDressId != null) {
-            String[] split = currentDressId.split("D0");
-            int id = Integer.parseInt(split[1]);
+        if(currentDressId!=null){
+            String [] split= currentDressId.split("D0");
+            int id=Integer.parseInt(split[1]);
+
             id++;
-            return "D00" + id;
-        } else {
+            if(id<10)
+            {return "D00"+id;}
+            else{
+                return "D0"+id;
+            }
+        }
+        else {
             return "D001";
         }
     }
@@ -143,15 +153,15 @@ public class DressModel {
         while(resultSet.next()) {
             dtoList.add(
                     new DressDto(
-                            resultSet.getString(8),
+                            resultSet.getString(7),
                             resultSet.getString(2),
                             resultSet.getString(1),
                             resultSet.getString(4),
                             resultSet.getDouble(5),
                             resultSet.getBoolean(6),
-                            resultSet.getBlob(7),
+                            resultSet.getString(9),
                             resultSet.getString(3),
-                            resultSet.getDate(9).toLocalDate()
+                            resultSet.getDate(8).toLocalDate()
                     )
             );
         }

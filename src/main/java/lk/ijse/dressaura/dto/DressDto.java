@@ -12,7 +12,7 @@ public class DressDto {
     private boolean avelability;
     private String type;
     private  LocalDate date;
-private  Blob photo;
+    private  String photoPath;
     public LocalDate getDate() {
         return date;
     }
@@ -76,8 +76,16 @@ private  Blob photo;
     public void setType(String type) {
         this.type = type;
     }
+    public void setPhotoPath(String photoPath){
+        this.photoPath=photoPath;
 
-    public DressDto(String userName, String name, String dressId, String size, double  rentPrice, boolean avelability, Blob blob, String type, LocalDate date) {
+    }
+    public String getPhotoPath(){
+        return photoPath;
+    }
+
+    public DressDto(String userName, String name, String dressId, String size, double  rentPrice, boolean avelability,
+                    String path, String type, LocalDate date) {
         this.userName = userName;
         this.name = name;
         this.dressId = dressId;
@@ -86,9 +94,9 @@ private  Blob photo;
         this.avelability = avelability;
         this.type = type;
         this.date=date;
-        this.photo=blob;
+        this.photoPath=path;
     }
-    public DressDto(String userName, String name, String dressId, String size, double  rentPrice, boolean avelability, Blob blob, String type) {
+    public DressDto(String userName, String name, String dressId, String size, double  rentPrice, boolean avelability, String path, String type) {
         this.userName = userName;
         this.name = name;
         this.dressId = dressId;
@@ -96,6 +104,6 @@ private  Blob photo;
         this.rentPrice = rentPrice;
         this.avelability = avelability;
         this.type = type;
-        this.photo=blob;
+        this.photoPath=path;
     }
 }

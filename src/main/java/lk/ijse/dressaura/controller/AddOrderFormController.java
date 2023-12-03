@@ -1,11 +1,13 @@
 package lk.ijse.dressaura.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 
-
+import java.io.File;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,7 +20,10 @@ import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import lk.ijse.dressaura.db.DbConnection;
 import lk.ijse.dressaura.dto.*;
 import lk.ijse.dressaura.dto.tm.MaterialDressTm;
 import lk.ijse.dressaura.model.CustomerModel;
@@ -35,9 +40,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import lk.ijse.dressaura.model.PaymentModel;
+import lk.ijse.dressaura.sendEmail.Mail;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 public class AddOrderFormController {
+    @FXML
+    private JFXButton genarateInvoice;
+    private String photoPath;
 
     @FXML
     private Label Labeltotal;
@@ -143,43 +156,52 @@ public class AddOrderFormController {
     @FXML
     void addMaterialButtonOnAction(ActionEvent event) throws SQLException {
         boolean isValid = validateMaterial();
-        if(isValid) {
+        if (isValid) {
+            MaterialModel materialModel = new MaterialModel();
+
             String id = comboMaterialCodes.getValue();
-            String name = labelmaterialName.getText();
             double qty = Double.parseDouble(txtAmount.getText());
-            double unitPrice = Double.parseDouble(labelUnitPrice.getText());
-            double tot = unitPrice * qty;
-            Button btn = new Button("Remove");
+            double currentStock = materialModel.searchMaterial(id).getQtyOnHand();
+            if ((currentStock - qty) < 0) {
+                new Alert(Alert.AlertType.ERROR, "Low inventory").show();
+            } else {
+                String name = labelmaterialName.getText();
 
-            setRemoveBtnAction(btn);
-            btn.setCursor(Cursor.HAND);
+                double unitPrice = Double.parseDouble(labelUnitPrice.getText());
+                double tot = unitPrice * qty;
+                Button btn = new Button("Remove");
+
+                setRemoveBtnAction(btn);
+                btn.setCursor(Cursor.HAND);
 
 
-            if (!obList.isEmpty()) {
-                for (int i = 0; i < materialTable.getItems().size(); i++) {
-                    if (colMaterialId.getCellData(i).equals(id)) {
-                        double col_qty = (double) colAmount.getCellData(i);
+                if (!obList.isEmpty()) {
+                    for (int i = 0; i < materialTable.getItems().size(); i++) {
+                        if (colMaterialId.getCellData(i).equals(id)) {
+                            double col_qty = (double) colAmount.getCellData(i);
 
-                        qty += col_qty;
-                        tot = unitPrice * qty;
+                            qty += col_qty;
+                            tot = unitPrice * qty;
 
-                        obList.get(i).setAmount(qty);
-                        obList.get(i).setTotal(tot);
+                            obList.get(i).setAmount(qty);
+                            obList.get(i).setTotal(tot);
 
-                        calculateTotal();
-                        materialTable.refresh();
-                        return;
+                            calculateTotal();
+                            materialTable.refresh();
+
+                            return;
+                        }
                     }
+
                 }
+                var materialDress = new MaterialDressTm(id, name, unitPrice, qty, tot, btn);
 
+                obList.add(materialDress);
+
+                materialTable.setItems(obList);
+                calculateTotal();
+                txtAmount.clear();
             }
-            var materialDress = new MaterialDressTm(id, name, unitPrice, qty, tot, btn);
-
-            obList.add(materialDress);
-
-            materialTable.setItems(obList);
-            calculateTotal();
-            txtAmount.clear();
         }
     }
 
@@ -343,6 +365,20 @@ public class AddOrderFormController {
         Stage stage = (Stage) cancel.getScene().getWindow();
         stage.close();
     }
+
+    @FXML
+    void addDesignButtonOnAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+           photoPath = selectedFile.getAbsolutePath();
+
+        } else {
+
+           photoPath=null;
+        }
+
+    }
     @FXML
     void AddButtonOnAction(ActionEvent event) throws SQLException {
         boolean isValid = validateOrder();
@@ -354,6 +390,7 @@ public class AddOrderFormController {
             Double shoulder = Double.valueOf(txtShoulder.getText());
             Double waist = Double.valueOf(txtWaist.getText());
 
+
             String orderId = labelOrderId.getText();
             LocalDate date = LocalDate.parse(labelDate.getText());
             String customerId = comboCustomerId.getValue();
@@ -362,7 +399,11 @@ public class AddOrderFormController {
             String pay_id = modelP.generateNextId();
             System.out.println(pay_id);
             List<MaterialDressTm> materialList = new ArrayList<>();
+            MaterialModel materialModel=new MaterialModel();
             for (int i = 0; i < materialTable.getItems().size(); i++) {
+                if(materialModel.searchMaterial(obList.get(i).getMaterial_id()).getQtyOnHand()-obList.get(i).getAmount()==0){
+                  materialModel.notifyLowInventory(obList.get(i).getMaterial_id(),obList.get(i).getMaterial_name());
+                }
                 MaterialDressTm materialDressTm = obList.get(i);
                 materialList.add(materialDressTm);
             }
@@ -372,7 +413,7 @@ public class AddOrderFormController {
             PaymentDto payment = new PaymentDto(pay_id, date, total);
             OrderDto order = new OrderDto(pay_id, customerId, txtDate.getValue(), LocalDate.parse(labelDate.getText()),
                     labelOrderId.getText(), inseam, shoulder, neck, hips, waist, bust, txtDescription.getText(),
-                    false, false);
+                    false, false,photoPath);
 
 
             try {
@@ -460,6 +501,20 @@ public class AddOrderFormController {
             return  false;
         }
         return true;
+    }
+    @FXML
+    void genarateInvoiceOnAction(ActionEvent event) throws JRException, SQLException {
+        InputStream resourceAsStream = getClass().getResourceAsStream("/report/NewOrder.jrxml");
+        JasperDesign load = JRXmlLoader.load(resourceAsStream);
+        JasperReport compileReport = JasperCompileManager.compileReport(load);
+        JasperPrint jasperPrint =
+                JasperFillManager.fillReport(
+                        compileReport, //compiled report
+                        null,
+                        DbConnection.getInstance().getConnection() //database connection
+                );
+        JasperViewer.viewReport(jasperPrint, false);
+
     }
 
 

@@ -12,6 +12,11 @@
 
 <AnchorPane prefHeight="507.0" prefWidth="567.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddDressFormController">
    <children>
+      <Label layoutX="357.0" layoutY="303.0" prefHeight="20.0" prefWidth="67.0" text="Add Photo" textFill="#1c15d4">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
       <Label layoutX="50.0" layoutY="50.0" prefHeight="42.0" prefWidth="211.0" text="Add New Dress" textFill="#0b0a0b">
          <font>
             <Font name="Calibri Bold" size="20.0" />
@@ -53,16 +58,11 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Button fx:id="addphoto" alignment="BASELINE_LEFT" layoutX="349.0" layoutY="308.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" style="-fx-background-color: white; -fx-border-color: 7D7C7C;" text="Add Photo">
+      <Button fx:id="addphoto" alignment="BASELINE_LEFT" layoutX="353.0" layoutY="299.0" mnemonicParsing="false" onAction="#addPhotoButtonOnAction" opacity="0.38" prefHeight="27.0" prefWidth="98.0" style="-fx-background-color: white; -fx-border-color: 7D7C7C;">
          <font>
             <Font size="13.0" />
          </font>
       </Button>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="427.0" layoutY="312.0">
-         <image>
-            <Image url="@../icon/icons8-add-16.png" />
-         </image>
-      </ImageView>
       <Button fx:id="add" layoutX="437.0" layoutY="453.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(19,151,233);" text="Add" textFill="#fffcfc">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -79,5 +79,10 @@
          </font>
       </Label>
       <ComboBox fx:id="comboType" layoutX="54.0" layoutY="299.0" onAction="#comboTypeOnAction" prefWidth="150.0" style="-fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="427.0" layoutY="303.0">
+         <image>
+            <Image url="@../assets/add-image.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

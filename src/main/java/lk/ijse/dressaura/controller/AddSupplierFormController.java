@@ -145,4 +145,12 @@ if(isValid) {
         stage.close();
 
     }
+
+    public void initialize(SupplierDto supplierDto) {
+        txtEmail.setText(supplierDto.getEmail());
+        txtContact.setText(supplierDto.getContact());
+        txtName.setText(supplierDto.getName());
+        labelSupId.setText(supplierDto.getSupId());
+        addBtn.setText("Update");
+    }
 }

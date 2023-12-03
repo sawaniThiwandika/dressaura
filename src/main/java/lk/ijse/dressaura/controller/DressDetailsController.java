@@ -4,8 +4,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lk.ijse.dressaura.db.DbConnection;
 import lk.ijse.dressaura.dto.DressDto;
 
 
@@ -21,6 +24,9 @@ import lk.ijse.dressaura.model.RentDetailsModel;
 import javax.management.Notification;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -51,6 +57,8 @@ public class DressDetailsController {
     @FXML
     private Button updateBtn;
     public DressDto dto;
+    @FXML
+    private ImageView imageView;
     @FXML
     void deleteBtnOnAction(ActionEvent event) throws SQLException {
         DressModel dressModel=new DressModel();
@@ -91,7 +99,7 @@ public class DressDetailsController {
         AddDressFormController controller = fxmlLoader.getController();
         controller.initialize(dto);
         Stage stage = new Stage();
-        stage.setTitle("Update customer");
+        stage.setTitle("Update dress");
         stage.setScene(new Scene(load));
         stage.centerOnScreen();
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -113,5 +121,9 @@ public class DressDetailsController {
         labelSize.setText(dressDetails.getSize());
         labelDate.setText(String.valueOf(dressDetails.getDate()));
         labelRentPrice.setText(String.valueOf(dressDetails.getRentPrice()));
+        Image image = new Image("file:" + dressDetails.getPhotoPath());
+        imageView.setImage(image);
+
     }
+
 }

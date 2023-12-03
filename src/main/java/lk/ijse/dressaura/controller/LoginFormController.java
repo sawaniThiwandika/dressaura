@@ -41,8 +41,8 @@ public class LoginFormController {
 
         loginDto.setUserName(userName);
         boolean isMatchedUsername=UserModel.checkUsername(loginDto);
-      if(isMatchedUsername==false){
-          new Alert(Alert.AlertType.CONFIRMATION, "wrong username try again!").show();
+        if(isMatchedUsername==false){
+          new Alert(Alert.AlertType.ERROR, "wrong username try again!").show();
      }
 
     }
@@ -56,7 +56,7 @@ public class LoginFormController {
 
         boolean isMatched=UserModel.checkCreditinal(loginDto);
         if(isMatched==false){
-            new Alert(Alert.AlertType.CONFIRMATION, "wrong password try again!").show();
+            new Alert(Alert.AlertType.ERROR, "wrong password try again!").show();
         }
         else
              {

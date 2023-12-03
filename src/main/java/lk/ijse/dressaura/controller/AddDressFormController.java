@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import lk.ijse.dressaura.dto.DressDto;
 import lk.ijse.dressaura.model.DressModel;
 import javafx.scene.control.TextField;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
@@ -44,6 +46,18 @@ public class AddDressFormController {
         Stage stage = (Stage) cancel.getScene().getWindow();
         stage.close();
     }
+    String photoPath;
+    @FXML
+    void addPhotoButtonOnAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            photoPath = selectedFile.getAbsolutePath();
+        } else {
+           photoPath=null;
+        }
+
+    }
 
     public void addButtonOnAction(ActionEvent actionEvent) {
         boolean isvalid = validateDressDetails();
@@ -57,7 +71,7 @@ public class AddDressFormController {
             double rentPrice = Double.valueOf(txtprice.getText());
             boolean avelability = true;
             String size = combosize.getValue();
-            var dto = new DressDto(userName, name, dressId, size, rentPrice, avelability, null, type, date);
+            var dto = new DressDto(userName, name, dressId, size, rentPrice, avelability, photoPath, type, date);
             try {
                 boolean isSuccess = dressModel.addDress(dto);
                 if (isSuccess) {
@@ -75,6 +89,7 @@ public class AddDressFormController {
       txtprice.setText(String.valueOf(dto.getRentPrice()));
       comboType.setValue(dto.getType());
       labeldate.setText(String.valueOf(dto.getDate()));
+      photoPath=dto.getPhotoPath();
     }
     public void initialize() {
         setValuesCombobox();

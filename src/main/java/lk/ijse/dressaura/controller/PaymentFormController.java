@@ -38,8 +38,7 @@ public class PaymentFormController {
     @FXML
     private TableColumn<?, ?> colDateCost;
 
-    @FXML
-    private TableColumn<?, ?> colMtarialIdCost;
+
 
     @FXML
     private TableColumn<?, ?> colNumCost;
@@ -99,6 +98,10 @@ public class PaymentFormController {
         loadAllIncomePayments();
         loadAllCostPayments();
         setCellValueFactory();
+        calculateTotal();
+        calculateCost();
+        calculateProfit();
+
     }
 
     private void loadAllCostPayments() throws SQLException {
@@ -124,7 +127,7 @@ public class PaymentFormController {
         coldateIncome.setCellValueFactory(new PropertyValueFactory<>("dateIncome"));
         colDateCost.setCellValueFactory(new PropertyValueFactory<>("dateCost"));
         colTypeIncome.setCellValueFactory(new PropertyValueFactory<>("type"));
-        colMtarialIdCost.setCellValueFactory(new PropertyValueFactory<>("materialId"));
+        //colMtarialIdCost.setCellValueFactory(new PropertyValueFactory<>("materialId"));
         colAmountCost.setCellValueFactory(new PropertyValueFactory<>("amountCost"));
         colTypeAmount.setCellValueFactory(new PropertyValueFactory<>("amountIncome"));
         colActionCost.setCellValueFactory(new PropertyValueFactory<>("updatePC_button"));
@@ -143,6 +146,35 @@ public class PaymentFormController {
         cusPaymentTable.setItems(obList);
 
     }
+    private void calculateTotal() throws SQLException {
+        double total = 0;
+        for (int i = 0; i < cusPaymentTable.getItems().size(); i++) {
+            total = (double)colTypeAmount.getCellData(i)+total;
+        }
+
+
+        labelIncome.setText(String.valueOf(total));
+
+    }
+    private void calculateCost() throws SQLException {
+        double cost = 0;
+        for (int i = 0; i < materialPaymentTable.getItems().size(); i++) {
+           cost += (double) colAmountCost.getCellData(i);
+        }
+
+
+        labelCost.setText(String.valueOf(cost));
+
+    }
+    private void calculateProfit() throws SQLException {
+        Double cost = Double.valueOf(labelCost.getText());
+        Double income = Double.valueOf(labelIncome.getText());
+        Double profit=income-cost;
+
+        labelProfit.setText(String.valueOf(profit));
+
+    }
+
 
 }
 

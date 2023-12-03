@@ -13,20 +13,9 @@ import java.util.List;
 
 public class EmployeeModel {
 boolean isDuplicate=false;
-    public boolean addEmployee(EmployeeDto dto) throws SQLException {
-        List<EmployeeDto> employeeTableValues = getEmployeeTableValues();
-        for (int i=0;i<employeeTableValues.size();i++){
-            if(dto.getEmpId().equals(employeeTableValues.get(i).getEmpId())){
-                //updateEmployee();
-            isDuplicate= true;
-            }
 
-            else {
-                isDuplicate=false;
-            }
-
-
-        }
+public boolean addEmployee(EmployeeDto dto) throws SQLException {
+   isDuplicate= checkDuplicates(dto);
 
 
 
@@ -90,8 +79,23 @@ else {
 
 
 
-}
     }
+    }
+
+    private boolean checkDuplicates(EmployeeDto dto) throws SQLException {
+
+        List<EmployeeDto> employeeTableValues = getEmployeeTableValues();
+        for (int i=0;i<employeeTableValues.size();i++){
+            if(dto.getEmpId().equals(employeeTableValues.get(i).getEmpId())){
+                //updateEmployee();
+                return true;
+            }
+
+        }
+        return false;
+
+    }
+
     public String generateNextEmployeeId() throws SQLException {
 
         Connection connection = DbConnection.getInstance().getConnection();
@@ -138,5 +142,13 @@ else {
         }
         return employeeList;
 
+    }
+
+    public boolean deleteEmployee(String empId) throws SQLException {
+        Connection connection=DbConnection.getInstance().getConnection();
+        String sql= "DELETE FROM employee WHERE emp_id=?";
+        PreparedStatement pstm=connection.prepareStatement(sql);
+        pstm.setString(1, empId);
+        return  pstm.executeUpdate()>0;
     }
 }

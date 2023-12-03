@@ -29,7 +29,11 @@ public class PaymentModel {
 
             int id = Integer.parseInt(split[1]);
             id++;
-            return "P00" + id;
+            if (id<10){
+            return "P00" + id;}
+            else {
+                return "P0"+id;
+            }
         } else {
             return "P001";
         }
@@ -107,12 +111,10 @@ public class PaymentModel {
     public ArrayList<PaymentTm> getCostPaymentDetails() throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
         ArrayList<PaymentTm> paymentList=new ArrayList<>();
-        String sql="select s.sup_id,s.name,sd.material_id,p.pay_date,p.amount,p.pay_id\n" +
-                "    from payment p\n" +
-                "    join supply_details sd\n" +
-                "    on sd.pay_id=p.pay_id\n" +
-                "    join supplier s\n" +
-                "    on s.sup_id=sd.sup_id order by pay_id desc;";
+        String sql="SELECT DISTINCT sd.sup_id, s.name, p.pay_date, p.amount, sd.pay_id\n" +
+                "FROM payment p\n" +
+                "JOIN supply_details sd ON sd.pay_id = p.pay_id\n" +
+                "JOIN supplier s ON s.sup_id = sd.sup_id";
         PreparedStatement pstm=connection.prepareStatement(sql);
         ResultSet resultSet = pstm.executeQuery();
         int i=0;
@@ -123,8 +125,7 @@ public class PaymentModel {
                     resultSet.getString("pay_id"),
                     resultSet.getString("sup_id"),
                     resultSet.getString("name"),
-                    String.valueOf(resultSet.getDate("pay_date")), resultSet.getString(
-                    "material_id"),resultSet.getDouble("amount"))
+                    String.valueOf(resultSet.getDate("pay_date")),resultSet.getDouble("amount"))
                     );
 
         }

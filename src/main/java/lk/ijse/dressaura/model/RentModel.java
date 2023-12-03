@@ -124,11 +124,13 @@ public class RentModel {
             pstm.setString(3, rents.getPayId());
             pstm.setDate(4, Date.valueOf(rents.getDate()));
             pstm.setBoolean(5, rents.isPaymentType());
+
             System.out.println(rents.getRentId() + rents.getCusId());
             System.out.println(rents.getDate());
           //  System.out.println(rents.getPaymentType());
             System.out.println(rents.getPayId());
             boolean isSaved = pstm.executeUpdate() > 0;
+            System.out.println("sygdhjfbdb");
             return isSaved;
 
 
@@ -195,5 +197,7 @@ public class RentModel {
 
         return pstm.executeUpdate()>0;
     }
+
+
 }
 

@@ -43,7 +43,7 @@
                   <Font size="11.0" />
                </font>
             </Button>
-            <JFXButton fx:id="registerBtn" layoutX="177.0" layoutY="212.0" onAction="#registerButtonOnAction" prefHeight="26.0" prefWidth="72.0" text="  Register" textFill="#0a23df">
+            <JFXButton fx:id="registerBtn" layoutX="162.0" layoutY="212.0" onAction="#registerButtonOnAction" prefHeight="26.0" prefWidth="72.0" text="  Register" textFill="#0a23df">
                <font>
                   <Font size="11.0" />
                </font>
@@ -53,6 +53,16 @@
                   <Font size="11.0" />
                </font>
             </Label>
+            <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="296.0" layoutY="251.0" opacity="0.32">
+               <image>
+                  <Image url="@../assets/username%20black.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="18.0" fitWidth="18.0" layoutX="296.0" layoutY="299.0" opacity="0.32">
+               <image>
+                  <Image url="@../assets/passwordBlack.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <ImageView fitHeight="415.0" fitWidth="415.0" layoutY="67.0">

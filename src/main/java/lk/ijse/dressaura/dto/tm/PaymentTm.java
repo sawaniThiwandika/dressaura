@@ -39,13 +39,13 @@ public PaymentTm(int number_income,String payIdIncome,String cusId,String cusNam
    this.amountIncome=amountIncome;
    this.updatePI_button=updatePI_button;
 }
-    public PaymentTm(Button updatePC_button,int number_cost,String payIdCost,String supId,String supName,String dateCost,String materialId,Double amountCost){
+    public PaymentTm(Button updatePC_button,int number_cost,String payIdCost,String supId,String supName,String dateCost,Double amountCost){
         this.number_cost=number_cost;
         this.payIdCost=payIdCost;
         this.supId=supId;
         this.supName=supName;
         this.dateCost=dateCost;
-        this.materialId=materialId;
+       // this.materialId=materialId;
         this.amountCost=amountCost;
         this.updatePC_button=updatePC_button;
     }

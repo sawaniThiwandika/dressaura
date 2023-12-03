@@ -8,8 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -17,11 +16,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
-import javafx.scene.control.Button;
 import lk.ijse.dressaura.dto.EmployeeDto;
+import lk.ijse.dressaura.dto.tm.CustomerTm;
 import lk.ijse.dressaura.dto.tm.EmployeeTm;
 import lk.ijse.dressaura.model.EmployeeModel;
+
+
 
 public class EmployeeFormController {
     @FXML
@@ -53,7 +55,8 @@ public class EmployeeFormController {
 
     @FXML
     private TableView<EmployeeTm> employeeTable;
-
+    @FXML
+    private Label noOfEmployees;
     EmployeeModel empModel= new EmployeeModel();
     private ObservableList<EmployeeTm> obList = FXCollections.observableArrayList();
     @FXML
@@ -74,6 +77,7 @@ public class EmployeeFormController {
 
         loadAllEmployee();
         setCellValueFactory();
+        noOfEmployees.setText(String.valueOf(empModel.getEmployeeTableValues().size()));
     }
 
     private void loadAllEmployee() throws SQLException {
@@ -111,6 +115,7 @@ public class EmployeeFormController {
 
     }
 
+
     private void openUpdateMaterialForm(EmployeeDto dto) throws IOException, SQLException {
         URL resource = this.getClass().getResource("/view/add_employee_form.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(resource);
@@ -130,6 +135,29 @@ public class EmployeeFormController {
 
 
     private void deleteEmployeeButtonOnAction(Button btnD) {
+        btnD.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+            if (type.orElse(no) == yes) {
+                int focusedIndex = employeeTable.getSelectionModel().getSelectedIndex();
+                EmployeeTm employeeTm = employeeTable.getSelectionModel().getSelectedItem();
+                try {
+                    boolean isDeleted = empModel.deleteEmployee(employeeTm.getEmpId());
+                    if(isDeleted){
+                        new Alert(Alert.AlertType.CONFIRMATION,"SUCCESSFULLLY deleted").show();
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                obList.remove(focusedIndex);
+                System.out.println(focusedIndex);
+                employeeTable.refresh();
+
+            }
+        });
 
     }
 
@@ -143,11 +171,6 @@ public class EmployeeFormController {
         colJobRole.setCellValueFactory(new PropertyValueFactory<>("jobRole"));
         colUpdate.setCellValueFactory(new PropertyValueFactory<>("update"));
         colDelete.setCellValueFactory(new PropertyValueFactory<>("delete"));
-
-
-
-
-
 
     }
 

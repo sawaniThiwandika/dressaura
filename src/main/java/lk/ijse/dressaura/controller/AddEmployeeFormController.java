@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import lk.ijse.dressaura.dto.EmployeeDto;
+import lk.ijse.dressaura.dto.EquipmentDto;
 import lk.ijse.dressaura.model.EmployeeModel;
 
 public class AddEmployeeFormController {
@@ -168,4 +169,6 @@ public class AddEmployeeFormController {
         labelEmpId.setText(dto.getEmpId());
 
     }
+
+
 }

@@ -56,7 +56,8 @@ public class OrderFormController {
     private TableColumn<?, ?> colFinished;
     @FXML
     private TableColumn<?, ?> colHandOver;
-
+    @FXML
+    private Label noOfOrders;
     @FXML
     private Button add;
     OrderModel orderModel=new OrderModel();
@@ -80,7 +81,7 @@ public class OrderFormController {
 
         loadAllIncompletedOrders();
         setCellValueFactory();
-
+        noOfOrders.setText(String.valueOf(orderModel.getAllIncompleteOrders().size()));
 
     }
 
@@ -133,7 +134,8 @@ public class OrderFormController {
             ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
             ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure that order has handed over?", yes, no).showAndWait();
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure that order has handed over?",
+                    yes, no).showAndWait();
 
             if (type.orElse(no) == yes) {
                 try {

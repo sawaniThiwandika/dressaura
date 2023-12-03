@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lk.ijse.dressaura.dto.SupplierDto;
+import lk.ijse.dressaura.dto.tm.EmployeeTm;
 import lk.ijse.dressaura.dto.tm.SupplierTm;
 import lk.ijse.dressaura.model.SupplierModel;
 
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class SupplierFormController {
+    SupplierDto supDto=new SupplierDto();
     private ObservableList<SupplierTm> obList = FXCollections.observableArrayList();
     @FXML
     private Button addButton;
@@ -88,13 +90,67 @@ public class SupplierFormController {
 
     }
 
-    private void updateButtonOnAction(Button btnU, SupplierDto supDto) {
+    private void updateButtonOnAction(Button btnU, SupplierDto supplierDto) {
+
+        btnU.setOnAction(event -> {
+            try {
+                setterDto(supplierDto);
+
+                openUpdateCustomerForm(supplierDto);
 
 
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
+    }
+    private void openUpdateCustomerForm(SupplierDto supplierDto) throws IOException, SQLException {
+
+        URL resource = this.getClass().getResource("/view/add_supplier_form.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(resource);
+        Parent load = fxmlLoader.load();
+        AddSupplierFormController controller = fxmlLoader.getController();
+        controller.initialize(supplierDto);
+        Stage stage = new Stage();
+        stage.setTitle("Update supplier");
+        stage.setScene(new Scene(load));
+        stage.centerOnScreen();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(true);
+        stage.show();
+
+    }
+    private void setterDto(SupplierDto supplierDto) {
+        this.supDto=supplierDto;
     }
 
     private void deleteSupplierButtonOnAction(Button btnD,List<SupplierDto> supplierList) {
+        btnD.setOnAction((e) -> {
+            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+            Optional<ButtonType> type = new Alert(Alert.AlertType.INFORMATION, "Are you sure to remove?", yes, no).showAndWait();
+
+            if (type.orElse(no) == yes) {
+                int focusedIndex = supplierTable.getSelectionModel().getSelectedIndex();
+                SupplierTm supplierTm = supplierTable.getSelectionModel().getSelectedItem();
+                try {
+                    boolean isDeleted =supModel.deleteSupplier(supplierTm.getSupId());
+                    if(isDeleted){
+                        new Alert(Alert.AlertType.CONFIRMATION,"SUCCESSFULLLY deleted").show();
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+                obList.remove(focusedIndex);
+                System.out.println(focusedIndex);
+                supplierTable.refresh();
+
+            }
+        });
 
 
     }

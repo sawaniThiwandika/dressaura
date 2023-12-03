@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="681.0" prefWidth="1266.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.EquipmentFormController">
+<AnchorPane prefHeight="681.0" prefWidth="1249.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.EquipmentFormController">
    <children>
       <ImageView fitHeight="24.0" fitWidth="25.0" layoutX="1213.0" layoutY="34.0">
          <image>
@@ -20,15 +20,16 @@
          </image>
       </ImageView>
       <Button fx:id="add" layoutX="1199.0" layoutY="24.0" mnemonicParsing="false" onAction="#addButtonOnAction" opacity="0.0" prefHeight="43.0" prefWidth="52.0" />
-      <TableView layoutX="23.0" layoutY="115.0" prefHeight="494.0" prefWidth="1218.0">
+      <TableView fx:id="tableEquipment" layoutX="23.0" layoutY="115.0" prefHeight="494.0" prefWidth="1218.0">
          <columns>
-            <TableColumn prefWidth="29.600006103515625" text="#" />
-            <TableColumn minWidth="0.0" prefWidth="131.20001983642578" text="Equipment ID" />
-            <TableColumn prefWidth="254.3999786376953" text="Name" />
-             <TableColumn minWidth="0.0" prefWidth="242.40005493164062" text="Description" />
-            <TableColumn minWidth="0.0" prefWidth="152.800048828125" text="Price" />
-            <TableColumn prefWidth="212.0" text="Date" />
-            <TableColumn minWidth="0.0" prefWidth="193.5999755859375" text="Action" />
+            <TableColumn fx:id="colNum" prefWidth="29.600006103515625" text="#" />
+            <TableColumn fx:id="colId" minWidth="0.0" prefWidth="131.20001983642578" text="Equipment ID" />
+            <TableColumn fx:id="colName" prefWidth="254.3999786376953" text="Name" />
+             <TableColumn fx:id="colDescription" minWidth="0.0" prefWidth="242.40005493164062" text="Description" />
+            <TableColumn fx:id="colPrice" minWidth="0.0" prefWidth="152.800048828125" text="Price" />
+            <TableColumn fx:id="colDate" prefWidth="136.0" text="Date" />
+            <TableColumn fx:id="colUpdate" minWidth="0.0" prefWidth="126.39990234375" text="Update" />
+            <TableColumn fx:id="colDelete" minWidth="0.0" prefWidth="141.5999511718751" text="Delete" />
          </columns>
       </TableView>
    </children>

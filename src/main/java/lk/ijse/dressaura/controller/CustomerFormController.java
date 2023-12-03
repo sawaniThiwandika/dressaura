@@ -61,6 +61,8 @@ public class CustomerFormController {
     private JFXButton report;
     @FXML
     private TableView<CustomerTm> tableCustomer;
+    @FXML
+    private Label noOfCustomer;
     private ObservableList<CustomerTm> obList = FXCollections.observableArrayList();
     private static CustomerModel cusModel=new CustomerModel();
     private CustomerDto setDto= new CustomerDto();
@@ -84,6 +86,10 @@ public class CustomerFormController {
 
         loadAllCustomers();
         setCellValueFactory();
+        List<CustomerDto> customerTableValues = cusModel.getCustomerTableValues();
+        noOfCustomer.setText(String.valueOf(customerTableValues.size()));
+
+
     }
 
     private void setCellValueFactory() {

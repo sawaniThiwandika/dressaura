@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="681.0" prefWidth="1266.0" style="-fx-background-color: WHITE; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.PaymentFormController">
+<AnchorPane prefHeight="681.0" prefWidth="1249.0" style="-fx-background-color: WHITE; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.PaymentFormController">
    <children>
       <TabPane fx:id="tabPane" layoutX="17.0" layoutY="81.0" prefHeight="500.0" prefWidth="1232.0" style="-fx-background-color: white; -fx-border-color: white;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -36,16 +36,15 @@
             <content>
               <AnchorPane fx:id="tabCost" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="materialPaymentTable" prefHeight="474.0" prefWidth="1232.0">
+                        <TableView fx:id="materialPaymentTable" prefHeight="474.0" prefWidth="1206.0">
                            <columns>
                               <TableColumn fx:id="colNumCost" prefWidth="29.600006103515625" text="#" />
-                              <TableColumn fx:id="colPayIdCost" minWidth="0.0" prefWidth="92.0" text="Payment ID" />
-                              <TableColumn fx:id="colSupIdCost" prefWidth="117.59999084472656" text="Supplier ID" />
-                              <TableColumn fx:id="colSupNameCost" minWidth="0.0" prefWidth="237.5999755859375" text="Supplier Name" />
-                              <TableColumn fx:id="colMtarialIdCost" prefWidth="172.0" text="Material ID" />
-                              <TableColumn fx:id="colDateCost" minWidth="0.0" prefWidth="228.79998779296875" text="Date" />
-                              <TableColumn fx:id="colAmountCost" minWidth="0.0" prefWidth="184.7999267578125" text="Amount" />
-                              <TableColumn fx:id="colActionCost" minWidth="0.0" prefWidth="164.800048828125" text="Action" />
+                              <TableColumn fx:id="colPayIdCost" minWidth="0.0" prefWidth="111.19997024536133" text="Payment ID" />
+                              <TableColumn fx:id="colSupIdCost" prefWidth="164.8000030517578" text="Supplier ID" />
+                              <TableColumn fx:id="colSupNameCost" minWidth="0.0" prefWidth="345.6000671386719" text="Supplier Name" />
+                              <TableColumn fx:id="colDateCost" minWidth="0.0" prefWidth="236.79998779296875" text="Date" />
+                              <TableColumn fx:id="colAmountCost" minWidth="0.0" prefWidth="185.599853515625" text="Amount" />
+                              <TableColumn fx:id="colActionCost" minWidth="0.0" prefWidth="135.20001220703125" text="Action" />
                            </columns>
                         </TableView>
                      </children>

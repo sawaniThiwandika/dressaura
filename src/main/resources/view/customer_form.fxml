@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="681.0" prefWidth="1266.0" style="-fx-background-color: White; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.CustomerFormController">
+<AnchorPane prefHeight="682.0" prefWidth="1237.0" style="-fx-background-color: White; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.CustomerFormController">
    <children>
-      <Label alignment="CENTER" layoutX="31.0" layoutY="29.0" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: E9E8E8; -fx-background-radius: 5;" text="Num of Customers" textAlignment="JUSTIFY" textFill="#1e0505">
+      <Label alignment="CENTER" layoutX="14.0" layoutY="19.0" prefHeight="43.0" prefWidth="165.0" style="-fx-background-color: #913175; -fx-background-radius: 5;" text="Num of Customers" textAlignment="JUSTIFY" textFill="#fff9f9">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="209.0" layoutY="29.0" prefHeight="43.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5;" text="20">
+      <Label fx:id="noOfCustomer" alignment="CENTER" layoutX="199.0" layoutY="19.0" prefHeight="43.0" prefWidth="45.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #913175;" text="20">
          <font>
             <Font size="20.0" />
          </font>
@@ -27,7 +27,7 @@
             <Image url="@../icon/add.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableCustomer" layoutX="13.0" layoutY="93.0" prefHeight="494.0" prefWidth="1239.0">
+      <TableView fx:id="tableCustomer" layoutX="13.0" layoutY="93.0" prefHeight="566.0" prefWidth="1210.0">
         <columns>
           <TableColumn fx:id="number" prefWidth="29.600006103515625" text="#" />
           <TableColumn fx:id="columnId" minWidth="0.0" prefWidth="131.20001983642578" text="Customer Id" />

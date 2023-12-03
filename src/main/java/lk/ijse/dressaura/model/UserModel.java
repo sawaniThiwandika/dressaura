@@ -1,6 +1,5 @@
 package lk.ijse.dressaura.model;
 
-import com.google.protobuf.StringValue;
 import lk.ijse.dressaura.db.DbConnection;
 import lk.ijse.dressaura.dto.UserDto;
 import lk.ijse.dressaura.sendEmail.Mail;
@@ -97,7 +96,18 @@ public class UserModel {
         pstm.setString(1,newUser.getUserName());
         pstm.setString(2,newUser.getPassword());
         pstm.setString(3,newUser.getEmail());
-       return  pstm.executeUpdate()>0;
+        return  pstm.executeUpdate()>0;
     }
 
+    public String getAdminEmail() throws SQLException {
+        Connection connection= DbConnection.getInstance().getConnection();
+        String sql="SELECT email FROM user WHERE user_name=?";
+        PreparedStatement pstm=connection.prepareStatement(sql);
+        pstm.setString(1,"admin");
+        ResultSet resultSet = pstm.executeQuery();
+        while (resultSet.next()){
+            return resultSet.getString("email");
+        }
+        return sql;
+    }
 }

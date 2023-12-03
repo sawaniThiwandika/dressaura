@@ -11,6 +11,7 @@ import lk.ijse.dressaura.model.CustomerModel;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,6 +46,7 @@ public class AddCustomerFormController {
     public void initialize() throws SQLException {
         generateNextCustomerId();
         setDate();
+
 
     }
     @FXML

@@ -26,7 +26,19 @@ private double bust;
 private String description;
 private Boolean isCompleted;
 private Boolean isHandOver;
+private String design;
 
-
+    public OrderDto(String labelOrderIdText, String waistText, String inseamText, String shoulderText, String neckText,
+                    String hipsText, String bustText, String text, String design) {
+        this.orderId=labelOrderIdText;
+        this.design=design;
+        this.bust= Double.parseDouble(bustText);
+        this.description=text;
+        this.hips= Double.parseDouble(hipsText);
+        this.inseam= Double.parseDouble(inseamText);
+        this.neck= Double.parseDouble(neckText);
+        this.shoulder= Double.parseDouble(shoulderText);
+        this.waist= Double.parseDouble(waistText);
+    }
 
 }

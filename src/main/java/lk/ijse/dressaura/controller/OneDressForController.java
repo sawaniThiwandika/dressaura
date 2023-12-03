@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -19,8 +20,11 @@ import lk.ijse.dressaura.dto.DressDto;
 
 
 public class OneDressForController {
+    @FXML
+    private ImageView imageVIiew;
 
-        @FXML
+
+    @FXML
         private Label avalibility;
 
         @FXML
@@ -28,10 +32,6 @@ public class OneDressForController {
 
         @FXML
         private Label dressName;
-
-        @FXML
-        private AnchorPane image;
-
         @FXML
         private Button more;
         @FXML
@@ -89,8 +89,8 @@ public class OneDressForController {
         public Label getDressID() {
             return dressID;
         }
-        public AnchorPane getDressImage() {
-            return image;
+        public ImageView getDressImage() {
+            return imageVIiew;
         }
 
         public Label getDressSize() {

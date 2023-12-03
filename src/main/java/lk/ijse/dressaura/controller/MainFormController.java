@@ -19,6 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lk.ijse.dressaura.dto.RentDto;
 import lk.ijse.dressaura.model.OrderModel;
+import lk.ijse.dressaura.model.RentDetailsModel;
 import lk.ijse.dressaura.model.RentModel;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
@@ -110,9 +111,18 @@ public class MainFormController {
         stage.show();
 
     }
-    public void initialize() throws SQLException {
+    public void initialize() throws SQLException, IOException {
        labelDate.setText(String.valueOf(LocalDate.now()));
+        Parent root=FXMLLoader.load(this.getClass().getResource("/view/new_dashboard_form.fxml"));
+        this.mainForm.getChildren().clear();
+        this.mainForm.getChildren().add(root);
+        checkLateReturn();
       //  updateLabels();
+
+    }
+    private void checkLateReturn() throws SQLException {
+        RentDetailsModel rentDetailsModel=new RentDetailsModel();
+        rentDetailsModel.checkLateReturn();
 
     }
 

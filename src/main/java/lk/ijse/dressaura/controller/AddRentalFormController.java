@@ -206,7 +206,17 @@ public class AddRentalFormController {
         }
     }
 
-    private String generateNextRentId() throws SQLException {
+    private String generateNextRentId() throws SQLException { ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<CustomerDto> customers =cusModel.getCustomerTableValues();
+
+            for (CustomerDto dto : customers) {
+                obList.add(dto.getCusId());
+            }
+            customerComboBox.setItems(obList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         String nextId = rentModel.generateNextId();
         labelRentId.setText(nextId);
         return nextId;
@@ -346,7 +356,8 @@ public class AddRentalFormController {
                     rents=new RentDto(labelRentId.getText(),customerComboBox.getValue(),payId,LocalDate.now(),paidComplete);
                     List <RentDetailsDto> rentDetails=new ArrayList<>();
                     for (int i = 0; i < cartTable.getItems().size(); i++) {
-                        rentDetails.add(new RentDetailsDto(rentList.get(i).getDressId(),labelRentId.getText(),rentList.get(i).getRentDate(),rentList.get(i).getReturnDate(),false,false));
+                        rentDetails.add(new RentDetailsDto(rentList.get(i).getDressId(),labelRentId.getText(),
+                                rentList.get(i).getRentDate(),rentList.get(i).getReturnDate(),false,false));
                     }
 
                 try {
@@ -518,7 +529,7 @@ boolean isvalid= labelRentPrice.getText().isEmpty()||txtReturnDate.getValue()==n
 
     @FXML
     void invoiceButtonOnAction(ActionEvent event) throws JRException, SQLException {
-        InputStream resourceAsStream = getClass().getResourceAsStream("/report/rentInvoice.jrxml");
+        InputStream resourceAsStream = getClass().getResourceAsStream("/report/NewRental.jrxml");
         JasperDesign load = JRXmlLoader.load(resourceAsStream);
         JasperReport compileReport = JasperCompileManager.compileReport(load);
         JasperPrint jasperPrint =

@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="530.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.dressaura.controller.AddEquipmentFormController">
    <children>
-      <Label layoutX="51.0" layoutY="24.0" prefHeight="42.0" prefWidth="211.0" text="Add New Equipment" textFill="#0b0a0b">
+      <Label fx:id="title" layoutX="51.0" layoutY="24.0" prefHeight="42.0" prefWidth="211.0" text="Add New Equipment" textFill="#0b0a0b">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
@@ -21,19 +21,19 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="137.0" layoutY="121.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="E001" />
+      <Label fx:id="equipmentId" alignment="CENTER" layoutX="137.0" layoutY="121.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="E001" />
       <Label alignment="CENTER" layoutX="388.0" layoutY="121.0" prefHeight="23.0" prefWidth="71.0" text="Date ">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="459.0" layoutY="121.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="2023/01/03" />
+      <Label fx:id="date" alignment="CENTER" layoutX="459.0" layoutY="121.0" opacity="0.99" prefHeight="23.0" prefWidth="123.0" style="-fx-background-color: E9E8E8;" text="2023/01/03" />
       <Label layoutX="32.0" layoutY="181.0" prefHeight="23.0" prefWidth="54.0" text="Name">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="32.0" layoutY="213.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <TextField fx:id="txtName" layoutX="32.0" layoutY="213.0" prefHeight="32.0" prefWidth="302.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
       <Label layoutX="32.0" layoutY="273.0" prefHeight="23.0" prefWidth="134.0" text="Description">
          <font>
             <Font name="Arial" size="14.0" />
@@ -44,8 +44,8 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="388.0" layoutY="213.0" prefHeight="32.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
-      <Button layoutX="471.0" layoutY="472.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(19,151,233);" text="Add" textFill="#fffcfc">
+      <TextField fx:id="txtPrice" layoutX="388.0" layoutY="213.0" prefHeight="32.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 5; -fx-border-color: rgb(145, 49, 117); -fx-border-radius: 5;" />
+      <Button fx:id="addBtn" layoutX="471.0" layoutY="472.0" mnemonicParsing="false" onAction="#addButtonOnAction" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(19,151,233);" text="Add" textFill="#fffcfc">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -55,6 +55,6 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <TextArea layoutX="32.0" layoutY="307.0" prefHeight="87.0" prefWidth="322.0" />
+      <TextArea fx:id="txtDescription" layoutX="32.0" layoutY="307.0" prefHeight="87.0" prefWidth="322.0" />
    </children>
 </AnchorPane>

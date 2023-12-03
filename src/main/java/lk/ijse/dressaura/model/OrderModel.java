@@ -46,7 +46,7 @@ public class OrderModel {
 
     private static boolean saveOrder(OrderDto order) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
-        String sql="INSERT INTO orders VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        String sql="INSERT INTO orders VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement pstm = connection.prepareStatement(sql);
         pstm.setString(1,order.getOrderId());
         pstm.setString(3,order.getPayId());
@@ -62,7 +62,7 @@ public class OrderModel {
         pstm.setString(12,order.getDescription());
         pstm.setBoolean(13,order.getIsCompleted());
         pstm.setBoolean(14,order.getIsHandOver());
-
+        pstm.setString(15,order.getDesign());
          return  pstm.executeUpdate()>0;
 
 
@@ -118,7 +118,8 @@ public class OrderModel {
                             resultSet.getDouble("bust"),
                             resultSet.getString("description"),
                             resultSet.getBoolean("isCompleted"),
-                            resultSet.getBoolean("isHandOver")
+                            resultSet.getBoolean("isHandOver"),
+                            resultSet.getString("design")
                     ));
         }
         return orders;
@@ -128,8 +129,23 @@ public class OrderModel {
         CustomerModel customerModel=new CustomerModel();
         Mail mail=new Mail();
         String []to={customerModel.searchCustomer(dto.getCusId()).getEmail()};
-        String subject="Announcement";
-        String body="Your oder has Finished.Now you can take your Dress \n \n from \nDressAura Collections";
+        String subject="Your Clothing Order is Complete!\n";
+        String body="Dear customer,\n" +
+                "\n" +
+                "We're thrilled to inform you that your recent clothing order with DressAura Collections has been " +
+                "successfully processed and completed! We want to express our gratitude for choosing us.\n" +
+                "\n" +
+                "Here are the details of your order:\n" +
+                "\n" +
+                "Order Number:"+ dto.getOrderId() + "\n" +
+                "Your package is now on its way and should reach you by "+dto.getDate()+". If you have any questions or" +
+                " concerns about your order, feel free to reply to this email or contact our customer support.\n" +
+                "\n" +
+                "We sincerely hope you love your new additions to your wardrobe. Thank you for shopping with us!\n" +
+                "\n" +
+                "Best regards,\n" +
+                "\n" +
+                "[DressAura Collections]\n";
 
         mail.sendFromGMail(to, subject, body);
     }
@@ -196,5 +212,41 @@ public class OrderModel {
             pstm.setString(1, orderId);
 
             return pstm.executeUpdate()>0;
+    }
+
+    public boolean updateOrderMeasurements(OrderDto dto) throws SQLException {
+        Connection connection = null;
+        try {
+            connection = DbConnection.getInstance().getConnection();
+            connection.setAutoCommit(false);
+            String sql = "UPDATE orders SET  design=? ,bust=?,description=?,hips=?,inseam=?,neck=?,shoulder=?,waist=? WHERE order_id = ?";
+            PreparedStatement pstm = connection.prepareStatement(sql);
+
+            pstm.setString(1, dto.getDesign());
+            pstm.setDouble(2, dto.getBust());
+            pstm.setString(3, dto.getDescription());
+            pstm.setDouble(4,dto.getHips());
+            pstm.setDouble(5,dto.getInseam());
+            pstm.setDouble(6,dto.getNeck());
+            pstm.setDouble(7,dto.getShoulder());
+            pstm.setDouble(8,dto.getWaist());
+            pstm.setString(9,dto.getOrderId());
+
+
+
+            boolean isSaved = pstm.executeUpdate() > 0;
+            System.out.println(isSaved);
+            if (isSaved) {
+                System.out.println(isSaved);
+                connection.commit();
+            }
+            connection.rollback();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            connection.setAutoCommit(true);
+        }
+        return true;
     }
 }

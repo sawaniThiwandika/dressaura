@@ -1,8 +1,11 @@
 package lk.ijse.dressaura.model;
 
+import lk.ijse.dressaura.controller.LoginFormController;
 import lk.ijse.dressaura.db.DbConnection;
 import lk.ijse.dressaura.dto.*;
 import lk.ijse.dressaura.dto.tm.MaterialDressTm;
+import lk.ijse.dressaura.dto.tm.MaterialSupplierTm;
+import lk.ijse.dressaura.sendEmail.Mail;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,8 +36,13 @@ public class MaterialModel {
         if(currenMaterialId!=null){
             String [] split= currenMaterialId.split("M0");
             int id=Integer.parseInt(split[1]);
+
             id++;
-            return "M00"+id;
+            if(id<10)
+            {return "M00"+id;}
+            else{
+                return "M0"+id;
+            }
         }
         else {
             return "M001";
@@ -69,27 +77,39 @@ return supplierDtos;
 
     }
 
-    public boolean saveMaterial(MaterialDto dtoM, PaymentDto dtoP, SupplierDetailsDto dtoSD) throws SQLException {
+    public boolean saveMaterial(List<MaterialSupplierTm> materialDetails, PaymentDto dtoP, String supContact) throws SQLException {
         PaymentModel payModel=new PaymentModel();
         SupplierDetailsModel supDetailsModel=new SupplierDetailsModel();
+        List<Integer> indexes = checkPreviousMaterialId(materialDetails);
+        List<Integer> newIndexes =new ArrayList<>();
+        if (indexes.size()!=0){
+        newIndexes=checkNewIndexes(materialDetails,indexes);}
+        else{
+            for (int i=0;i<materialDetails.size();i++){
+                newIndexes.add(i);
+            }
 
-        boolean check = checkPreviousMaterialId(dtoM.getMaterialId());
-        if(check){
-            boolean isadd = updateMateralStock(dtoM, dtoP, dtoSD);
-            return isadd;
         }
-        else {
+        System.out.println("indexes"+indexes);
+        System.out.println("newIndexes"+newIndexes);
+        boolean ispaymentSaved = payModel.savePayment(dtoP);
+
+        if(indexes.size()!= 0){
+            boolean isadd = updateMateralStock(materialDetails, dtoP, indexes,supContact);
+            //return isadd;
+        }
+        if(newIndexes.size()!=0) {
+
+
             Connection connection = null;
 
             try {
                 connection = DbConnection.getInstance().getConnection();
                 connection.setAutoCommit(false);
-
-                boolean ispaymentSaved = payModel.savePayment(dtoP);
                 if (ispaymentSaved) {
-                    boolean isAddedMaterial = addMatirial(dtoM);
+                    boolean isAddedMaterial = addMatirial(materialDetails, newIndexes);
                     if (isAddedMaterial) {
-                        boolean isSupplyDetailSaved = supDetailsModel.saveSupplyDetails(dtoSD, dtoP);
+                        boolean isSupplyDetailSaved = supDetailsModel.saveSupplyDetails(supContact, dtoP, newIndexes, materialDetails);
                         if (isSupplyDetailSaved) {
                             connection.commit();
                         }
@@ -99,11 +119,52 @@ return supplierDtos;
             } finally {
                 connection.setAutoCommit(true);
             }
-            return true;
+
         }
+        return true;
     }
 
-    private boolean updateMateralStock(MaterialDto dtoM, PaymentDto dtoP, SupplierDetailsDto dtoSD) throws SQLException {
+    private boolean addMatirial(List<MaterialSupplierTm> materialDetails, List<Integer> newIndexes) throws SQLException {
+        Connection connection=DbConnection.getInstance().getConnection();
+        System.out.println(newIndexes);
+        String sql="INSERT INTO material VALUES (?,?,?,?)";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        System.out.println(newIndexes);
+        for (int i=0;i<newIndexes.size();i++) {
+
+            pstm.setString(1, materialDetails.get(newIndexes.get(i)).getMaterial_id());
+            pstm.setString(2,materialDetails.get(newIndexes.get(i)).getMaterial_name());
+            pstm.setDouble(3, materialDetails.get(newIndexes.get(i)).getAmount());
+            pstm.setDouble(4,materialDetails.get(newIndexes.get(i)).getUnitPrice());
+        }
+        return pstm.executeUpdate()>0;
+    }
+
+    private List<Integer> checkNewIndexes(List<MaterialSupplierTm> materialDetails, List<Integer> indexes) throws SQLException {
+
+        List<Integer> newIndexes= new ArrayList<>();
+        Connection connection=DbConnection.getInstance().getConnection();
+        String sql="select material_id FROM material GROUP BY  material_id";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        ResultSet resultSet = pstm.executeQuery();
+        int y=-1;
+       L1: for (int i=0;i<materialDetails.size();i++){
+           for (int j=0;j<indexes.size();j++)
+                if(indexes.get(j)!=i) {
+                    newIndexes.add(i);
+
+                }
+            }
+        System.out.println(newIndexes);
+           return newIndexes;
+        }
+
+
+
+
+
+
+    private boolean updateMateralStock(List<MaterialSupplierTm> materialDetails, PaymentDto dtoP, List<Integer> indexes, String supContact) throws SQLException {
         PaymentModel payModel=new PaymentModel();
         SupplierDetailsModel supDetailsModel=new SupplierDetailsModel();
         Connection connection = null;
@@ -112,16 +173,16 @@ return supplierDtos;
             connection = DbConnection.getInstance().getConnection();
             connection.setAutoCommit(false);
 
-            boolean ispaymentSaved = payModel.savePayment(dtoP);
-            if (ispaymentSaved) {
-                boolean isAddedMaterial = updatePreviousMatirial(dtoM,dtoSD);
+
+
+                boolean isAddedMaterial = updatePreviousMatirial(materialDetails,indexes);
                 if (isAddedMaterial) {
-                    boolean isSupplyDetailSaved = supDetailsModel.saveSupplyDetails(dtoSD, dtoP);
+                    boolean isSupplyDetailSaved = supDetailsModel.saveSupplyDetails(supContact, dtoP,indexes,materialDetails);
                     if (isSupplyDetailSaved) {
                         connection.commit();
                     }
                 }
-            }
+
             connection.rollback();
         } finally {
             connection.setAutoCommit(true);
@@ -129,32 +190,37 @@ return supplierDtos;
         return true;
     }
 
-    private boolean updatePreviousMatirial(MaterialDto dtoM, SupplierDetailsDto dtoSD) throws SQLException {
+    private boolean updatePreviousMatirial(List<MaterialSupplierTm> materialDetails, List<Integer> indexes) throws SQLException {
         Connection connection = DbConnection.getInstance().getConnection();
-
         String sql = "UPDATE material SET qty_on_hand = qty_on_hand + ? WHERE material_id = ?";
         PreparedStatement pstm = connection.prepareStatement(sql);
+        for (int i=0;i<indexes.size();i++) {
 
-        pstm.setDouble(1,dtoSD.getAmount());
-        pstm.setString(2, dtoM.getMaterialId());
-
+            pstm.setDouble(1, materialDetails.get(indexes.get(i)).getAmount());
+            pstm.setString(2, materialDetails.get(indexes.get(i)).getMaterial_id());
+        }
         return pstm.executeUpdate() > 0;
 
     }
 
-    private boolean checkPreviousMaterialId(String materialId) throws SQLException {
+    private List<Integer> checkPreviousMaterialId(List<MaterialSupplierTm> materialList) throws SQLException {
+        List<Integer> indexes= new ArrayList<>();
         Connection connection=DbConnection.getInstance().getConnection();
         String sql="select material_id FROM material GROUP BY  material_id";
         PreparedStatement pstm = connection.prepareStatement(sql);
 
         ResultSet resultSet = pstm.executeQuery();
         while (resultSet.next()){
-            if(resultSet.getString(1).equals(materialId)){
-                return true;
+            for (int i=0;i<materialList.size();i++){
+            if(resultSet.getString(1).equals(materialList.get(i).getMaterial_id())) {
+                indexes.add(i);
+                break;
 
             }
+            }
         }
-        return false;
+        System.out.println(indexes);
+        return indexes;
     }
 
     private boolean addMatirial(MaterialDto dtoM) throws SQLException {
@@ -273,5 +339,28 @@ return supplierDtos;
         }
         return materialList;
 
+    }
+
+
+
+    public void notifyLowInventory(String materialId, String materialName) throws SQLException {
+       UserModel model=new UserModel();
+        String adminEmail = model.getAdminEmail();
+        Mail mail=new Mail();
+        String []to={adminEmail};
+        String subject="Announcement";
+        String body="Material id: "+materialId+"\n Material name: "+materialName+"\nLow Inventory now...";
+        mail.sendFromGMail(to, subject, body);
+
+
+    }
+
+    public boolean deleteMaterial(MaterialDto dto) throws SQLException {
+        Connection connection = DbConnection.getInstance().getConnection();
+
+        String sql = "DELETE FROM material WHERE material_id=?";
+        PreparedStatement pstm = connection.prepareStatement(sql);
+        pstm.setString(1,dto.getMaterialId());
+        return pstm.executeUpdate()>0;
     }
 }
