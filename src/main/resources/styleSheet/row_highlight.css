@@ -1,0 +1,5 @@
+/* styles.css */
+
+.highlighted-row {
+    -fx-background-color: yellow; /* Set the background color for highlighted rows */
+}

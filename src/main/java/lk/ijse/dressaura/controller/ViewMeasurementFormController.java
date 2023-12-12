@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import lk.ijse.dressaura.dto.OrderDetailsDto;
 import lk.ijse.dressaura.dto.OrderDto;
 import lk.ijse.dressaura.dto.tm.ViewMaterialsTm;
+import lk.ijse.dressaura.model.CustomerModel;
 import lk.ijse.dressaura.model.MaterialModel;
 
 import java.io.File;
@@ -32,6 +33,9 @@ public class ViewMeasurementFormController {
         private JFXButton viewDesignButton;
         @FXML
         private Button updateBtn;
+
+        @FXML
+        private Label lableCusName;
 
         @FXML
         private Button cancel;
@@ -151,6 +155,10 @@ public class ViewMeasurementFormController {
         txtInseam.setText(String.valueOf(dto.getInseam()));
         labelOrderId.setText(dto.getOrderId());
         photoPath= dto.getDesign();
+        txtDescription.setText(dto.getDescription());
+        CustomerModel customer=new CustomerModel();
+        lableCusName.setText(customer.searchCustomer(dto.getCusId()).getName());
+
 
         for (OrderDetailsDto detailsDto: orderDetails){
 

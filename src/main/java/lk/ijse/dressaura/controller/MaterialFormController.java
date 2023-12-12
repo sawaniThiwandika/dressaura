@@ -255,6 +255,7 @@ public class MaterialFormController {
             if(ongoingMaterials.get(i).getMaterialId().equals(dto.getMaterialId())){
                 return true;
 
+
             }
         }
         return false;

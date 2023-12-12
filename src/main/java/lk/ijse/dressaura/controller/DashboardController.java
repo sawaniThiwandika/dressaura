@@ -90,7 +90,7 @@ public class DashboardController {
         for (XYChart.Series<String, Number> series : barChart.getData()) {
             for (XYChart.Data<String, Number> data : series.getData()) {
                 // Set custom color for each data point
-                String style = "-fx-bar-fill:#5272F2 ;";
+                String style = "-fx-bar-fill: #913175;";
                 data.getNode().setStyle(style);
             }
         }

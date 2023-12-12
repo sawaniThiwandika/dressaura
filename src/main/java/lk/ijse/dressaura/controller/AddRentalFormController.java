@@ -450,13 +450,13 @@ boolean isvalid= labelRentPrice.getText().isEmpty()||txtReturnDate.getValue()==n
             if(!doubleOrder) {
                 if (!avalibility) {
                     checkDates.setSelected(false);
-                    new Alert(Alert.AlertType.ERROR, "not available").show();
+                    new Alert(Alert.AlertType.WARNING, "Sorry it already booked!!!").show();
 
                 }
             }
             if(doubleOrder){
                 checkDates.setSelected(false);
-                new Alert(Alert.AlertType.ERROR, "not available").show();
+                new Alert(Alert.AlertType.WARNING, "Sorry it already booked!!!").show();
             }
         }
         else {

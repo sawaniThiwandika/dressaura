@@ -58,20 +58,29 @@
             <Font name="Calibri" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelIncome" layoutX="155.0" layoutY="614.0" prefHeight="31.0" prefWidth="152.0" style="-fx-background-color: rgb(233, 232, 232);" />
+      <Label fx:id="labelIncome" alignment="CENTER" layoutX="155.0" layoutY="614.0" prefHeight="31.0" prefWidth="152.0" style="-fx-background-color: rgb(233, 232, 232);" text="1234" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <Label alignment="CENTER" layoutX="338.0" layoutY="608.0" prefHeight="43.0" prefWidth="119.0" style="-fx-background-color: WHITE; -fx-background-radius: 5;" text="Total cost" textAlignment="JUSTIFY" textFill="#1b1919">
          <font>
             <Font name="Calibri" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelCost" layoutX="447.0" layoutY="614.0" prefHeight="31.0" prefWidth="152.0" style="-fx-background-color: rgb(233, 232, 232);" />
+      <Label fx:id="labelCost" alignment="CENTER" layoutX="447.0" layoutY="614.0" prefHeight="31.0" prefWidth="152.0" style="-fx-background-color: rgb(233, 232, 232);">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
       <Label alignment="CENTER" layoutX="652.0" layoutY="608.0" prefHeight="43.0" prefWidth="126.0" style="-fx-background-color: WHITE; -fx-background-radius: 5;" text="Total Profit" textAlignment="JUSTIFY" textFill="#ea2351">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelProfit" layoutX="778.0" layoutY="614.0" prefHeight="31.0" prefWidth="152.0" style="-fx-background-color: rgb(233, 232, 232);" />
-      <Label alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="43.0" prefWidth="213.0" style="-fx-background-color: WHITE; -fx-background-radius: 5;" text="Payement Details" textAlignment="JUSTIFY" textFill="#150307">
+      <Label fx:id="labelProfit" alignment="CENTER" layoutX="778.0" layoutY="614.0" prefHeight="31.0" prefWidth="152.0" style="-fx-background-color: rgb(233, 232, 232);" textFill="#d10909">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label alignment="CENTER" layoutX="17.0" layoutY="14.0" prefHeight="43.0" prefWidth="213.0" style="-fx-background-color: WHITE; -fx-background-radius: 5;" text="Payment Details" textAlignment="JUSTIFY" textFill="#150307">
          <font>
             <Font name="Calibri Bold" size="20.0" />
          </font>

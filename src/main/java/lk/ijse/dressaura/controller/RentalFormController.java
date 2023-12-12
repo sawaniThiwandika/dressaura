@@ -47,13 +47,13 @@ public class RentalFormController {
     private TableColumn<?, ?> colCusName;
 
     @FXML
-    private TableColumn<?, ?> colDressId;
+    private TableColumn<RentTm, String> colDressId;
 
     @FXML
     private TableColumn<?, ?> colNum;
 
     @FXML
-    private TableColumn<?, ?> colRentId;
+    private TableColumn<?,?> colRentId;
 
     @FXML
     private TableColumn<?, ?> colReserveDate;
@@ -101,11 +101,47 @@ public class RentalFormController {
         stage.show();
 
     }
+    @FXML
+    private TableView<RentTm> tableView;
+
+
+    private void customiseFactory(TableColumn<RentTm, String> calltypel) {
+        calltypel.setCellFactory(column -> {
+            return new TableCell<RentTm, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+
+                    setText(empty ? "" : getItem().toString());
+                    setGraphic(null);
+
+                    TableRow<RentTm> currentRow = getTableRow();
+
+                    if (!isEmpty()) {
+                        boolean b = checkLate(currentRow);
+
+                        if(!b)
+                            currentRow.setStyle("-fx-background-color:lightcoral");
+
+                    }
+                }
+            };
+        });
+    }
+    public boolean checkLate(TableRow<RentTm> currentRow){
+        RentTm item = currentRow.getItem();
+       if( item.getReturnDate().isBefore(LocalDate.now())){
+           return false;
+       }
+     return true;
+    }
+
     public void initialize() throws SQLException, IOException {
         deleteAllLateReservation();
         loadAllIncompletedRentals();
         setCellValueFactory();
         setLabelValues();
+        customiseFactory(colDressId);
 
     }
 

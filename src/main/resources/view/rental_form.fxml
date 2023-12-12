@@ -56,7 +56,7 @@
             <Image url="@../icon/add.png" />
          </image>
       </ImageView>
-      <TableView fx:id="rentViewSTable" layoutX="12.0" layoutY="110.0" prefHeight="558.0" prefWidth="1221.0">
+      <TableView fx:id="rentViewSTable" layoutX="12.0" layoutY="110.0" prefHeight="558.0" prefWidth="1221.0" styleClass="..\styleSheet\row_highlight.css">
          <columns>
             <TableColumn fx:id="colNum" prefWidth="29.600006103515625" text="#" />
             <TableColumn fx:id="colRentId" minWidth="0.0" prefWidth="76.80001449584961" text="Rent ID" />

@@ -152,6 +152,7 @@ public class MainFormController {
         @FXML
     void rentalButtonOnAction(ActionEvent event) throws IOException {
             setForms("/view/rental_form.fxml");
+
     }
     @FXML
     void orderButtonOnAction(ActionEvent event) throws IOException {

@@ -27,8 +27,13 @@ public class RentModel {
         if(currentRentalId!=null){
             String [] split= currentRentalId.split("R0");
             int id=Integer.parseInt(split[1]);
+
             id++;
-            return "R00"+id;
+            if(id<10)
+            {return "R00"+id;}
+            else{
+                return "R0"+id;
+            }
         }
         else {
             return "R001";

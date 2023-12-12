@@ -89,12 +89,12 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label layoutX="300.0" layoutY="27.0" prefHeight="23.0" prefWidth="106.0" text="Customer name" textFill="#d41414">
+      <Label layoutX="259.0" layoutY="27.0" prefHeight="23.0" prefWidth="106.0" text="Customer name" textFill="#d41414">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="labelOrderId1" alignment="CENTER" layoutX="410.0" layoutY="27.0" opacity="0.99" prefHeight="23.0" prefWidth="78.0" style="-fx-background-color: E9E8E8;" text="C001" textFill="#c91313" />
+      <Label fx:id="lableCusName" alignment="CENTER" layoutX="375.0" layoutY="27.0" opacity="0.99" prefHeight="23.0" prefWidth="192.0" style="-fx-background-color: E9E8E8;" text="C001" textFill="#c91313" />
       <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="126.0" layoutY="377.0">
          <image>
             <Image url="@../assets/view%20Design.png" />
